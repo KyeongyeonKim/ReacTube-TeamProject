@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { StyledContainer } from '../styles/LayoutStyle';
+import StyledContainer from 'styles/LayoutStyle';
 import Main from '../routes/Main';
 import Home from '../routes/Home';
 import Detail from '../routes/Detail';
