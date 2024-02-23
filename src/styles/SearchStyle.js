@@ -26,12 +26,23 @@ export const Item = styled.li`
   width: calc((100% - 32px) / 3);
 `;
 export const Thumbnail = styled.figure`
-  height: 230px;
+  width: 100%;
+  /* height: 230px; */
   border-radius: 5px;
   overflow: hidden;
   background: #f1f1f1;
+  aspect-ratio: 16 / 9;
+
+  & img {
+    width: 100%;
+    transition: all 0.3s;
+  }
+
+  & img:hover {
+    transform: scale(1.1);
+  }
 `;
-export const ItemTitle = styled.span`
-  padding-top: 5px;
+export const ItemTitle = styled.div`
+  margin-top: 5px;
   display: inline-block;
 `;
