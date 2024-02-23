@@ -1,47 +1,50 @@
-import React, { useState } from "react";
-import { client } from "api/supbase";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import client from 'api/supbase';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignupPage() {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [nickname, setNickname] = useState('');
   const navigate = useNavigate();
 
-  //   const loginHandler = async (event) => {
-  //     event.preventDefault();
+  const signupHandler = async (event) => {
+    event.preventDefault();
+    try {
+      const { data, error } = await client.auth.signUp({
+        email,
+        password
+      });
+      if (error) {
+        console.error(error);
+        alert('아이디와 비밀번호를 확인해주세요.');
+      } else {
+        alert('회원가입이 완료됐습니다.');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  //     setLoading(true);
-  //     const { error } = await client.auth.signInWithOtp({ email });
-
-  //     if (error) {
-  //       alert(error.error_description || error.message);
-  //     } else {
-  //       alert("Check your email!");
-  //     }
-  //     setLoading(false);
-  //   };
-  //   const checkLogin = async () => {
-  //     const authInfo = await client.auth.getSession();
-  //     const session = authInfo.data.session;
-  //   };
+  const checkLogin = async () => {
+    const authInfo = await client.auth.getSession();
+    const session = authInfo.data.session;
+  };
 
   return (
     <>
       <h2>Sign up </h2>
-      <form
-      //   onSubmit={loginHandler}
-      >
+      <form onSubmit={signupHandler}>
         <div>
-          <label>id </label>
+          <label>email </label>
           <input
             type="string"
-            id="id"
-            value={id}
+            id="email"
+            value={email}
             placeholder="id를 입력하세요."
             required
             onChange={(event) => {
-              setId(event.target.value);
+              setEmail(event.target.value);
             }}
           />
         </div>
@@ -71,11 +74,7 @@ export default function SignupPage() {
             }}
           />
         </div>
-        <button
-          type="submit"
-          onClick={() => navigate("/home")}
-          //   disabled={loading}
-        >
+        <button type="submit" onClick={() => navigate('/home')}>
           Sign Up
         </button>
       </form>
