@@ -1,17 +1,8 @@
-import { Outlet } from 'react-router-dom';
-import MainPage from './pages/MainPage';
-import { QueryClient, QueryClientProvider } from 'react-query';
-
-const queryClient = new QueryClient();
+import React from 'react';
+import Router from './shared/Router';
 
 function App() {
-  return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <MainPage />
-      </QueryClientProvider>
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
