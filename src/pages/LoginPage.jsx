@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { signInWithOAuth } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
-import client from '../api/supbase';
+import client from '../api/supabase';
 
 export default function LoginPage() {
   const navigate = useNavigate();
