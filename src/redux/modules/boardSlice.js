@@ -4,7 +4,7 @@ import axios from 'axios';
 const initialState = { boardItems: [] };
 
 const { data } = await axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/content`);
-data.forEach((element) => {
+data?.forEach((element) => {
   initialState.boardItems.push(element);
 });
 
