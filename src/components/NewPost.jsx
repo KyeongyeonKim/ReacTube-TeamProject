@@ -46,10 +46,9 @@ const NewPost = () => {
   };
 
   const extractVideoId = (url) => {
-    // Regular expression to extract video ID from YouTube URL
-    const regex =
+    const regularExpression =
       /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regex);
+    const match = url.match(regularExpression);
 
     if (match && match[1]) {
       setVideoId(match[1]);
@@ -61,7 +60,6 @@ const NewPost = () => {
   };
 
   const generateThumbnailUrl = (id) => {
-    // Construct the thumbnail URL using the video ID
     const thumbnailUrl = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
     setThumbnailUrl(thumbnailUrl);
   };
