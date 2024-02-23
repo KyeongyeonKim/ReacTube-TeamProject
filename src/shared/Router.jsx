@@ -6,6 +6,7 @@ import Home from '../routes/Home';
 import Detail from '../routes/Detail';
 import Edit from '../routes/Edit';
 import Search from '../routes/Search';
+import Write from 'routes/Write';
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
         <Route path="/detail" element={<Detail />} />
         <Route path="/edit" element={<Edit />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/write" element={<Write />} />
       </Routes>
     </StyledContainer>
   );
