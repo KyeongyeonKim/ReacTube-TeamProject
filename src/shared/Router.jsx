@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import LoginPage from '../pages/LoginPage';
+import SignupPage from '../pages/SignupPage';
 import { StyledContainer } from '../styles/LayoutStyle';
 import Main from '../routes/Main';
 import Home from '../routes/Home';
 import Detail from '../routes/Detail';
 import Edit from '../routes/Edit';
 import Search from '../routes/Search';
-import Write from 'routes/Write';
-import LoginPage from 'pages/LoginPage';
-import SignupPage from 'pages/SignupPage';
+import Write from '../routes/Write';
 
 function Router() {
   return (

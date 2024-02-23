@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { client } from "../api/supbase";
-import { signInWithOAuth } from "@supabase/supabase-js";
-import { useNavigate } from "react-router-dom";
-import { FaGithub } from "react-icons/fa";
+import { useState } from 'react';
+import { signInWithOAuth } from '@supabase/supabase-js';
+import { useNavigate } from 'react-router-dom';
+import { FaGithub } from 'react-icons/fa';
+import client from '../api/supbase';
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
 
   const signInWithGithub = async () => {
     const { data, error } = await client.auth.signInWithOAuth({
-      provider: "github",
+      provider: 'github',
       options: {
-        redirectTo: "http://localhost:3000/home",
-      },
+        redirectTo: 'http://localhost:3000/home'
+      }
     });
   };
 
@@ -27,7 +27,7 @@ export default function LoginPage() {
     if (error) {
       alert(error.error_description || error.message);
     } else {
-      alert("Check your email!");
+      alert('Check your email!');
     }
     setLoading(false);
   };
@@ -62,7 +62,7 @@ export default function LoginPage() {
         </button>
         <FaGithub onClick={() => signInWithGithub()} />
         <div>
-          <button onClick={() => navigate("/signup")}>Go to SignUp page</button>
+          <button onClick={() => navigate('/signup')}>Go to SignUp page</button>
         </div>
       </form>
     </>
