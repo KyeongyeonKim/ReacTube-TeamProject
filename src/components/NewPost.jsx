@@ -99,7 +99,8 @@ const NewPost = () => {
           password,
           timeString,
           content,
-          urlString
+          urlString,
+          videoId,
         };
 
         dispatch(addBoard(newPost));
@@ -122,8 +123,8 @@ const NewPost = () => {
           name="title"
           value={title}
           ref={titleRef}
-          placeholder="Title → Less than 10 char"
-          maxLength={10}
+          placeholder="Title → Less than 20 char"
+          maxLength={20}
           onChange={onChange}
         />
       </StyledSection>

@@ -14,6 +14,14 @@ export const StyledForm = styled.form`
   width: 50vw;
   height: 95vh;
 `;
+export const StyledSmallContainer = styled.div`
+  ${makeFlex}
+  border: .2rem solid black;
+  border-radius: 0.5rem;
+  padding: 2vh;
+  width: 50vw;
+  height: 80vh;
+`
 export const StyledSection = styled.section`
   ${makeFlex}
   width: 100%;
@@ -51,4 +59,29 @@ export const StyledButton = styled.button`
 export const StyledImage = styled.img`
   border-radius: 0.5rem;
   width: 90%;
+`;
+export const StyledItems = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  border-radius: 0.5rem;
+  padding: 2vh;
+  width: 100%;
+  gap: 1vh;
+  flex-wrap: wrap;
+  grid-auto-rows: 20vh;
+
+  & h3 {
+    text-align: center;
+    margin-top: 2vh;
+  }
+`;
+export const StyledItem = styled.div`
+  ${makeFlex}
+  padding: 1.5vh 0;
+
+  &:hover {
+    background-color: lightpink;
+    cursor: pointer;
+  }
 `;
