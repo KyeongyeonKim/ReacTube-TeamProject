@@ -16,7 +16,7 @@ export const PageTitle = styled.h2`
   margin-bottom: 30px;
   font-size: 20px;
 `;
-export const SearchList = styled.ul`
+export const SearchListArea = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
@@ -43,6 +43,8 @@ export const Thumbnail = styled.figure`
   }
 `;
 export const ItemTitle = styled.div`
-  margin-top: 5px;
-  display: inline-block;
+  margin: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
