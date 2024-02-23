@@ -1,15 +1,16 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import GoMainPage from './pages/';
+import MainPage from './pages/MainPage';
+import NotFound from '../pages/NotFound';
 
-function Router() {
+function router() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<GoMainPage />} />
-        <Route path="/main" element={<Main />} />
-      </Routes>
+      <Route path="/" element={<GoMainPage />} />
+      <Route path="/main" element={<MainPage />} />
+      <Route path="*" element={<NotFound />} />
     </Router>
   );
 }
 
-export default Router;
+export default router;
