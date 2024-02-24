@@ -20,7 +20,7 @@ export const StyledSmallContainer = styled.div`
   border: .2rem solid black;
   border-radius: 0.5rem;
   padding: 2vh;
-  width: 50vw;
+  width: 80vw;
   height: 80vh;
 `;
 export const StyledSection = styled.section`
@@ -100,7 +100,7 @@ export const ModalForm = styled.div`
   position: absolute;
   top: 0;
   z-index: initial;
-  border: .2rem solid black;
+  border: 0.2rem solid black;
   border-radius: 0.5rem;
   padding: 2vh;
   width: 50vw;
@@ -112,4 +112,4 @@ export const Buttons = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: top;
-`
+`;
