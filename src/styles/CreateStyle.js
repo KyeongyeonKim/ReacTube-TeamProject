@@ -13,6 +13,7 @@ export const StyledForm = styled.form`
   padding: 2vh;
   width: 50vw;
   height: 95vh;
+  background-color: white;
 `;
 export const StyledSmallContainer = styled.div`
   ${makeFlex}
@@ -21,7 +22,7 @@ export const StyledSmallContainer = styled.div`
   padding: 2vh;
   width: 50vw;
   height: 80vh;
-`
+`;
 export const StyledSection = styled.section`
   ${makeFlex}
   width: 100%;
@@ -29,7 +30,7 @@ export const StyledSection = styled.section`
 export const StyledLabel = styled.label`
   font-weight: bolder;
   font-size: 2vh;
-`
+`;
 export const inputStyle = `
   padding: 1vh;
   margin: 1vh;
@@ -85,3 +86,30 @@ export const StyledItem = styled.div`
     cursor: pointer;
   }
 `;
+export const ModalContainer = styled.div`
+  ${makeFlex}
+  background-color: lightgray;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+`;
+export const ModalForm = styled.div`
+  ${makeFlex}
+  position: absolute;
+  top: 0;
+  z-index: initial;
+  border: .2rem solid black;
+  border-radius: 0.5rem;
+  padding: 2vh;
+  width: 50vw;
+  height: 95vh;
+  background-color: white;
+`;
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: top;
+`

@@ -16,11 +16,11 @@ const DetailPage = () => {
         .map((element) => {
           return (
             <StyledSmallContainer key={element.id}>
-              <h3 id={element.id}>{element.title}</h3>
-              <p id={element.id}>by. {element.author}</p>
-              <p id={element.id}>{element.timeString}</p>
+              <h3 key={element.id + "title"}>{element.title}</h3>
+              <p key={element.id + "author"}>by. {element.author}</p>
+              <p key={element.id + "timeString"}>{element.timeString}</p>
               <StyledImage src={`https://img.youtube.com/vi/${element.videoId}/maxresdefault.jpg`} alt="Thumbnail" />
-              <p id={element.id}>{element.content}</p>
+              <p key={element.id + "content"}>{element.content}</p>
             </StyledSmallContainer>
           );
         })}
