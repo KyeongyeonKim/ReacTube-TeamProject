@@ -21,10 +21,10 @@ function VideoList() {
       <StyledItems>
         {boardItems.map((element) => {
           return (
-            <StyledItem id={element.id} key={element.id} onClick={detailViewer}>
-              <StyledImage src={`https://img.youtube.com/vi/${element.videoId}/maxresdefault.jpg`} alt="Thumbnail" />
-              <h3 id={element.id}>{element.title}</h3>
-              <p id={element.id}>by. {element.author}</p>
+            <StyledItem id={element.id} onClick={detailViewer}>
+              <StyledImage id={element.id} onClick={detailViewer} src={`https://img.youtube.com/vi/${element.videoId}/maxresdefault.jpg`} alt="Thumbnail" />
+              <h3 id={element.id} onClick={detailViewer}>{element.title}</h3>
+              <p id={element.id} onClick={detailViewer}>by. {element.author}</p>
             </StyledItem>
           );
         })}
