@@ -50,15 +50,14 @@ const boardSlice = createSlice({
         ...state,
         boardItems: [
           ...newBoardItems,
-
           {
             id: action.payload.id,
-            receiver: action.payload.receiver,
             title: action.payload.title,
-            addresser: action.payload.addresser,
-            email: action.payload.email,
+            author: action.payload.author,
+            password: action.payload.password,
             timeString: action.payload.timeString,
             content: action.payload.content,
+            urlString: action.payload.urlString,
           },
         ],
       };
