@@ -3,8 +3,8 @@ import axios from 'axios';
 
 const initialState = { boardItems: [] };
 
-const { data } = axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/content`);
-data.forEach((element) => {
+const { data } = await axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/content`);
+data?.forEach((element) => {
   initialState.boardItems.push(element);
 });
 
@@ -26,9 +26,9 @@ const boardSlice = createSlice({
             password: action.payload.password,
             timeString: action.payload.timeString,
             content: action.payload.content,
-            url: action.payload.url,
-          },
-        ],
+            urlString: action.payload.urlString
+          }
+        ]
       };
     },
 
@@ -37,7 +37,7 @@ const boardSlice = createSlice({
 
       return {
         ...state,
-        boardItems: state.boardItems.filter((element) => action.payload.id !== element.id),
+        boardItems: state.boardItems.filter((element) => action.payload.id !== element.id)
       };
     },
 
@@ -50,20 +50,19 @@ const boardSlice = createSlice({
         ...state,
         boardItems: [
           ...newBoardItems,
-
           {
             id: action.payload.id,
-            receiver: action.payload.receiver,
             title: action.payload.title,
-            addresser: action.payload.addresser,
-            email: action.payload.email,
+            author: action.payload.author,
+            password: action.payload.password,
             timeString: action.payload.timeString,
             content: action.payload.content,
-          },
-        ],
+            urlString: action.payload.urlString
+          }
+        ]
       };
-    },
-  },
+    }
+  }
 });
 
 export const { addBoard, deleteBoard, modifyBoard } = boardSlice.actions;
