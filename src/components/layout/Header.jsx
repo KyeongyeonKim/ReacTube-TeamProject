@@ -1,11 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
+import client from 'api/supabase';
+import * as St from '../layout/HeaderStyle';
 
 function Header() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const auth = await client.auth.getUser();
+        if (auth.data.user.email) {
+          setEmail(auth.data.user.email);
+          console.log(email);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+    getUserData();
+    return () => {};
+  }, [email]);
 
   const handleSearchInfo = (e) => {
     e.preventDefault();
@@ -16,84 +34,41 @@ function Header() {
     navigate(`/search`);
     setSearchTerm('');
   };
+
   return (
     <>
-      <HeaderStyle>
-        <StImg src="/logo.jpg" alt="Logo" onClick={() => navigate('/')} />
-        <SearchBox onSubmit={handleSearchInfo}>
-          <SearchInput
+      <St.HeaderStyle>
+        <St.StImg src="/logo.jpg" alt="Logo" onClick={() => navigate('/')} />
+        <St.SearchBox onSubmit={handleSearchInfo}>
+          <St.SearchInput
             value={searchTerm}
             placeholder="검색어를 입력해주세요!"
             onChange={(e) => {
               setSearchTerm(e.target.value);
             }}
           />
-          <SearchButton>
+          <St.SearchButton>
             <FaMagnifyingGlass />
-          </SearchButton>
-        </SearchBox>
+          </St.SearchButton>
+        </St.SearchBox>
         <div>
-          <Link to="/login">
-            <StButton>로그인</StButton>
-          </Link>
-          <Link to="/signup">
-            <StButton>회원가입</StButton>
-          </Link>
+          {!email ? (
+            <>
+              <Link to="/login">
+                <St.StButton>로그인</St.StButton>
+              </Link>
+              <Link to="/signup">
+                <St.StButton>회원가입</St.StButton>
+              </Link>
+            </>
+          ) : (
+            <St.StButton>로그아웃</St.StButton>
+          )}
         </div>
-      </HeaderStyle>
+      </St.HeaderStyle>
       <Outlet></Outlet>
     </>
   );
 }
 
 export default Header;
-
-const HeaderStyle = styled.header`
-  display: flex;
-  width: 100%;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: 1.5rem 4rem;
-`;
-
-const StImg = styled.img`
-  width: 70px;
-  border-radius: 20px;
-  cursor: pointer;
-`;
-
-const SearchBox = styled.form`
-  display: flex;
-  align-items: center;
-  position: relative;
-`;
-
-const SearchInput = styled.input`
-  width: 45rem;
-  height: 2.5rem;
-  flex-grow: 1;
-  border: none;
-  border-bottom: 1px solid black;
-  padding: 1rem;
-`;
-
-const SearchButton = styled.button`
-  border: none;
-  background-color: transparent;
-  position: absolute;
-  right: 0.5rem;
-  cursor: pointer;
-`;
-
-const StButton = styled.button`
-  border: none;
-  background-color: transparent;
-  margin: 0 10px;
-  color: black;
-
-  &:hover {
-    transform: scale(1.2);
-    font-weight: 600;
-    color: #c3acd0;
-  }
-`;
