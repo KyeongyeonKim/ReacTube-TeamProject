@@ -1,5 +1,4 @@
 import React from 'react';
-// import { VideoList } from './Videos.css';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import VideoCard from '../VideoCard';

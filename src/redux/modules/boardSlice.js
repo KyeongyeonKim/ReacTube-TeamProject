@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const initialState = { boardItems: [] };
 
-const { data } = axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/content`);
+const { data } = await axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/content`);
 data.forEach((element) => {
   initialState.boardItems.push(element);
 });
@@ -26,7 +26,7 @@ const boardSlice = createSlice({
             password: action.payload.password,
             timeString: action.payload.timeString,
             content: action.payload.content,
-            url: action.payload.url,
+            urlString: action.payload.urlString,
           },
         ],
       };
