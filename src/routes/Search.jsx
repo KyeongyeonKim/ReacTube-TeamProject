@@ -1,11 +1,8 @@
+import SearchList from 'components/SearchList';
 import React from 'react';
 
 function Search() {
-  return (
-    <div>
-      hello
-    </div>
-  );
+  return <SearchList />;
 }
 
 export default Search;
