@@ -63,8 +63,6 @@ const boardSlice = createSlice({
       };
     }
   }
-    }
-  }
 });
 
 export const { addBoard, deleteBoard, modifyBoard } = boardSlice.actions;
