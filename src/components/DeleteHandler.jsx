@@ -26,7 +26,6 @@ function DeleteHandler() {
 
   return (
     <>
-
       <StyledButton className="deleteButton" onClick={deleteHandler}>
         Delete
       </StyledButton>
