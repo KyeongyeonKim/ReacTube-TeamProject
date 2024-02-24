@@ -4,7 +4,7 @@ import axios from 'axios';
 const initialState = { boardItems: [] };
 
 const { data } = await axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/content`);
-data.forEach((element) => {
+data?.forEach((element) => {
   initialState.boardItems.push(element);
 });
 
@@ -26,9 +26,9 @@ const boardSlice = createSlice({
             password: action.payload.password,
             timeString: action.payload.timeString,
             content: action.payload.content,
-            urlString: action.payload.urlString,
-          },
-        ],
+            urlString: action.payload.urlString
+          }
+        ]
       };
     },
 
@@ -37,7 +37,7 @@ const boardSlice = createSlice({
 
       return {
         ...state,
-        boardItems: state.boardItems.filter((element) => action.payload.id !== element.id),
+        boardItems: state.boardItems.filter((element) => action.payload.id !== element.id)
       };
     },
 
@@ -57,12 +57,12 @@ const boardSlice = createSlice({
             password: action.payload.password,
             timeString: action.payload.timeString,
             content: action.payload.content,
-            urlString: action.payload.urlString,
-          },
-        ],
+            urlString: action.payload.urlString
+          }
+        ]
       };
-    },
-  },
+    }
+  }
 });
 
 export const { addBoard, deleteBoard, modifyBoard } = boardSlice.actions;
