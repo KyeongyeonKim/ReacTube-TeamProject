@@ -33,7 +33,7 @@ function VideoList() {
         <Videos>
           {boardItems.map((element) => {
             return (
-              <VideoCard id={element.id} onClick={detailViewer}>
+              <VideoCard key={element.id} id={element.id} onClick={detailViewer}>
                 <img
                   id={element.id}
                   onClick={detailViewer}

@@ -19,7 +19,7 @@ const boardSlice = createSlice({
   reducers: {
     addBoard: (state, action) => {
       axios.post(`${process.env.REACT_APP_SERVER_ADDRESS}/content`, action.payload);
-
+      loadBoardItems()(state.dispatch);
       return {
         ...state,
         boardItems: [
@@ -39,7 +39,6 @@ const boardSlice = createSlice({
 
     deleteBoard: (state, action) => {
       axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/content/${action.payload.id}`);
-
       return {
         ...state,
         boardItems: state.boardItems.filter((element) => action.payload.id !== element.id)
@@ -48,7 +47,7 @@ const boardSlice = createSlice({
 
     modifyBoard: (state, action) => {
       axios.patch(`${process.env.REACT_APP_SERVER_ADDRESS}/content/${action.payload.id}`, action.payload);
-
+      loadBoardItems()(state.dispatch);
       const newBoardItems = state.boardItems.filter((element) => action.payload.id !== element.id);
 
       return {

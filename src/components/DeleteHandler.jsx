@@ -17,9 +17,16 @@ function DeleteHandler() {
 
   const target = boardItems.filter((element) => id === element.id);
 
-  const deleteHandler = () => {
+  // const deleteHandler = () => {
+  //   if (window.confirm('Really Remove This Letter?')) {
+  //     dispatch(deleteBoard(...target));
+  //     backToList();
+  //   }
+  // };
+
+  const deleteHandler = async () => {
     if (window.confirm('Really Remove This Letter?')) {
-      dispatch(deleteBoard(...target));
+      await dispatch(deleteBoard(...target));
       backToList();
     }
   };
