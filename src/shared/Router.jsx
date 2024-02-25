@@ -15,12 +15,12 @@ function Router() {
   return (
     <StyledContainer>
       <Routes>
+        <Route path="/" element={<Main />} />
         <Route element={<Header />}>
-          <Route path="/" element={<Main />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/detail" element={<Detail />} />
+          <Route path="/detail/:videoId" element={<Detail />} />
           <Route path="/edit" element={<Edit />} />
           <Route path="/search" element={<Search />} />
           <Route path="/write" element={<Write />} />

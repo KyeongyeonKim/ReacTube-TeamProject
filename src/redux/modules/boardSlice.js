@@ -1,5 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+export const fetchBoardItems = createAsyncThunk('board/fetchBoardItems', async () => {
+  const { data } = await axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/content`);
+  return data;
+});
 
 const initialState = { boardItems: [] };
 
@@ -62,8 +67,21 @@ const boardSlice = createSlice({
         ]
       };
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchBoardItems.fulfilled, (state, action) => {
+      state.boardItems = action.payload;
+    });
   }
 });
 
 export const { addBoard, deleteBoard, modifyBoard } = boardSlice.actions;
 export default boardSlice.reducer;
+
+export const loadBoardItems = () => async (dispatch) => {
+  try {
+    dispatch(fetchBoardItems());
+  } catch (error) {
+    console.error('Error loading board items', error);
+  }
+};

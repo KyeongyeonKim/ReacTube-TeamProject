@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { HeaderStyle, StImg, SearchBox, SearchInput, SearchButton, StButton } from 'styles/HeaderStyles';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
+import logoandtitle from '../../assets/imgs/logoandtitle.png';
 
 function Header() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Header() {
   return (
     <>
       <HeaderStyle>
-        <StImg src="/logo.jpg" alt="Logo" onClick={() => navigate('/')} />
+        <StImg src={logoandtitle} alt="Logo" onClick={() => navigate('/home')} />
         <SearchBox onSubmit={handleSearchInfo}>
           <SearchInput
             value={searchTerm}
@@ -47,53 +48,3 @@ function Header() {
 }
 
 export default Header;
-
-const HeaderStyle = styled.header`
-  display: flex;
-  width: 100%;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: 1.5rem 4rem;
-`;
-
-const StImg = styled.img`
-  width: 70px;
-  border-radius: 20px;
-  cursor: pointer;
-`;
-
-const SearchBox = styled.form`
-  display: flex;
-  align-items: center;
-  position: relative;
-`;
-
-const SearchInput = styled.input`
-  width: 45rem;
-  height: 2.5rem;
-  flex-grow: 1;
-  border: none;
-  border-bottom: 1px solid black;
-  padding: 1rem;
-`;
-
-const SearchButton = styled.button`
-  border: none;
-  background-color: transparent;
-  position: absolute;
-  right: 0.5rem;
-  cursor: pointer;
-`;
-
-const StButton = styled.button`
-  border: none;
-  background-color: transparent;
-  margin: 0 10px;
-  color: black;
-
-  &:hover {
-    transform: scale(1.2);
-    font-weight: 600;
-    color: #c3acd0;
-  }
-`;

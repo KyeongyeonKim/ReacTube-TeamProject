@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { StyledSmallContainer } from 'styles/CreateStyle';
+import { Handlers, Container, Title, AuthorAndTimeString, Author, Video, Content } from 'styles/DetailPageStyles';
 import ModifyHandler from './ModifyHandler';
 import DeleteHandler from './DeleteHandler';
 
@@ -11,15 +11,21 @@ const DetailPage = () => {
 
   return (
     <>
+      <Handlers>
+        <ModifyHandler />
+        <DeleteHandler />
+      </Handlers>
       {boardItems
         .filter((element) => id === element.id)
         .map((element) => {
           return (
-            <StyledSmallContainer key={element.id}>
-              <h3 key={element.id + 'title'}>{element.title}</h3>
-              <p key={element.id + 'author'}>by. {element.author}</p>
-              <p key={element.id + 'timeString'}>{element.timeString}</p>
-              <section>
+            <Container key={element.id}>
+              <Title key={element.id + 'title'}>{element.title}</Title>
+              <AuthorAndTimeString>
+                <Author key={element.id + 'author'}>by. {element.author}</Author>
+                <timeString key={element.id + 'timeString'}>{element.timeString}</timeString>
+              </AuthorAndTimeString>
+              <Video>
                 <iframe
                   id="player"
                   type="text/html"
@@ -28,13 +34,11 @@ const DetailPage = () => {
                   src={`http://www.youtube.com/embed/${element.videoId}`}
                   frameborder="0"
                 />
-              </section>
-              <p key={element.id + 'content'}>{element.content}</p>
-            </StyledSmallContainer>
+              </Video>
+              <Content key={element.id + 'content'}>{element.content}</Content>
+            </Container>
           );
         })}
-      <ModifyHandler />
-      <DeleteHandler />
     </>
   );
 };

@@ -1,15 +1,23 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { StyledButton, StyledImage, StyledItem, StyledItems, StyledSmallContainer } from 'styles/CreateStyle';
+
+import { ButtonArea, AddVideoButton, Container, Videos, VideoCard } from 'styles/VideoListStyle.js';
+import { formatAgo } from 'util/date';
+import { loadBoardItems } from '../redux/modules/boardSlice';
 
 function VideoList() {
   const boardItems = useSelector((state) => state.boardItems.boardItems);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch(loadBoardItems());
+  }, [dispatch]);
+
   const detailViewer = (event) =>
-    navigate("/detail", {
-      state: { id: event.target.id },
+    navigate(`/detail/${event.target.id}`, {
+      state: { id: event.target.id }
     });
 
   const newVideo = () => {
@@ -17,20 +25,36 @@ function VideoList() {
   };
 
   return (
-    <StyledSmallContainer>
-      <StyledItems>
-        {boardItems.map((element) => {
-          return (
-            <StyledItem id={element.id} onClick={detailViewer}>
-              <StyledImage id={element.id} onClick={detailViewer} src={`https://img.youtube.com/vi/${element.videoId}/maxresdefault.jpg`} alt="Thumbnail" />
-              <h3 id={element.id} onClick={detailViewer}>{element.title}</h3>
-              <p id={element.id} onClick={detailViewer}>by. {element.author}</p>
-            </StyledItem>
-          );
-        })}
-      </StyledItems>
-      <StyledButton onClick={newVideo}>New Video</StyledButton>
-    </StyledSmallContainer>
+    <>
+      <ButtonArea>
+        <AddVideoButton onClick={newVideo}>+ 새 동영상</AddVideoButton>
+      </ButtonArea>
+      <Container>
+        <Videos>
+          {boardItems.map((element) => {
+            return (
+              <VideoCard id={element.id} onClick={detailViewer}>
+                <img
+                  id={element.id}
+                  onClick={detailViewer}
+                  src={`https://img.youtube.com/vi/${element.videoId}/maxresdefault.jpg`}
+                  alt="Thumbnail"
+                />
+                <div>
+                  <p className="title" id={element.id} onClick={detailViewer}>
+                    {element.title}
+                  </p>
+                  <p className="author" id={element.id} onClick={detailViewer}>
+                    by. {element.author}
+                  </p>
+                  <p className="timeString">{formatAgo(element.timeString, 'ko')}</p>
+                </div>
+              </VideoCard>
+            );
+          })}
+        </Videos>
+      </Container>
+    </>
   );
 }
 
