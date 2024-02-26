@@ -23,7 +23,6 @@ function Header() {
       }
     };
     getUserData();
-    return () => {};
   }, [email]);
 
   const handleSearchInfo = (e) => {

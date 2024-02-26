@@ -42,7 +42,7 @@ const DetailPage = () => {
             />
           </Video>
           <Content key={videoData.id + 'content'}>{videoData.content}</Content>
-          <Comments></Comments>
+          <Comments videoId={videoData.id}></Comments>
         </Container>
       )}
     </>
