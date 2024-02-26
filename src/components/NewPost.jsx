@@ -214,8 +214,8 @@ const NewPost = () => {
           <StyledButton type="button" onClick={checkThumbnail}>
             링크 확인
           </StyledButton>
-          {!thumbnailUrl ? <></> : <StyledImage src={thumbnailUrl} alt="Thumbnail" />}
         </StyledSection>
+        {!thumbnailUrl ? <></> : <StyledImage src={thumbnailUrl} alt="Thumbnail" />}
         <StyledButton>등록</StyledButton>
       </StyledForm>
     </Container>

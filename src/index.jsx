@@ -9,18 +9,21 @@ import App from './App';
 import GlobalStyle from './styles/GlobalStyle';
 import store from './redux/config/configStore';
 import GlobalFont from './styles/GlobalFont';
+import { YoutubeApiProvider } from 'util/youtubeApiContext';
 
 export let persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter>
-        <GlobalStyle />
-        <GlobalFont />
-        <App />
-      </BrowserRouter>
-    </PersistGate>
-  </Provider>,
+    <YoutubeApiProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <GlobalStyle />
+          <GlobalFont />
+          <App />
+        </BrowserRouter>
+      </PersistGate>
+    </YoutubeApiProvider>
+  </Provider>
 );

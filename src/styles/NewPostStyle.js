@@ -31,7 +31,9 @@ export const StyledSection = styled.section`
 export const StyledLabel = styled.label`
   font-weight: bolder;
   align-items: center;
+  justify-content: center;
   font-size: 2vh;
+  width: 12vh;
 `;
 
 export const inputStyle = `
@@ -62,5 +64,5 @@ export const StyledButton = styled.button`
 `;
 export const StyledImage = styled.img`
   border-radius: 0.5rem;
-  width: 90%;
+  width: 60%;
 `;
