@@ -21,7 +21,6 @@ function Header() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
 
-
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -65,7 +64,7 @@ function Header() {
 
   const logoutHandler = async () => {
     setLoading(true);
-    dispatch(removeUser(token))
+    dispatch(removeUser(token));
 
     const { error } = await client.auth.signOut();
 
@@ -81,24 +80,30 @@ function Header() {
     <>
       <HeaderStyle>
         <StImg src={logoandtitle} alt="Logo" onClick={() => navigate('/home')} />
-        <Select
-          value={selectedSearchOption}
-          onChange={handleChangeSearchOption}
-          options={searchOptions}
-          isSearchable={false}
-        />
-        <SearchBox onSubmit={handleSearchInfo}>
-          <SearchInput
-            value={searchTerm}
-            placeholder="검색어를 입력해주세요!"
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-            }}
-          />
-          <SearchButton>
-            <FaMagnifyingGlass />
-          </SearchButton>
-        </SearchBox>
+        {token ? (
+          <>
+            <Select
+              value={selectedSearchOption}
+              onChange={handleChangeSearchOption}
+              options={searchOptions}
+              isSearchable={false}
+            />
+            <SearchBox onSubmit={handleSearchInfo}>
+              <SearchInput
+                value={searchTerm}
+                placeholder="검색어를 입력해주세요!"
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                }}
+              />
+              <SearchButton>
+                <FaMagnifyingGlass />
+              </SearchButton>
+            </SearchBox>
+          </>
+        ) : (
+          <></>
+        )}
         <div>
           {!token ? (
             <>
