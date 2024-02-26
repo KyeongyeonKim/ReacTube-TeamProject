@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { signInWithOAuth, signOut, signInWithPassword } from '@supabase/supabase-js';
+import { signIn, signOut } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
 import client from '../api/supabase';
@@ -23,7 +23,7 @@ export default function LoginPage() {
     event.preventDefault();
 
     setLoading(true);
-    const { user, session, error } = await client.auth.signInWithEmailAndPassword({ email, password });
+    const { user, session, error } = await client.auth.signIn({ email, password });
 
     if (error) {
       alert(error.message);
@@ -62,13 +62,13 @@ export default function LoginPage() {
         />
         <input
           type="password"
-          placeholder="Write your password"
+          placeholder="비밀번호를 입력하세요."
           required
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
 
-        <button onClick={() => signInWithPassword()} disabled={loading}>
+        <button type="submit" disabled={loading}>
           이메일, password로 로그인하기
         </button>
         <button
@@ -77,15 +77,15 @@ export default function LoginPage() {
           }}
           disabled={loading}
         >
-          login with github
+          GitHub로 로그인
         </button>
         <FaGithub onClick={() => signInWithGithub()} />
         <div>
-          <button onClick={() => navigate('/signup')}>Go to SignUp page</button>
+          <button onClick={() => navigate('/signup')}>회원가입 페이지로 이동</button>
         </div>
         <div>
           <button onClick={() => logoutHandler()} disabled={loading}>
-            Logout
+            로그아웃
           </button>
         </div>
       </form>
