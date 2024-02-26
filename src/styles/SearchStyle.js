@@ -23,7 +23,7 @@ export const SearchListArea = styled.ul`
   gap: 16px;
 `;
 export const Item = styled.li`
-  width: calc((100% - 32px) / 3);
+  width: calc((100% - 48px) / 4);
 `;
 export const Thumbnail = styled.figure`
   width: 100%;
