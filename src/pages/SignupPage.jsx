@@ -6,6 +6,7 @@ export default function SignupPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const signupHandler = async (event) => {
@@ -20,18 +21,20 @@ export default function SignupPage() {
         alert('아이디와 비밀번호를 확인해주세요.');
       } else {
         alert('회원가입이 완료됐습니다.');
+        await client.from('users').insert([{ id: user.id, email, nickname }]);
         navigate('/login');
-        await client.from('auth.users').insert([{ id: user.id, email, nickname }]);
       }
     } catch (error) {
-      console.error(error);
+      console.error('회원가입 오류', error.message);
+      alert('회원가입에 실패했습니다. 다시 시도해주세요.');
     }
+    setLoading(false);
   };
 
   return (
     <>
-      <h2>Sign up </h2>
-      <form onSubmit={signupHandler}>
+      <h2>회원가입</h2>
+      <form type="submit" onSubmit={signupHandler}>
         <div>
           <label>email </label>
           <input
@@ -51,7 +54,8 @@ export default function SignupPage() {
             type="password"
             id="password"
             value={password}
-            placeholder="비밀번호를 입력하세요."
+            placeholder="비밀번호를 입력하세요. (8자 이상, 대소문자, 숫자 포함)"
+            min={6}
             required
             onChange={(event) => {
               setPassword(event.target.value);
@@ -71,8 +75,16 @@ export default function SignupPage() {
             }}
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" disabled={loading}>
+          회원가입
+        </button>
       </form>
+      <div>
+        <label>이미 계정이 있으신가요?</label>
+        <button type="submit" onClick={() => navigate('/login')}>
+          로그인 페이지로 이동
+        </button>
+      </div>
     </>
   );
 }

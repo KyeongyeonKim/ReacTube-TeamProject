@@ -15,6 +15,7 @@ function Header() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -58,6 +59,18 @@ function Header() {
     console.log('YouTube 검색 결과:', youtubeResults);
   }, [youtubeResults]);
 
+  const logoutHandler = async () => {
+    setLoading(true);
+    const { error } = await client.auth.signOut();
+
+    if (error) {
+      console.error('로그아웃 오류가 발생했습니다.', error.message);
+    } else {
+      document.cookie = 'sb:token=; expires=Mon, 19 Feb 2024 00:00:00 GMT;path=/;';
+      navigate('/login');
+    }
+    setLoading(false);
+  };
   return (
     <>
       <HeaderStyle>
@@ -91,7 +104,7 @@ function Header() {
               </Link>
             </>
           ) : (
-            <StButton>로그아웃</StButton>
+            <StButton onClick={() => logoutHandler()}>로그아웃</StButton>
           )}
         </div>
       </HeaderStyle>
