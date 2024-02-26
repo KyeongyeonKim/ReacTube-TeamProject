@@ -42,7 +42,7 @@ function DeleteModal(props) {
     if (password === target[0].password) {
       if (window.confirm('Really Remove This Letter?')) {
         try {
-          const { data, error } = await client.from('content').delete().eq('id', id);
+          const { error } = await client.from('content').delete().eq('id', id);
           if (error) {
             throw error;
           }

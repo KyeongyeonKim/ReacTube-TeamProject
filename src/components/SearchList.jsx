@@ -6,7 +6,7 @@ import { LazyLoadedImage } from './LazyLoadedImage';
 
 const SearchList = () => {
   const [data, setData] = useState();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const searchKeyword = searchParams.get('keyword');
 
   const [visibleIndices, setVisibleIndices] = useState([]);

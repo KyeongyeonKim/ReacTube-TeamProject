@@ -29,10 +29,11 @@ const DetailPage = () => {
           <Title key={videoData.id + 'title'}>{videoData.title}</Title>
           <AuthorAndTimeString>
             <Author key={videoData.id + 'author'}>by. {videoData.author}</Author>
-            <timeString key={videoData.id + 'timeString'}>{videoData.timeString}</timeString>
+            <p key={videoData.id + 'timeString'}>{videoData.timeString}</p>
           </AuthorAndTimeString>
           <Video>
             <iframe
+              title={videoData.videoId}
               id="player"
               type="text/html"
               width="1131"
