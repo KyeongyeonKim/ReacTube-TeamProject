@@ -38,7 +38,9 @@ function VideoList() {
     });
 
     imageRefs.current.forEach((ref) => {
-      observer.observe(ref);
+      if (ref) {
+        observer.observe(ref);
+      }
     });
 
     return () => {
