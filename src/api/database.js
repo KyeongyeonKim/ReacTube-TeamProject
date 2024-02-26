@@ -19,6 +19,49 @@
 // </ul>;
 
 import client from './supabase';
+/**
+ * @typedef {string | number | boolean | null | { [key: string]: Json | undefined } | Json[]} Json
+ */
+
+/**
+ * @typedef {Object} Row
+ * @property {number} id - the data expected from .select()
+ * @property {string} name - the data expected from .select()
+ * @property {Json | null} data - the data expected from .select()
+ */
+
+/**
+ * @typedef {Object} Insert
+ * @property {undefined} [id] - generated columns must not be supplied
+ * @property {string} name - `not null` columns with no default must be supplied
+ * @property {Json | null} [data] - nullable columns can be omitted
+ */
+
+/**
+ * @typedef {Object} Update
+ * @property {undefined} [id]
+ * @property {string} [name] - `not null` columns are optional on .update()
+ * @property {Json | null} [data]
+ */
+
+/** @type {Object<string, { Row: Row, Insert: Insert, Update: Update }>} */
+const Database = {
+  public: {
+    Tables: {
+      content: {
+        Row: {
+          id: 0,
+          name: '',
+          data: null
+        },
+        Insert: {
+          name: ''
+        },
+        Update: {}
+      }
+    }
+  }
+};
 
 const insertData = async () => {
   try {
