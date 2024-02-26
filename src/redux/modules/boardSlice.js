@@ -1,70 +1,28 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import client from 'api/supabase';
 
 export const fetchBoardItems = createAsyncThunk('board/fetchBoardItems', async () => {
-  const { data } = await axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/content`);
+  const { data, error } = await client.from('content').select('*');
+  if (error) throw error;
   return data;
 });
 
 const initialState = { boardItems: [] };
-
-const { data } = await axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/content`);
-data?.forEach((element) => {
-  initialState.boardItems.push(element);
-});
 
 const boardSlice = createSlice({
   name: 'boardItems',
   initialState,
   reducers: {
     addBoard: (state, action) => {
-      axios.post(`${process.env.REACT_APP_SERVER_ADDRESS}/content`, action.payload);
-      loadBoardItems()(state.dispatch);
-      return {
-        ...state,
-        boardItems: [
-          ...state.boardItems,
-          {
-            id: action.payload.id,
-            title: action.payload.title,
-            author: action.payload.author,
-            password: action.payload.password,
-            timeString: action.payload.timeString,
-            content: action.payload.content,
-            urlString: action.payload.urlString
-          }
-        ]
-      };
+      client.from('content').insert(action.payload);
     },
 
     deleteBoard: (state, action) => {
-      axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/content/${action.payload.id}`);
-      return {
-        ...state,
-        boardItems: state.boardItems.filter((element) => action.payload.id !== element.id)
-      };
+      client.from('content').delete().eq('id', action.payload.id);
     },
 
     modifyBoard: (state, action) => {
-      axios.patch(`${process.env.REACT_APP_SERVER_ADDRESS}/content/${action.payload.id}`, action.payload);
-      loadBoardItems()(state.dispatch);
-      const newBoardItems = state.boardItems.filter((element) => action.payload.id !== element.id);
-
-      return {
-        ...state,
-        boardItems: [
-          ...newBoardItems,
-          {
-            id: action.payload.id,
-            title: action.payload.title,
-            author: action.payload.author,
-            password: action.payload.password,
-            timeString: action.payload.timeString,
-            content: action.payload.content,
-            urlString: action.payload.urlString
-          }
-        ]
-      };
+      client.from('content').update(action.payload).eq('id', action.payload);
     }
   },
   extraReducers: (builder) => {
