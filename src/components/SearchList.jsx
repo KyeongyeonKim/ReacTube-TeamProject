@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Item, ItemTitle, NoDataArea, PageTitle, SearchListArea, SearchWrap, Thumbnail } from 'styles/SearchStyle';
-
-import { createClient } from '@supabase/supabase-js';
+import client from 'api/supabase';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const SearchList = () => {
   const [data, setData] = useState();
-  const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
-  const searchKeyword = '리액트'; //검색어 부분은 나중에 prams 로 작업예정
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchKeyword = searchParams.get('keyword');
 
   //데이터 조회
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, error } = await supabase.from('video').select('*').like('title', `%${searchKeyword}%`);
+        const { data, error } = await client.from('video').select('*').like('title', `%${searchKeyword}%`);
         if (error) {
           throw error;
         }
@@ -23,7 +23,7 @@ const SearchList = () => {
     };
 
     fetchData();
-  }, []);
+  }, [searchKeyword]);
 
   // console.log(data);
 
@@ -38,9 +38,13 @@ const SearchList = () => {
               return (
                 <Item key={el.id}>
                   <Thumbnail>
-                    <img src={src} alt="썸네일" />
+                    <Link to={`/detail/${el.videoId}`}>
+                      <img src={src} alt="썸네일" />
+                    </Link>
                   </Thumbnail>
-                  <ItemTitle>{el.title}</ItemTitle>
+                  <ItemTitle>
+                    <Link to={`/detail/${el.videoId}`}>{el.title}</Link>
+                  </ItemTitle>
                 </Item>
               );
             })}

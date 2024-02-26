@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { StyledButton } from 'styles/CreateStyle';
+import { Buttons, StyledBackButton, StyledModifyButton } from 'styles/ModifyHandlerStyle';
 import ModifyModal from './ModifyModal';
 
 function ModifyHandler() {
@@ -18,11 +18,13 @@ function ModifyHandler() {
 
   return (
     <>
-      {modifyOpen ? <ModifyModal modifyOpen={modifyOpen} setModifyOpen={setModifyOpen} /> : <></>}
-      <StyledButton className="backButton" onClick={backToList}>
-        Back to List
-      </StyledButton>
-      <StyledButton onClick={modifyForm}>Modify</StyledButton>
+      <Buttons>
+        {modifyOpen ? <ModifyModal modifyOpen={modifyOpen} setModifyOpen={setModifyOpen} /> : <></>}
+        <StyledBackButton className="backButton" onClick={backToList}>
+          목록으로
+        </StyledBackButton>
+        <StyledModifyButton onClick={modifyForm}>수정</StyledModifyButton>
+      </Buttons>
     </>
   );
 }
