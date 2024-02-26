@@ -34,7 +34,7 @@ export default function SignupPage() {
   return (
     <>
       <h2>회원가입</h2>
-      <form onSubmit={signupHandler}>
+      <form type="submit" onSubmit={signupHandler}>
         <div>
           <label>email </label>
           <input

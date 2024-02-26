@@ -48,19 +48,7 @@ export default function LoginPage() {
   const loginHandler = async (event) => {
     event.preventDefault();
     setLoading(true);
-    try {
-      const { user, session, error } = await client.auth.signIn({
-        email,
-        password
-      });
-      if (error) throw error;
-      console.log(user, session);
-      alert('로그인 성공!');
-      navigate('/home');
-    } catch (error) {
-      console.error('로그인 오류', error.message);
-      alert(error.message);
-    }
+    await signInWithEmail();
     setLoading(false);
   };
 
@@ -77,6 +65,20 @@ export default function LoginPage() {
       console.error('로그아웃 오류', error.message);
     }
     setLoading(false);
+  };
+
+  const resetPassword = async () => {
+    try {
+      const { data, error } = await client.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.href
+      });
+      if (error) throw error;
+      console.log('비밀번호 재설정 이메일이 발송되었습니다.');
+      alert('비밀번호 재설정 이메일이 발송되었습니다.');
+    } catch (error) {
+      console.log('비밀번호 재설정 오류', error.message);
+      alert('비밀번호 재설정 요청을 처리하는 중에 오류가 발생했습니다.', error.message);
+    }
   };
 
   return (
@@ -126,7 +128,7 @@ export default function LoginPage() {
           </button>
           <div>
             <label>비밀번호를 잊어버리셨나요?</label>
-            <button type="submit" onClick={() => navigate('/login')}>
+            <button type="submit" onClick={resetPassword}>
               비밀번호 재설정
             </button>
           </div>
