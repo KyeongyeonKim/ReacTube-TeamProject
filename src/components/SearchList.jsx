@@ -18,7 +18,8 @@ const SearchList = () => {
         }
         setData(data);
       } catch (error) {
-        console.log('Error fetching data:', error.message);
+        console.error('Error fetching data:', error.message);
+        alert('검색 중 에러가 발생하였습니다. 잠시 후 다시 시도해주세요.');
       }
     };
 
