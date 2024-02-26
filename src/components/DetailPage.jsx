@@ -52,6 +52,7 @@ import ModifyHandler from './ModifyHandler';
 import DeleteHandler from './DeleteHandler';
 import { fetchBoardItems } from '../redux/modules/boardSlice';
 import { useEffect } from 'react';
+import Comments from './Comments';
 
 const DetailPage = () => {
   const boardItems = useSelector((state) => state.boardItems.boardItems);
@@ -88,6 +89,7 @@ const DetailPage = () => {
             />
           </Video>
           <Content key={videoData.id + 'content'}>{videoData.content}</Content>
+          <Comments></Comments>
         </Container>
       )}
     </>
