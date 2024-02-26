@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { HeaderStyle, StImg, SearchBox, SearchInput, SearchButton, StButton } from 'styles/HeaderStyles';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import logoandtitle from '../../assets/imgs/logoandtitle.png';
+import client from 'api/supabase';
 
 function Header() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const auth = await client.auth.getUser();
+        if (auth.data.user.email) {
+          setEmail(auth.data.user.email);
+          console.log(email);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+    getUserData();
+    return () => {};
+  }, [email]);
 
   const handleSearchInfo = (e) => {
     e.preventDefault();
@@ -17,6 +35,7 @@ function Header() {
     navigate(`/search?keyword=${searchTerm}`);
     setSearchTerm('');
   };
+
   return (
     <>
       <HeaderStyle>
@@ -34,12 +53,18 @@ function Header() {
           </SearchButton>
         </SearchBox>
         <div>
-          <Link to="/login">
-            <StButton>로그인</StButton>
-          </Link>
-          <Link to="/signup">
-            <StButton>회원가입</StButton>
-          </Link>
+          {!email ? (
+            <>
+              <Link to="/login">
+                <StButton>로그인</StButton>
+              </Link>
+              <Link to="/signup">
+                <StButton>회원가입</StButton>
+              </Link>
+            </>
+          ) : (
+            <StButton>로그아웃</StButton>
+          )}
         </div>
       </HeaderStyle>
       <Outlet></Outlet>
