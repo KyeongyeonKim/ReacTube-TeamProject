@@ -27,10 +27,7 @@ function ModifyModal(props) {
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [password, setPassword] = useState('');
 
-  const titleRef = useRef();
   const passwordRef = useRef();
-  const contentRef = useRef();
-  const urlStringRef = useRef();
 
   const dispatch = useDispatch();
 
@@ -88,14 +85,13 @@ function ModifyModal(props) {
     const seconds = today.getSeconds().toString().padStart(2, '0');
     const timeString = `${year}/${month}/${date} ${hours}:${minutes}:${seconds}`;
 
+    const isTitleModified = newTitle === target[0].title;
+    const isContentModified = newContent === target[0].content;
+
     event.preventDefault();
     if (password === target[0].password) {
-      if (newTitle === target[0].title) {
-        alert('No any changes on title!');
-        titleRef.current.focus();
-      } else if (newContent === target[0].content) {
-        alert('No any changes on content!');
-        contentRef.current.focus();
+      if (isTitleModified && isContentModified) {
+        alert('No any changes!');
       } else {
         if (window.confirm('Register Your Message?')) {
           const newPost = {
@@ -135,7 +131,6 @@ function ModifyModal(props) {
             type="text"
             name="title"
             value={newTitle}
-            ref={titleRef}
             placeholder="Title → Less than 20 char"
             maxLength={20}
             onChange={onChange}
@@ -174,7 +169,6 @@ function ModifyModal(props) {
             rows={7}
             name="content"
             value={newContent}
-            ref={contentRef}
             placeholder="Content → Less than 100 char"
             maxLength={1000}
             onChange={onChange}
@@ -187,7 +181,6 @@ function ModifyModal(props) {
             type="text"
             name="urlString"
             value={newUrlString}
-            ref={urlStringRef}
             placeholder="URL"
             onChange={onChange}
           />

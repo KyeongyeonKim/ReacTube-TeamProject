@@ -3,7 +3,15 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import uuid from 'react-uuid';
 import { addBoard } from '../redux/modules/boardSlice';
-import { StyledButton, StyledForm, StyledImage, StyledInput, StyledLabel, StyledSection, StyledTextarea } from 'styles/CreateStyle';
+import {
+  StyledButton,
+  StyledForm,
+  StyledImage,
+  StyledInput,
+  StyledLabel,
+  StyledSection,
+  StyledTextarea
+} from 'styles/CreateStyle';
 
 const NewPost = () => {
   const [title, setTitle] = useState('');
@@ -100,7 +108,7 @@ const NewPost = () => {
           timeString,
           content,
           urlString,
-          videoId,
+          videoId
         };
 
         dispatch(addBoard(newPost));
@@ -110,6 +118,15 @@ const NewPost = () => {
       } else {
         alert('Cancelled');
       }
+    }
+  };
+
+  const checkThumbnail = () => {
+    const url = urlStringRef.current.value;
+    if (url) {
+      extractVideoId(url);
+    } else {
+      alert('URL is empty!');
     }
   };
 
@@ -179,9 +196,12 @@ const NewPost = () => {
           placeholder="URL"
           onChange={onChange}
         />
-        {!thumbnailUrl?<></>:<StyledImage src={thumbnailUrl} alt="Thumbnail" />}
+        <StyledButton type="button" onClick={checkThumbnail}>
+          링크 확인
+        </StyledButton>
+        {!thumbnailUrl ? <></> : <StyledImage src={thumbnailUrl} alt="Thumbnail" />}
       </StyledSection>
-      <StyledButton>Send</StyledButton>
+      <StyledButton>등록</StyledButton>
     </StyledForm>
   );
 };

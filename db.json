@@ -19,26 +19,6 @@
       "content": "test",
       "urlString": "https://www.youtube.com/watch?v=SecHjKKYCRk&list=PLDiSmXrvgiRYRR_kWvwMqaZDW3lp9B_RF&index=2 ",
       "videoId": "SecHjKKYCRk"
-    },
-    {
-      "id": "84080882-fe19-3ad9-a3d2-af712a2888f2",
-      "title": "Test입니다.",
-      "author": "승찬",
-      "password": "123455",
-      "timeString": "2024/02/24 03:58:25",
-      "content": "비밀번호는 123456",
-      "urlString": "https://youtube.com/watch?v=00yJy7W0DQE&list=PLfLgtT94nNq0qTRunX9OEmUzQv4lI4pnP",
-      "videoId": ""
-    },
-    {
-      "id": "39dda4bb-10cf-8ce4-e002-0f7c7ecfd5e5",
-      "title": "ㄴㅇㅁㄻㄴㅇㄹ",
-      "author": "ㅁㄴㅇㄻㄴㄻㄴㅇ",
-      "password": "123456",
-      "timeString": "2024/02/24 10:42:13",
-      "content": "asdfasdfasdfasdf",
-      "urlString": "https://www.youtube.com/watch?v=tCnBrrnOefs&list=RDGMEMYH9CUrFO7CfLJpaD7UR85wVMtCnBrrnOefs&start_radio=1&ab_channel=Justice",
-      "videoId": "tCnBrrnOefs"
     }
   ]
 }
