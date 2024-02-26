@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { deleteBoard } from '../redux/modules/boardSlice';
-import { StyledButton } from 'styles/CreateStyle';
+import { StyledDeleteButton } from 'styles/DeleteHandlerStyles';
 
 function DeleteHandler() {
   const boardItems = useSelector((state) => state.boardItems.boardItems);
@@ -17,18 +17,25 @@ function DeleteHandler() {
 
   const target = boardItems.filter((element) => id === element.id);
 
-  const deleteHandler = () => {
+  // const deleteHandler = () => {
+  //   if (window.confirm('Really Remove This Letter?')) {
+  //     dispatch(deleteBoard(...target));
+  //     backToList();
+  //   }
+  // };
+
+  const deleteHandler = async () => {
     if (window.confirm('Really Remove This Letter?')) {
-      dispatch(deleteBoard(...target));
+      await dispatch(deleteBoard(...target));
       backToList();
     }
   };
 
   return (
     <>
-      <StyledButton className="deleteButton" onClick={deleteHandler}>
-        Delete
-      </StyledButton>
+      <StyledDeleteButton className="deleteButton" onClick={deleteHandler}>
+        삭제
+      </StyledDeleteButton>
     </>
   );
 }
