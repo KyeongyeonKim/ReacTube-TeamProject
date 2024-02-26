@@ -196,7 +196,7 @@ const NewPost = () => {
             value={content}
             ref={contentRef}
             placeholder="최대 100글자까지 작성할 수 있습니다."
-            maxLength={1000}
+            maxLength={100}
             onChange={onChange}
           />
         </StyledSection>
