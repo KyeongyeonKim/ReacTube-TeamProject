@@ -31,7 +31,6 @@ export const StyledSection = styled.section`
 export const StyledLabel = styled.label`
   font-weight: bolder;
   align-items: center;
-  background-color: green;
   font-size: 2vh;
 `;
 
