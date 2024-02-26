@@ -18,6 +18,15 @@ export const StImg = styled.img`
   cursor: pointer;
 `;
 
+export const SelectBox = styled.div`
+  padding: 0.5rem;
+`;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const SearchBox = styled.form`
   display: flex;
   align-items: center;

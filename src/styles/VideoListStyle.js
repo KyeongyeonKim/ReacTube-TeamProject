@@ -19,7 +19,8 @@ export const AddVideoButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: lightgray;
+    background-color: #b575ff;
+    color: white;
   }
 `;
 
@@ -56,7 +57,7 @@ export const Videos = styled.div`
   }
 `;
 
-export const VideoCard = styled.div`
+export const StyledVideoCard = styled.div`
   margin-bottom: 1rem;
   padding: 0.5rem;
   border-radius: 0.8rem;
@@ -91,4 +92,13 @@ export const VideoCard = styled.div`
     background-color: lightpink;
     cursor: pointer;
   }
+`;
+
+export const SerchResultTitle = styled.div`
+  background-color: lightgray;
+  padding: 1rem;
+  font-family: 'nanum';
+  font-size: 2vh;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
 `;

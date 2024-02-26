@@ -12,7 +12,12 @@ import {
   StyledLabel,
   StyledSection,
   StyledTextarea,
-  Container
+  Container,
+  ThumbnailBox,
+  ThumbnailTitle,
+  ThumbnailContent,
+  NewPostTitle,
+  StyledPostButton
 } from 'styles/NewPostStyle';
 
 const NewPost = () => {
@@ -147,6 +152,7 @@ const NewPost = () => {
   return (
     <Container>
       <StyledForm onSubmit={onSubmitHandler}>
+        <NewPostTitle>새 동영상</NewPostTitle>
         <StyledSection>
           <StyledLabel>제목</StyledLabel>
           <StyledInput
@@ -215,8 +221,15 @@ const NewPost = () => {
             링크 확인
           </StyledButton>
         </StyledSection>
-        {!thumbnailUrl ? <></> : <StyledImage src={thumbnailUrl} alt="Thumbnail" />}
-        <StyledButton>등록</StyledButton>
+        {!thumbnailUrl ? (
+          <ThumbnailBox>
+            <ThumbnailTitle>이곳에 썸네일이 표시됩니다. </ThumbnailTitle>
+            <ThumbnailContent>❌썸네일이 표시되지 않으면 사용할 수 없는 동영상 입니다.</ThumbnailContent>
+          </ThumbnailBox>
+        ) : (
+          <StyledImage src={thumbnailUrl} alt="Thumbnail" />
+        )}
+        <StyledPostButton>등록</StyledPostButton>
       </StyledForm>
     </Container>
   );

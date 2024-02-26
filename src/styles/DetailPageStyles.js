@@ -44,3 +44,8 @@ export const Content = styled.div`
   padding: 1rem;
   margin-top: 1rem;
 `;
+
+export const Hr = styled.hr`
+  border: 0.1rem solid grey;
+  width: 100%;
+`;

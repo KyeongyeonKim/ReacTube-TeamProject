@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: top;
-  padding: 2rem;
+  padding: 3rem;
   margin-bottom: 3rem;
 `;
 
@@ -18,16 +18,31 @@ export const StyledForm = styled.form`
   ${makeFlex}
   border: .2rem solid black;
   border-radius: 0.5rem;
-  padding: 2vh;
-  width: 60vw;
-  height: 95vh;
+  padding: 4vh;
+  width: 62vw;
+  height: 110vh;
   background-color: white;
 `;
-export const StyledSection = styled.section`
+
+export const NewPostTitle = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
+  font-size: 3vh;
+  font-family: 'nanum';
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.1rem solid grey;
 `;
+
+export const StyledSection = styled.section`
+  display: flex;
+  width: 100%;
+  font-size: 2vh;
+  font-family: 'nanum';
+  align-items: center;
+`;
+
 export const StyledLabel = styled.label`
   font-weight: bolder;
   align-items: center;
@@ -59,10 +74,52 @@ export const StyledButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: lightgray;
+    background-color: #b575ff;
+    color: white;
   }
 `;
 export const StyledImage = styled.img`
   border-radius: 0.5rem;
   width: 60%;
+`;
+
+export const ThumbnailBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 589px;
+  height: 100%;
+  max-height: 331px;
+  background-color: lightgray;
+  gap: 1rem;
+  flex-grow: 1;
+`;
+
+export const ThumbnailTitle = styled.div`
+  font-family: 'nanum';
+`;
+
+export const ThumbnailContent = styled.div`
+  font-family: 'nanum';
+`;
+
+export const StyledPostButton = styled.button`
+  padding: 1vh;
+  margin: 1vh;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
+  width: 200px;
+  background-color: white;
+  font-family: 'nanum';
+  font-size: 2vh;
+  cursor: pointer;
+  margin-top: 30px;
+
+  &:hover {
+    background-color: #b575ff;
+    color: white;
+  }
 `;

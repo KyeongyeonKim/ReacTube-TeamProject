@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-import { HeaderStyle, StImg, SearchBox, SearchInput, SearchButton, StButton } from 'styles/HeaderStyles';
+import {
+  HeaderStyle,
+  StImg,
+  SearchBox,
+  SearchInput,
+  SearchButton,
+  StButton,
+  SelectBox,
+  SearchContainer
+} from 'styles/HeaderStyles';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import logoandtitle from '../../assets/imgs/logoandtitle.png';
 import client from 'api/supabase';
@@ -61,24 +70,28 @@ function Header() {
     <>
       <HeaderStyle>
         <StImg src={logoandtitle} alt="Logo" onClick={() => navigate('/home')} />
-        <Select
-          value={selectedSearchOption}
-          onChange={handleChangeSearchOption}
-          options={searchOptions}
-          isSearchable={false}
-        />
-        <SearchBox onSubmit={handleSearchInfo}>
-          <SearchInput
-            value={searchTerm}
-            placeholder="검색어를 입력해주세요!"
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-            }}
-          />
-          <SearchButton>
-            <FaMagnifyingGlass />
-          </SearchButton>
-        </SearchBox>
+        <SearchContainer>
+          <SelectBox>
+            <Select
+              value={selectedSearchOption}
+              onChange={handleChangeSearchOption}
+              options={searchOptions}
+              isSearchable={false}
+            />
+          </SelectBox>
+          <SearchBox onSubmit={handleSearchInfo}>
+            <SearchInput
+              value={searchTerm}
+              placeholder="검색어를 입력해주세요!"
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
+            <SearchButton>
+              <FaMagnifyingGlass />
+            </SearchButton>
+          </SearchBox>
+        </SearchContainer>
         <div>
           {!email ? (
             <>

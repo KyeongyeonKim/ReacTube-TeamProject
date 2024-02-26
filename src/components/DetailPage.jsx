@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { Handlers, Container, Title, AuthorAndTimeString, Author, Video, Content } from 'styles/DetailPageStyles';
+import { Handlers, Container, Title, AuthorAndTimeString, Author, Video, Content, Hr } from 'styles/DetailPageStyles';
 import ModifyHandler from './ModifyHandler';
 import DeleteHandler from './DeleteHandler';
 import { fetchBoardItems } from '../redux/modules/boardSlice';
@@ -42,6 +42,7 @@ const DetailPage = () => {
             />
           </Video>
           <Content key={videoData.id + 'content'}>{videoData.content}</Content>
+          <Hr />
           <Comments videoId={videoData.id}></Comments>
         </Container>
       )}

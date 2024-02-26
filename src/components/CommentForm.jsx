@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import client from 'api/supabase';
+import { StCommentArea, StInputName, StArea, StButton } from 'styles/CommentFormStyle';
 
 const CommentForm = ({ videoId }) => {
   const [comment, setComment] = useState('');
@@ -26,18 +27,34 @@ const CommentForm = ({ videoId }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>닉네임:</label>
-        <input type="nickname" value={nickname} onChange={(e) => setNickname(e.target.value)} required />
+        {/* <label>닉네임:</label> */}
+        <StInputName
+          type="text"
+          placeholder="닉네임"
+          value={nickname}
+          onChange={(e) => setNickname(e.target.value)}
+          required
+        />
+        {/* <label>비밀번호:</label> */}
+        <StInputName
+          type="password"
+          placeholder="비밀번호"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
       </div>
-      <div>
-        <label>댓글 내용:</label>
-        <input type="comment" value={comment} onChange={(e) => setComment(e.target.value)} required />
-      </div>
-      <div>
-        <label>비밀번호:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      </div>
-      <button type="submit">댓글 등록</button>
+      <StCommentArea>
+        {/* <label>댓글 내용:</label> */}
+        <StArea
+          placeholder="댓글을 남겨주세요!"
+          maxLength={300}
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          required
+        />
+        <StButton type="submit">댓글 등록</StButton>
+      </StCommentArea>
     </form>
   );
 };

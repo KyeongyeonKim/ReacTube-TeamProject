@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { ButtonArea, AddVideoButton, Container, Videos, VideoCard } from 'styles/VideoListStyle.js';
+import { ButtonArea, AddVideoButton, Container, Videos, StyledVideoCard } from 'styles/VideoListStyle.js';
 import { formatAgo } from 'util/date';
 import { loadBoardItems } from '../redux/modules/boardSlice';
 
@@ -33,7 +33,7 @@ function VideoList() {
         <Videos>
           {boardItems.map((element) => {
             return (
-              <VideoCard key={element.id} id={element.id} onClick={detailViewer}>
+              <StyledVideoCard key={element.id} id={element.id} onClick={detailViewer}>
                 <img
                   id={element.id}
                   onClick={detailViewer}
@@ -49,7 +49,7 @@ function VideoList() {
                   </p>
                   <p className="timeString">{formatAgo(element.timeString, 'ko')}</p>
                 </div>
-              </VideoCard>
+              </StyledVideoCard>
             );
           })}
         </Videos>

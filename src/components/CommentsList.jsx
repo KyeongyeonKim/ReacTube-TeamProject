@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import client from 'api/supabase';
+import { Hr } from 'styles/DetailPageStyles';
+import styled from 'styled-components';
+import { StDiv, StP } from 'styles/CommentsListStyle';
 
 const CommentList = ({ videoId }) => {
   const [comments, setComments] = useState([]);
@@ -28,13 +31,16 @@ const CommentList = ({ videoId }) => {
 
   return (
     <div>
-      <h2>댓글 목록</h2>
+      <Hr />
       {comments.map((comment) => (
-        <div key={comment.id}>
-          <p>
-            <strong>{comment.nickname}</strong>: {comment.comment} (작성일: {comment.created_at})
-          </p>
-        </div>
+        <>
+          <StDiv key={comment.id}>
+            <StP>
+              {comment.nickname} / {comment.created_at}
+            </StP>
+            <StP>{comment.comment}</StP>
+          </StDiv>
+        </>
       ))}
     </div>
   );
