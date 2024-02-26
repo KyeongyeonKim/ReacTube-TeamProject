@@ -14,6 +14,7 @@ export const StP = styled.p`
 export const StButton = styled.button`
   width: 50px;
   margin-top: 10px;
+  margin-right: 10px;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
   background-color: white;
@@ -22,4 +23,11 @@ export const StButton = styled.button`
   &:hover {
     background-color: lightgray;
   }
+`;
+
+export const StInput = styled.input`
+  height: 25px;
+  margin: 20px 10px 20px 0;
+  font-family: 'nanum';
+  font-size: 12px;
 `;
