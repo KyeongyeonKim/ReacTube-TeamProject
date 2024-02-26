@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import client from 'api/supabase';
 import { Hr } from 'styles/DetailPageStyles';
-import { StDiv, StP } from 'styles/CommentsListStyle';
+import { StDiv, StP, StButton } from 'styles/CommentsListStyle';
 
 const CommentList = ({ videoId }) => {
   const [comments, setComments] = useState([]);
@@ -29,6 +29,15 @@ const CommentList = ({ videoId }) => {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await client.from('comments').delete().eq('id', id);
+      setComments(comments.filter((comment) => comment.id !== id));
+    } catch (error) {
+      console.error('Error deleting comment:', error.message);
+    }
+  };
+
   return (
     <div>
       <Hr />
@@ -39,6 +48,7 @@ const CommentList = ({ videoId }) => {
               {comment.nickname} / {comment.created_at}
             </StP>
             <StP>{comment.comment}</StP>
+            <StButton onClick={() => handleDelete(comment.id)}>삭제</StButton>
           </StDiv>
         </>
       ))}
