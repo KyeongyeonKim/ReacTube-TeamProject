@@ -30,7 +30,6 @@ function Header() {
       }
     };
     getUserData();
-    return () => {};
   }, [email]);
   const [selectedSearchOption, setSelectedSearchOption] = useState(searchOptions[0]);
   const [youtubeResults, setYoutubeResults] = useState([]);
