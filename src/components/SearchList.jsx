@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Item, ItemTitle, NoDataArea, PageTitle, SearchListArea, SearchWrap, Thumbnail } from 'styles/SearchStyle';
 import client from 'api/supabase';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const SearchList = () => {
   const [data, setData] = useState();
@@ -38,9 +38,13 @@ const SearchList = () => {
               return (
                 <Item key={el.id}>
                   <Thumbnail>
-                    <img src={src} alt="썸네일" />
+                    <Link to={`/detail/${el.videoId}`}>
+                      <img src={src} alt="썸네일" />
+                    </Link>
                   </Thumbnail>
-                  <ItemTitle>{el.title}</ItemTitle>
+                  <ItemTitle>
+                    <Link to={`/detail/${el.videoId}`}>{el.title}</Link>
+                  </ItemTitle>
                 </Item>
               );
             })}
