@@ -11,7 +11,7 @@ export default function SignupPage() {
   const signupHandler = async (event) => {
     event.preventDefault();
     try {
-      const { data, error } = await client.auth.signUp({
+      const { user, error } = await client.auth.signUp({
         email,
         password
       });
@@ -20,15 +20,12 @@ export default function SignupPage() {
         alert('아이디와 비밀번호를 확인해주세요.');
       } else {
         alert('회원가입이 완료됐습니다.');
+        navigate('/login');
+        await client.from('auth.users').insert([{ id: user.id, email, nickname }]);
       }
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const checkLogin = async () => {
-    const authInfo = await client.auth.getSession();
-    const session = authInfo.data.session;
   };
 
   return (
@@ -38,10 +35,10 @@ export default function SignupPage() {
         <div>
           <label>email </label>
           <input
-            type="string"
+            type="email"
             id="email"
             value={email}
-            placeholder="id를 입력하세요."
+            placeholder="이메일을 입력하세요."
             required
             onChange={(event) => {
               setEmail(event.target.value);
@@ -64,7 +61,7 @@ export default function SignupPage() {
         <div>
           <label>nickname </label>
           <input
-            type="string"
+            type="text"
             id="nickname"
             value={nickname}
             placeholder="닉네임을 입력하세요."
@@ -74,9 +71,7 @@ export default function SignupPage() {
             }}
           />
         </div>
-        <button type="submit" onClick={() => navigate('/home')}>
-          Sign Up
-        </button>
+        <button type="submit">Sign Up</button>
       </form>
     </>
   );
