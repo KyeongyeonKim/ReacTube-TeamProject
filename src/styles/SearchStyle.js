@@ -23,9 +23,9 @@ export const SearchListArea = styled.ul`
   gap: 16px;
 `;
 export const Item = styled.li`
-  width: calc((100% - 16px) / 1);
+  /* width: calc((100% - 16px) / 1); */
 
-  /* @media (min-width: 640px) {
+  @media (min-width: 640px) {
     width: calc((100% - 16px) / 2);
   }
 
@@ -35,7 +35,7 @@ export const Item = styled.li`
 
   @media (min-width: 1024px) {
     width: calc((100% - 48px) / 4);
-  } */
+  }
 `;
 export const Thumbnail = styled.figure`
   width: 100%;
