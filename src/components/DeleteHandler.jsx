@@ -1,32 +1,19 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { deleteBoard } from '../redux/modules/boardSlice';
+import React, { useState } from 'react';
 import { StyledDeleteButton } from 'styles/DeleteHandlerStyles';
+import DeleteModal from './DeleteModal';
 
 function DeleteHandler() {
-  const boardItems = useSelector((state) => state.boardItems.boardItems);
-  const dispatch = useDispatch();
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
-  const id = useLocation().state.id;
-  const navigate = useNavigate();
-
-  const backToList = () => {
-    navigate('/home', { replace: true });
-  };
-
-  const target = boardItems.filter((element) => id === element.id);
-
-  const deleteHandler = () => {
-    if (window.confirm('Really Remove This Letter?')) {
-      dispatch(deleteBoard(...target));
-      backToList();
-    }
+  const deleteForm = () => {
+    setDeleteOpen(!deleteOpen);
   };
 
   return (
     <>
-      <StyledDeleteButton className="deleteButton" onClick={deleteHandler}>
+      {deleteOpen ? <DeleteModal deleteOpen={deleteOpen} setDeleteOpen={setDeleteOpen} /> : <></>}
+
+      <StyledDeleteButton className="deleteButton" onClick={deleteForm}>
         삭제
       </StyledDeleteButton>
     </>

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import uuid from 'react-uuid';
 import { addBoard } from '../redux/modules/boardSlice';
+import client from '../api/supabase';
 import {
   StyledButton,
   StyledForm,
@@ -73,7 +74,7 @@ const NewPost = () => {
     setThumbnailUrl(thumbnailUrl);
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     const today = new Date();
     const year = today.getFullYear();
     const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -115,10 +116,19 @@ const NewPost = () => {
           videoId
         };
 
-        dispatch(addBoard(newPost));
+        try {
+          const { data, error } = await client.from('content').insert([newPost]);
+          if (error) {
+            throw error;
+          }
 
-        alert('등록되었습니다.');
-        navigate('/home');
+          dispatch(addBoard(newPost));
+          alert('등록되었습니다.');
+          navigate('/home');
+        } catch (error) {
+          console.error('등록에 실패했습니다.', error.message);
+          alert('등록에 실패했습니다.');
+        }
       } else {
         alert('등록이 취소되었습니다.');
       }
