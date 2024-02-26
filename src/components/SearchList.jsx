@@ -12,7 +12,7 @@ const SearchList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, error } = await client.from('video').select('*').like('title', `%${searchKeyword}%`);
+        const { data, error } = await client.from('content').select('*').like('title', `%${searchKeyword}%`);
         if (error) {
           throw error;
         }
