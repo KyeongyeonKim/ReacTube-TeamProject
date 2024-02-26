@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { modifyBoard } from '../redux/modules/boardSlice';
+import client from 'api/supabase';
 import {
   Buttons,
   ModalContainer,
@@ -75,7 +76,7 @@ function ModifyModal(props) {
     setThumbnailUrl(thumbnailUrl);
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     const today = new Date();
     const year = today.getFullYear();
     const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -91,9 +92,9 @@ function ModifyModal(props) {
     event.preventDefault();
     if (password === target[0].password) {
       if (isTitleModified && isContentModified) {
-        alert('No any changes!');
+        alert('수정된 내용이 없습니다!');
       } else {
-        if (window.confirm('Register Your Message?')) {
+        if (window.confirm('게시글을 수정하시겠습니까?')) {
           const newPost = {
             id: target[0].id,
             title: newTitle,
@@ -105,17 +106,24 @@ function ModifyModal(props) {
             videoId: newVideoId
           };
 
-          dispatch(modifyBoard(newPost));
-
-          alert('Registered!');
-          props.setModifyOpen(!props.modifyOpen);
-
+          try {
+            const { data, error } = await client.from('content').update(newPost).eq('id', id);
+            if (error) {
+              throw error;
+            }
+            dispatch(modifyBoard(newPost));
+            alert('수정되었습니다!');
+            props.setModifyOpen(!props.modifyOpen);
+          } catch (error) {
+            console.error('게시물 수정 중 오류가 발생', error.message);
+            alert('게시물 수정 중 오류가 발생했습니다.');
+          }
         } else {
-          alert('Cancelled');
+          alert('수정이 취소되었습니다.');
         }
       }
     } else {
-      alert('Wrong password!');
+      alert('비밀번호가 일치하지 않습니다!');
       passwordRef.current.focus();
     }
   };
