@@ -1,23 +1,4 @@
-// import { useEffect, useState } from 'react';
-// import client from 'api/supabase';
-
-// const [content, setContent] = useState([]);
-
-// useEffect(() => {
-//   getContent();
-// }, []);
-
-// async function getContent() {
-//   const { data, error } = await client.from('content').select();
-//   setContent(data);
-// }
-
-// <ul>
-//   {content.map((content) => (
-//     <li key={content.name}>{content.name} </li>
-//   ))}
-// </ul>;
-
+import uuid from 'react-uuid';
 import client from './supabase';
 /**
  * @typedef {string | number | boolean | null | { [key: string]: Json | undefined } | Json[]} Json
@@ -25,23 +6,38 @@ import client from './supabase';
 
 /**
  * @typedef {Object} Row
- * @property {number} id - the data expected from .select()
- * @property {string} name - the data expected from .select()
- * @property {Json | null} data - the data expected from .select()
+ * @property {number} id
+ * @property {string} title
+ * @property {string} author
+ * @property {string} password
+ * @property {string} timeString
+ * @property {string} content
+ * @property {string} urlString
+ * @property {string} videoId
  */
 
 /**
  * @typedef {Object} Insert
- * @property {undefined} [id] - generated columns must not be supplied
- * @property {string} name - `not null` columns with no default must be supplied
- * @property {Json | null} [data] - nullable columns can be omitted
+ * @property {undefined} [id]
+ * @property {string} title
+ * @property {string} author
+ * @property {string} password
+ * @property {string} timeString
+ * @property {string} content
+ * @property {string} urlString
+ * @property {string} videoId
  */
 
 /**
  * @typedef {Object} Update
  * @property {undefined} [id]
- * @property {string} [name] - `not null` columns are optional on .update()
- * @property {Json | null} [data]
+ * @property {string} [title]
+ * @property {string} [author]
+ * @property {string} [password]
+ * @property {string} [timeString]
+ * @property {string} [content]
+ * @property {string} [urlString]
+ * @property {string} [videoId]
  */
 
 /** @type {Object<string, { Row: Row, Insert: Insert, Update: Update }>} */
@@ -51,11 +47,22 @@ const Database = {
       content: {
         Row: {
           id: 0,
-          name: '',
-          data: null
+          title: '',
+          author: '',
+          password: '',
+          timeString: '',
+          content: '',
+          urlString: '',
+          videoId: ''
         },
         Insert: {
-          name: ''
+          title: '',
+          author: '',
+          password: '',
+          timeString: '',
+          content: '',
+          urlString: '',
+          videoId: ''
         },
         Update: {}
       }
