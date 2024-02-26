@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import client from 'api/supabase';
-import * as St from '../layout/HeaderStyle';
+import styled from 'styled-components';
 
 function Header() {
   const navigate = useNavigate();
@@ -37,38 +37,88 @@ function Header() {
 
   return (
     <>
-      <St.HeaderStyle>
-        <St.StImg src="/logo.jpg" alt="Logo" onClick={() => navigate('/')} />
-        <St.SearchBox onSubmit={handleSearchInfo}>
-          <St.SearchInput
+      <HeaderStyle>
+        <StImg src="/logo.jpg" alt="Logo" onClick={() => navigate('/')} />
+        <SearchBox onSubmit={handleSearchInfo}>
+          <SearchInput
             value={searchTerm}
             placeholder="검색어를 입력해주세요!"
             onChange={(e) => {
               setSearchTerm(e.target.value);
             }}
           />
-          <St.SearchButton>
+          <SearchButton>
             <FaMagnifyingGlass />
-          </St.SearchButton>
-        </St.SearchBox>
+          </SearchButton>
+        </SearchBox>
         <div>
           {!email ? (
             <>
               <Link to="/login">
-                <St.StButton>로그인</St.StButton>
+                <StButton>로그인</StButton>
               </Link>
               <Link to="/signup">
-                <St.StButton>회원가입</St.StButton>
+                <StButton>회원가입</StButton>
               </Link>
             </>
           ) : (
-            <St.StButton>로그아웃</St.StButton>
+            <StButton>로그아웃</StButton>
           )}
         </div>
-      </St.HeaderStyle>
+      </HeaderStyle>
       <Outlet></Outlet>
     </>
   );
 }
 
 export default Header;
+
+const HeaderStyle = styled.header`
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 1.5rem 4rem;
+`;
+
+const StImg = styled.img`
+  width: 70px;
+  border-radius: 20px;
+  cursor: pointer;
+`;
+
+const SearchBox = styled.form`
+  display: flex;
+  align-items: center;
+  position: relative;
+`;
+
+const SearchInput = styled.input`
+  width: 45rem;
+  height: 2.5rem;
+  flex-grow: 1;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 1rem;
+`;
+
+const SearchButton = styled.button`
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 0.5rem;
+  cursor: pointer;
+`;
+
+const StButton = styled.button`
+  border: none;
+  background-color: transparent;
+  margin: 0 10px;
+  color: black;
+
+  &:hover {
+    transform: scale(1.2);
+    font-weight: 600;
+    color: #c3acd0;
+  }
+`;
