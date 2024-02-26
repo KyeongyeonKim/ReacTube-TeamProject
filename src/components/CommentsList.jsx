@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import client from 'api/supabase';
 import { Hr } from 'styles/DetailPageStyles';
-import styled from 'styled-components';
 import { StDiv, StP } from 'styles/CommentsListStyle';
 
 const CommentList = ({ videoId }) => {
