@@ -8,7 +8,7 @@ import Home from '../routes/Home';
 import Detail from '../routes/Detail';
 import Search from '../routes/Search';
 import Write from '../routes/Write';
-import Header from 'components/layout/Header';
+import Header from '../layout/Header';
 import YoutubeVideoList from 'components/YoutubeVideoList';
 
 function Router() {

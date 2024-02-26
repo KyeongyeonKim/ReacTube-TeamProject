@@ -3,10 +3,10 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import { HeaderStyle, StImg, SearchBox, SearchInput, SearchButton, StButton } from 'styles/HeaderStyles';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
-import logoandtitle from '../../assets/imgs/logoandtitle.png';
+import logoandtitle from '../assets/imgs/logoandtitle.png';
 import client from 'api/supabase';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeUser } from '../src/redux/modules/authSlice';
+import { removeUser } from '../redux/modules/authSlice';
 
 const searchOptions = [
   { value: 'reactube', label: 'reactube' },
