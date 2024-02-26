@@ -9,7 +9,7 @@ const CommentList = ({ videoId }) => {
 
   useEffect(() => {
     fetchComments();
-  }, []);
+  }, [comments]);
 
   const fetchComments = async () => {
     const { data, error } = await client.from('comments').select('*').eq('videoId', `${videoId}`);
@@ -25,7 +25,8 @@ const CommentList = ({ videoId }) => {
         })}`;
         return { ...comment, created_at: formattedDate };
       });
-      setComments(formattedComments);
+      const reversedComments = formattedComments.reverse();
+      setComments(reversedComments);
     }
   };
 
