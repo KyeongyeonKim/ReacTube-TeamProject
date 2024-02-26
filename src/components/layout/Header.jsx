@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
+import logo from "../../assets/imgs/logo.jpg";
 
 function Header() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Header() {
   return (
     <>
       <HeaderStyle>
-        <StImg src="/logo.jpg" alt="Logo" onClick={() => navigate('/')} />
+        <StImg src={logo} alt="Logo" onClick={() => navigate('/')} />
         <SearchBox onSubmit={handleSearchInfo}>
           <SearchInput
             value={searchTerm}
@@ -58,7 +59,7 @@ const HeaderStyle = styled.header`
 
 const StImg = styled.img`
   width: 70px;
-  border-radius: 20px;
+  border-radius: 5px;
   cursor: pointer;
 `;
 

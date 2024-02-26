@@ -6,7 +6,6 @@ function Main() {
 
   return (
     <>
-      <div>hello</div>
       <button onClick={() => navigate('/login')}>Go to Login page</button>
     </>
   );
