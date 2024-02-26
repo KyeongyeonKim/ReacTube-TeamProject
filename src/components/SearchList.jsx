@@ -39,12 +39,12 @@ const SearchList = () => {
               return (
                 <Item key={el.id}>
                   <Thumbnail>
-                    <Link to={`/detail/${el.videoId}`}>
+                    <Link to={`/detail/${el.id}`}>
                       <img src={src} alt="썸네일" />
                     </Link>
                   </Thumbnail>
                   <ItemTitle>
-                    <Link to={`/detail/${el.videoId}`}>{el.title}</Link>
+                    <Link to={`/detail/${el.id}`}>{el.title}</Link>
                   </ItemTitle>
                 </Item>
               );
