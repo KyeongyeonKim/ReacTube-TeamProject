@@ -5,8 +5,6 @@ import { StCommentArea, StInputName, StArea, StButton } from 'styles/CommentForm
 const CommentForm = ({ videoId }) => {
   const [comment, setComment] = useState('');
   const [password, setPassword] = useState('');
-  const [nickname, setNickname] = useState('');
-
   const [email, setEmail] = useState('');
 
   useEffect(() => {
@@ -47,22 +45,19 @@ const CommentForm = ({ videoId }) => {
 
       setComment('');
       setPassword('');
-      setNickname('');
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        {/* <label>닉네임:</label> */}
         <StInputName
           type="text"
-          placeholder="닉네임"
+          placeholder="이메일"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        {/* <label>비밀번호:</label> */}
         <StInputName
           type="password"
           placeholder="비밀번호"
@@ -72,7 +67,6 @@ const CommentForm = ({ videoId }) => {
         />
       </div>
       <StCommentArea>
-        {/* <label>댓글 내용:</label> */}
         <StArea
           placeholder="댓글을 남겨주세요!"
           maxLength={300}

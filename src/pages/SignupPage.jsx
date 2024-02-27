@@ -20,7 +20,7 @@ export default function SignupPage() {
         console.error(error);
         alert('아이디와 비밀번호를 확인해주세요.');
       } else {
-        alert('회원가입이 완료됐습니다.');
+        alert('이메일을 확인해주세요.');
         await client.from('users').insert([{ id: user.id, email, nickname }]);
         navigate('/login');
       }
@@ -54,13 +54,14 @@ export default function SignupPage() {
             type="password"
             id="password"
             value={password}
-            placeholder="비밀번호를 입력하세요. (8자 이상, 대소문자, 숫자 포함)"
+            placeholder="비밀번호를 입력하세요. "
             min={6}
             required
             onChange={(event) => {
               setPassword(event.target.value);
             }}
           />
+          *영문 대소문자, 숫자 포함 (8자 이상)
         </div>
         <div>
           <label>nickname </label>

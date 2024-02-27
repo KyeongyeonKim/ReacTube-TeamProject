@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { signIn, signOut } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
 import client from '../api/supabase';
+import { checkUser, removeUser } from '../redux/modules/authSlice';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -10,14 +12,16 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
+
   const signInWithEmail = async () => {
     try {
-      const { user, session, error } = await client.auth.signInWithPassword({
+      const { data, error } = await client.auth.signInWithPassword({
         email,
         password
       });
       if (error) throw error;
-      console.log(user, session);
+      dispatch(checkUser(data.session.access_token));
       alert('로그인 성공!');
       navigate('/home');
     } catch (error) {
@@ -29,16 +33,17 @@ export default function LoginPage() {
 
   const signInWithGithub = async () => {
     try {
-      const { user, session, error } = await client.auth.signInWithOAuth({
+      const { data, error } = await client.auth.signInWithOAuth({
         provider: 'github',
         options: {
           redirectTo: 'http://localhost:3000/home'
         }
       });
+
+      console.log(data);
+
       if (error) throw error;
-      console.log(user, session);
       alert('Github 로그인 성공');
-      navigate('/home');
     } catch (error) {
       console.error('Github 로그인 오류', error.message);
       alert('Github 로그인 실패', error.message);
