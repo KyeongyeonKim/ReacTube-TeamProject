@@ -29,7 +29,7 @@ export default function SignupPage() {
         console.error(error);
         alert('아이디와 비밀번호를 확인해주세요.');
       } else {
-        alert('회원가입이 완료됐습니다.');
+        alert('이메일을 확인해주세요.');
         await client.from('users').insert([{ id: user.id, email, nickname }]);
         navigate('/login');
       }

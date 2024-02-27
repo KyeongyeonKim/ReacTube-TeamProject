@@ -5,8 +5,6 @@ import { StCommentArea, StInputName, StArea, StButton } from 'styles/CommentForm
 const CommentForm = ({ videoId }) => {
   const [comment, setComment] = useState('');
   const [password, setPassword] = useState('');
-  const [nickname, setNickname] = useState('');
-
   const [email, setEmail] = useState('');
 
   useEffect(() => {
