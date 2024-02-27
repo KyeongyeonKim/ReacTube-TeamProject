@@ -53,11 +53,7 @@ const CommentForm = ({ videoId }) => {
       <div>
         <StInputName
           type="text"
-<<<<<<<<< Temporary merge branch 1
-          placeholder="닉네임"
-=========
           placeholder="이메일"
->>>>>>>>> Temporary merge branch 2
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
