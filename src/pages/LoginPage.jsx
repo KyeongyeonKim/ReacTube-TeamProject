@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signIn, signOut } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
 import client from '../api/supabase';
 import { checkUser, removeUser } from '../redux/modules/authSlice';
@@ -13,8 +12,6 @@ import {
   StyledLabel,
   StyledButton,
   Buttons,
-  StyledIcon,
-  GithubLoginButton,
   LoginButton
 } from 'styles/LoginPageStyle';
 
@@ -47,21 +44,6 @@ export default function LoginPage() {
     event.preventDefault();
     setLoading(true);
     await signInWithEmail();
-    setLoading(false);
-  };
-
-  const logoutHandler = async () => {
-    setLoading(true);
-    try {
-      const { error } = await client.auth.signOut();
-      if (error) throw error;
-      const { error: githubError } = await client.auth.signOut({ provider: 'github' });
-      if (githubError) throw githubError;
-      document.cookie = 'sb:token=; expires=Mon, 19 Feb 2024 00:00:00 GMT;path=/;';
-      navigate('/home');
-    } catch (error) {
-      console.error('로그아웃 오류', error.message);
-    }
     setLoading(false);
   };
 
