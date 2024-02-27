@@ -63,9 +63,6 @@ export default function LoginPage() {
 
   return (
     <Container>
-      <div>
-        <StyledButton onClick={() => navigate('/signup')}>회원가입 페이지로 이동</StyledButton>
-      </div>
       <StyledForm onSubmit={loginHandler}>
         <LoginTitle>로그인</LoginTitle>
         <StyledSection>
@@ -97,6 +94,9 @@ export default function LoginPage() {
         </Buttons>
       </StyledForm>
       <Buttons>
+        <div>
+          <StyledButton onClick={() => navigate('/signup')}>회원가입 페이지로 이동</StyledButton>
+        </div>
         <div>
           <label>비밀번호를 잊어버리셨나요?</label>
           <StyledButton type="submit" onClick={resetPassword}>
