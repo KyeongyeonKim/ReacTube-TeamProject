@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { FaGithub } from 'react-icons/fa';
 
 export const Container = styled.div`
   display: flex;
@@ -166,19 +165,4 @@ export const Buttons = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-`;
-
-export const GithubLoginButton = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 2vh;
-  font-family: 'nanum';
-  cursor: pointer;
-`;
-
-export const StyledIcon = styled(FaGithub)`
-  width: 2.2rem;
-  height: 2.2rem;
-  margin: 0.3rem;
 `;

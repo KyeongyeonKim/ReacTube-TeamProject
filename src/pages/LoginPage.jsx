@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signIn, signOut } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
 import client from '../api/supabase';
 import { checkUser, removeUser } from '../redux/modules/authSlice';
@@ -13,8 +12,6 @@ import {
   StyledLabel,
   StyledButton,
   Buttons,
-  StyledIcon,
-  GithubLoginButton,
   LoginButton
 } from 'styles/LoginPageStyle';
 
@@ -43,44 +40,10 @@ export default function LoginPage() {
     setLoading(false);
   };
 
-  const signInWithGithub = async () => {
-    try {
-      const { data, error } = await client.auth.signInWithOAuth({
-        provider: 'github',
-        options: {
-          redirectTo: 'http://localhost:3000/home'
-        }
-      });
-
-      console.log(data);
-
-      if (error) throw error;
-      alert('Github 로그인 성공');
-    } catch (error) {
-      console.error('Github 로그인 오류', error.message);
-      alert('Github 로그인 실패', error.message);
-    }
-  };
-
   const loginHandler = async (event) => {
     event.preventDefault();
     setLoading(true);
     await signInWithEmail();
-    setLoading(false);
-  };
-
-  const logoutHandler = async () => {
-    setLoading(true);
-    try {
-      const { error } = await client.auth.signOut();
-      if (error) throw error;
-      const { error: githubError } = await client.auth.signOut({ provider: 'github' });
-      if (githubError) throw githubError;
-      document.cookie = 'sb:token=; expires=Mon, 19 Feb 2024 00:00:00 GMT;path=/;';
-      navigate('/home');
-    } catch (error) {
-      console.error('로그아웃 오류', error.message);
-    }
     setLoading(false);
   };
 
@@ -134,17 +97,6 @@ export default function LoginPage() {
         </Buttons>
       </StyledForm>
       <Buttons>
-        <div>
-          <GithubLoginButton
-            onClick={() => {
-              signInWithGithub();
-            }}
-            disabled={loading}
-          >
-            GitHub로 로그인
-            <StyledIcon onClick={() => signInWithGithub()} />
-          </GithubLoginButton>
-        </div>
         <div>
           <label>비밀번호를 잊어버리셨나요?</label>
           <StyledButton type="submit" onClick={resetPassword}>
