@@ -8,7 +8,9 @@ import {
   StyledLabel,
   StyledInput,
   StyledButton,
-  SignupTitle
+  SignupTitle,
+  SignupButton,
+  StyledText
 } from 'styles/SignupPageStyle';
 
 export default function SignupPage() {
@@ -71,7 +73,7 @@ export default function SignupPage() {
                 setPassword(event.target.value);
               }}
             />
-            <>*영문 대소문자, 숫자 포함 (8자 이상)</>
+            <StyledText>*영문 대소문자, 숫자 포함 (8자 이상)</StyledText>
           </StyledSection>
           <StyledSection>
             <StyledLabel>닉네임 </StyledLabel>
@@ -86,9 +88,9 @@ export default function SignupPage() {
               }}
             />
           </StyledSection>
-          <StyledButton type="submit" disabled={loading}>
+          <SignupButton type="submit" disabled={loading}>
             회원가입
-          </StyledButton>
+          </SignupButton>
         </StyledForm>
         <div>
           <label>이미 계정이 있으신가요?</label>

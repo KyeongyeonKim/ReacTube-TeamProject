@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FaGithub } from 'react-icons/fa';
 
 export const Container = styled.div`
   display: flex;
@@ -6,6 +7,7 @@ export const Container = styled.div`
   justify-content: top;
   padding: 3rem;
   margin-bottom: 3rem;
+  margin-left: 5rem;
 `;
 
 export const makeFlex = `
@@ -53,6 +55,7 @@ export const StyledSection = styled.section`
   align-items: center;
 `;
 export const StyledLabel = styled.label`
+  display: flex;
   font-weight: bolder;
   align-items: center;
   justify-content: center;
@@ -65,10 +68,11 @@ export const inputStyle = `
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 25vw;
+  width: 23rem;
 `;
 export const StyledInput = styled.input`
   ${inputStyle}
+  margin-right: 70px;
 `;
 export const StyledTextarea = styled.textarea`
   resize: none;
@@ -86,6 +90,27 @@ export const StyledButton = styled.button`
     background-color: lightgray;
   }
 `;
+
+export const LoginButton = styled.button`
+  padding: 1vh;
+  margin: 1vh;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
+  width: 23rem;
+  background-color: white;
+  font-family: 'nanum';
+  font-size: 2vh;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 30px;
+  margin-left: 20px;
+
+  &:hover {
+    background-color: #b575ff;
+    color: white;
+  }
+`;
+
 export const StyledImage = styled.img`
   border-radius: 0.5rem;
   width: 90%;
@@ -141,4 +166,19 @@ export const Buttons = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const GithubLoginButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 2vh;
+  font-family: 'nanum';
+  cursor: pointer;
+`;
+
+export const StyledIcon = styled(FaGithub)`
+  width: 2.2rem;
+  height: 2.2rem;
+  margin: 0.3rem;
 `;

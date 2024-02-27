@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn, signOut } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
-import { FaGithub } from 'react-icons/fa';
 import client from '../api/supabase';
 import { checkUser, removeUser } from '../redux/modules/authSlice';
 import {
@@ -13,7 +12,10 @@ import {
   StyledInput,
   StyledLabel,
   StyledButton,
-  Buttons
+  Buttons,
+  StyledIcon,
+  GithubLoginButton,
+  LoginButton
 } from 'styles/LoginPageStyle';
 
 export default function LoginPage() {
@@ -98,6 +100,9 @@ export default function LoginPage() {
 
   return (
     <Container>
+      <div>
+        <StyledButton onClick={() => navigate('/signup')}>회원가입 페이지로 이동</StyledButton>
+      </div>
       <StyledForm onSubmit={loginHandler}>
         <LoginTitle>로그인</LoginTitle>
         <StyledSection>
@@ -123,34 +128,28 @@ export default function LoginPage() {
           />
         </StyledSection>
         <Buttons>
-          <StyledButton type="submit" disabled={loading}>
+          <LoginButton type="submit" disabled={loading}>
             로그인하기
-          </StyledButton>
-          <div>
-            <button
-              onClick={() => {
-                signInWithGithub();
-              }}
-              disabled={loading}
-            >
-              GitHub로 로그인
-            </button>
-
-            <FaGithub onClick={() => signInWithGithub()} />
-          </div>
+          </LoginButton>
         </Buttons>
       </StyledForm>
       <Buttons>
         <div>
-          <StyledButton onClick={() => navigate('/signup')}>회원가입 페이지로 이동</StyledButton>
+          <GithubLoginButton
+            onClick={() => {
+              signInWithGithub();
+            }}
+            disabled={loading}
+          >
+            GitHub로 로그인
+            <StyledIcon onClick={() => signInWithGithub()} />
+          </GithubLoginButton>
         </div>
         <div>
-          <div>
-            <label>비밀번호를 잊어버리셨나요?</label>
-            <StyledButton type="submit" onClick={resetPassword}>
-              비밀번호 재설정
-            </StyledButton>
-          </div>
+          <label>비밀번호를 잊어버리셨나요?</label>
+          <StyledButton type="submit" onClick={resetPassword}>
+            비밀번호 재설정
+          </StyledButton>
         </div>
       </Buttons>
     </Container>

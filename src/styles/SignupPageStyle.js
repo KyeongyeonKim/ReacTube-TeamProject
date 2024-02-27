@@ -6,13 +6,14 @@ export const Container = styled.div`
   justify-content: top;
   padding: 3rem;
   margin-bottom: 3rem;
+  margin-left: 5rem;
 `;
 
 export const makeFlex = `
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: top;
+  justify-content: center;
 `;
 export const StyledForm = styled.form`
   ${makeFlex}
@@ -20,7 +21,7 @@ export const StyledForm = styled.form`
   border-radius: 0.5rem;
   padding: 2vh;
   width: 60vw;
-  height: 40vh;
+  height: 45vh;
   background-color: white;
 `;
 
@@ -50,6 +51,11 @@ export const StyledSection = styled.section`
   font-family: 'nanum';
   align-items: center;
 `;
+export const StyledText = styled.div`
+  font-size: 1.5vh;
+  font-family: 'nanum';
+`;
+
 export const StyledLabel = styled.label`
   font-weight: bolder;
   align-items: center;
@@ -140,4 +146,24 @@ export const Buttons = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: top;
+`;
+
+export const SignupButton = styled.button`
+  padding: 1vh;
+  margin: 1vh;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
+  width: 23rem;
+  background-color: white;
+  font-family: 'nanum';
+  font-size: 2vh;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 30px;
+  margin-left: 20px;
+
+  &:hover {
+    background-color: #b575ff;
+    color: white;
+  }
 `;
