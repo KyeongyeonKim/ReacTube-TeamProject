@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Buttons = styled.div`
   display: flex;
   align-items: center;
-  gap: 70rem;
+  gap: 50rem;
 `;
 
 export const StyledBackButton = styled.button`
@@ -11,9 +11,8 @@ export const StyledBackButton = styled.button`
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 42vw;
+  width: 10vw;
   background-color: white;
-  width: auto;
   font-family: 'nanum';
   font-size: 2vh;
   cursor: pointer;
@@ -28,9 +27,8 @@ export const StyledModifyButton = styled.button`
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 42vw;
+  width: 6vw;
   background-color: white;
-  width: auto;
   font-family: 'nanum';
   font-size: 2vh;
   cursor: pointer;

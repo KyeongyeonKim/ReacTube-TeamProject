@@ -5,7 +5,6 @@ import { ButtonArea, AddVideoButton, Container, Videos, StyledVideoCard } from '
 import { formatAgo } from 'util/date';
 import { loadBoardItems } from '../redux/modules/boardSlice';
 import { LazyLoadedImage } from './LazyLoadedImage';
-
 function VideoList() {
   const boardItems = useSelector((state) => state.boardItems.boardItems);
   const dispatch = useDispatch();
