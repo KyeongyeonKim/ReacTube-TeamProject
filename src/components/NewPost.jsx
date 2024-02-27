@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import uuid from 'react-uuid';
 import { addBoard } from '../redux/modules/boardSlice';
+import client from '../api/supabase';
 import {
   StyledButton,
   StyledForm,
@@ -11,7 +12,12 @@ import {
   StyledLabel,
   StyledSection,
   StyledTextarea,
-  Container
+  Container,
+  ThumbnailBox,
+  ThumbnailTitle,
+  ThumbnailContent,
+  NewPostTitle,
+  StyledPostButton
 } from 'styles/NewPostStyle';
 
 const NewPost = () => {
@@ -73,7 +79,7 @@ const NewPost = () => {
     setThumbnailUrl(thumbnailUrl);
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     const today = new Date();
     const year = today.getFullYear();
     const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -115,10 +121,19 @@ const NewPost = () => {
           videoId
         };
 
-        dispatch(addBoard(newPost));
+        try {
+          const { error } = await client.from('content').insert([newPost]);
+          if (error) {
+            throw error;
+          }
 
-        alert('등록되었습니다.');
-        navigate('/home');
+          dispatch(addBoard(newPost));
+          alert('등록되었습니다.');
+          navigate('/home');
+        } catch (error) {
+          console.error('등록에 실패했습니다.', error.message);
+          alert('등록에 실패했습니다.');
+        }
       } else {
         alert('등록이 취소되었습니다.');
       }
@@ -137,6 +152,7 @@ const NewPost = () => {
   return (
     <Container>
       <StyledForm onSubmit={onSubmitHandler}>
+        <NewPostTitle>새 동영상</NewPostTitle>
         <StyledSection>
           <StyledLabel>제목</StyledLabel>
           <StyledInput
@@ -186,7 +202,7 @@ const NewPost = () => {
             value={content}
             ref={contentRef}
             placeholder="최대 100글자까지 작성할 수 있습니다."
-            maxLength={1000}
+            maxLength={100}
             onChange={onChange}
           />
         </StyledSection>
@@ -201,12 +217,20 @@ const NewPost = () => {
             placeholder="URL을 입력해주세요."
             onChange={onChange}
           />
-          <StyledButton type="button" onClick={checkThumbnail}>
+          
+        </StyledSection>
+        <StyledButton type="button" onClick={checkThumbnail}>
             링크 확인
           </StyledButton>
-          {!thumbnailUrl ? <></> : <StyledImage src={thumbnailUrl} alt="Thumbnail" />}
-        </StyledSection>
-        <StyledButton>등록</StyledButton>
+        {!thumbnailUrl ? (
+          <ThumbnailBox>
+            <ThumbnailTitle>이곳에 썸네일이 표시됩니다. </ThumbnailTitle>
+            <ThumbnailContent>❌썸네일이 표시되지 않으면 사용할 수 없는 동영상 입니다.</ThumbnailContent>
+          </ThumbnailBox>
+        ) : (
+          <StyledImage src={thumbnailUrl} alt="Thumbnail" />
+        )}
+        <StyledPostButton>등록</StyledPostButton>
       </StyledForm>
     </Container>
   );

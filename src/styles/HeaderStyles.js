@@ -7,6 +7,7 @@ export const HeaderStyle = styled.header`
   justify-content: space-between;
   padding: 1rem 4rem;
   border-bottom: 0.1rem solid gray;
+  height: 12vh;
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -16,6 +17,15 @@ export const StImg = styled.img`
   width: 13rem;
   border-radius: 0.5rem;
   cursor: pointer;
+`;
+
+export const SelectBox = styled.div`
+  padding: 0.5rem;
+`;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const SearchBox = styled.form`

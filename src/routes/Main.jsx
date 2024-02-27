@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   PageLayout,
@@ -11,14 +11,20 @@ import {
   SignupButtonBox
 } from 'styles/MainPageStyle';
 import logo from 'assets/imgs/logo.jpg';
+import { useSelector } from 'react-redux';
 
 function Main() {
   const navigate = useNavigate();
+  const token = useSelector((state) => state.auth.token);
+
+  useEffect(() => {
+    if (token) {navigate("/home")} 
+  }, []);
 
   return (
     <PageLayout>
       <Container>
-        <StImg src={logo} alt="Logo" onClick={() => navigate('/home')} />
+        <StImg src={logo} alt="Logo" />
         <Content>
           <Texts>
             <p>개발 유튜브 영상 공유 & 추천</p>
