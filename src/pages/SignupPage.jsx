@@ -10,7 +10,6 @@ import {
   StyledButton,
   SignupTitle,
   SignupButton,
-  StyledText,
   StyledContent
 } from 'styles/SignupPageStyle';
 
@@ -75,7 +74,6 @@ export default function SignupPage() {
                   setPassword(event.target.value);
                 }}
               />
-              {/* <StyledText>*영문 대소문자, 숫자 포함 (8자 이상)</StyledText> */}
             </StyledSection>
             <StyledSection>
               <StyledLabel>닉네임 </StyledLabel>
