@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import VideoCard from './VideoCard';
 import Youtube from 'api/youtube';
-import { Videos, Container, SerchResultTitle } from 'styles/searchStyles/VideoListStyle';
+import { Videos, Container, SerchResultTitle, LoadingArea } from 'styles/searchStyles/VideoListStyle';
+import Spinner from 'assets/imgs/Spinner.gif';
 
 function YoutubeVideoList() {
   const { keyword } = useParams();
@@ -17,7 +18,11 @@ function YoutubeVideoList() {
   });
   return (
     <Container>
-      {isLoading && <p>로딩 중 입니다...</p>}
+      {isLoading && (
+        <LoadingArea>
+          <img src={Spinner} alt="로딩중입니다." />
+        </LoadingArea>
+      )}
       {error && <p>검색 중 에러가 발생했습니다.</p>}
       {videos && (
         <>
