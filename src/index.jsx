@@ -10,6 +10,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import store from './redux/config/configStore';
 import GlobalFont from './styles/GlobalFont';
 import { YoutubeApiProvider } from 'util/youtubeApiContext';
+import Header from 'layout/Header';
 
 export let persistor = persistStore(store);
 
@@ -21,6 +22,7 @@ root.render(
         <BrowserRouter>
           <GlobalStyle />
           <GlobalFont />
+          <Header />
           <App />
         </BrowserRouter>
       </PersistGate>

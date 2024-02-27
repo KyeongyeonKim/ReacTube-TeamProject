@@ -1,32 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import { ButtonArea, AddVideoButton, Container, Videos, StyledVideoCard } from 'styles/VideoListStyle.js';
 import { formatAgo } from 'util/date';
 import { loadBoardItems } from '../redux/modules/boardSlice';
 import { LazyLoadedImage } from './LazyLoadedImage';
-
 function VideoList() {
   const boardItems = useSelector((state) => state.boardItems.boardItems);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [visibleIndices, setVisibleIndices] = useState([]);
   const imageRefs = useRef([]);
-
   useEffect(() => {
     dispatch(loadBoardItems());
   }, [dispatch]);
-
   const detailViewer = (id) =>
     navigate(`/detail/${id}`, {
       state: { id }
     });
-
   const newVideo = () => {
     navigate('/write');
   };
-
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -36,18 +30,15 @@ function VideoList() {
         }
       });
     });
-
     imageRefs.current.forEach((ref) => {
       if (ref) {
         observer.observe(ref);
       }
     });
-
     return () => {
       observer.disconnect();
     };
   }, [boardItems]);
-
   return (
     <>
       <ButtonArea>
@@ -82,5 +73,4 @@ function VideoList() {
     </>
   );
 }
-
 export default VideoList;

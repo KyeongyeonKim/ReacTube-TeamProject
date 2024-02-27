@@ -9,11 +9,15 @@ function Search() {
 
   useEffect(() => {
     if (!token) {
-      navigate("/");
+      navigate('/');
     }
   }, []);
 
-  return <SearchList />;
+  return (
+    <>
+      <SearchList />
+    </>
+  );
 }
 
 export default Search;
