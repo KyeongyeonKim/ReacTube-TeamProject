@@ -21,6 +21,7 @@ export const StImg = styled.img`
 
 export const SelectBox = styled.div`
   padding: 0.5rem;
+  margin-right: 1rem;
 `;
 
 export const SearchContainer = styled.div`
@@ -57,6 +58,7 @@ export const StButton = styled.button`
   background-color: transparent;
   margin: 0 10px;
   color: black;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.2);

@@ -17,15 +17,17 @@ function YoutubeVideoList() {
   });
   return (
     <Container>
-      <SerchResultTitle>{`"${keyword}" 유튜브 검색 결과입니다.`}</SerchResultTitle>
       {isLoading && <p>로딩 중 입니다...</p>}
       {error && <p>검색 중 에러가 발생했습니다.</p>}
       {videos && (
-        <Videos>
-          {videos.map((video) => (
-            <VideoCard key={video.id} video={video} />
-          ))}
-        </Videos>
+        <>
+          <SerchResultTitle>{`"${keyword}" 유튜브 검색 결과입니다.`}</SerchResultTitle>
+          <Videos>
+            {videos.map((video) => (
+              <VideoCard key={video.id} video={video} />
+            ))}
+          </Videos>
+        </>
       )}
     </Container>
   );
