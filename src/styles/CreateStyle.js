@@ -4,7 +4,7 @@ export const makeFlex = `
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: top;
+  justify-content: start;
 `;
 export const StyledForm = styled.form`
   ${makeFlex}
@@ -97,8 +97,10 @@ export const ModalContainer = styled.div`
 `;
 export const ModalForm = styled.div`
   ${makeFlex}
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: initial;
   border: 0.2rem solid black;
   border-radius: 0.5rem;

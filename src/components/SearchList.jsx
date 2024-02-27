@@ -6,7 +6,7 @@ import { LazyLoadedImage } from './LazyLoadedImage';
 
 const SearchList = () => {
   const [data, setData] = useState();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const searchKeyword = searchParams.get('keyword');
 
   const [visibleIndices, setVisibleIndices] = useState([]);
@@ -29,8 +29,6 @@ const SearchList = () => {
 
     fetchData();
   }, [searchKeyword]);
-
-  // console.log(data);
 
   //IntersectionObserver : 대상요소와 최상위 문서의 뷰포트가 서로 교차하는 영역이 달라지는 경우를 비동기적으로 감지
   //supabase에서 가져온 data 의 값이 변경될 때 실행
@@ -65,13 +63,15 @@ const SearchList = () => {
                 <Item key={el.id}>
                   <Thumbnail ref={(e) => (imageRefs.current[index] = e)}>
                     {visibleIndices.includes(index) && (
-                      <Link to={`/detail/${el.id}`}>
+                      <Link to={`/detail/${el.id}`} state={{ id: el.id }}>
                         <LazyLoadedImage src={src} alt={'썸네일'} />
                       </Link>
                     )}
                   </Thumbnail>
                   <ItemTitle>
-                    <Link to={`/detail/${el.id}`}>{el.title}</Link>
+                    <Link to={`/detail/${el.id}`} state={{ id: el.id }}>
+                      {el.title}
+                    </Link>
                   </ItemTitle>
                 </Item>
               );
