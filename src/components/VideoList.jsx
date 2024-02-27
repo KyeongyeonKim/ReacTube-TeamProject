@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { ButtonArea, AddVideoButton, Container, Videos, VideoCard } from 'styles/VideoListStyle.js';
+import { ButtonArea, AddVideoButton, Container, Videos, StyledVideoCard } from 'styles/VideoListStyle.js';
 import { formatAgo } from 'util/date';
 import { loadBoardItems } from '../redux/modules/boardSlice';
 import { LazyLoadedImage } from './LazyLoadedImage';
@@ -58,13 +58,13 @@ function VideoList() {
           {boardItems.map((element, index) => {
             const src = element.videoId ? `https://img.youtube.com/vi/${element.videoId}/maxresdefault.jpg` : '';
             return (
-              <VideoCard
-                key={element.id}
-                id={element.id}
-                onClick={() => detailViewer(element.id)}
-                ref={(e) => (imageRefs.current[index] = e)}
-              >
-                {visibleIndices.includes(index) && <LazyLoadedImage src={src} alt={`${element.title} 썸네일`} />}
+              <StyledVideoCard key={element.id} id={element.id} onClick={detailViewer}>
+                <img
+                  id={element.id}
+                  onClick={detailViewer}
+                  src={`https://img.youtube.com/vi/${element.videoId}/maxresdefault.jpg`}
+                  alt="Thumbnail"
+                />
                 <div>
                   <p className="title" id={element.id} onClick={() => detailViewer(element.id)}>
                     {element.title}
@@ -74,7 +74,7 @@ function VideoList() {
                   </p>
                   <p className="timeString">{formatAgo(element.timeString, 'ko')}</p>
                 </div>
-              </VideoCard>
+              </StyledVideoCard>
             );
           })}
         </Videos>

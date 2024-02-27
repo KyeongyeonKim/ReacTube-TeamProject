@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import client from 'api/supabase';
 import { useNavigate } from 'react-router-dom';
+import {
+  StyledForm,
+  Container,
+  StyledSection,
+  StyledLabel,
+  StyledInput,
+  StyledButton,
+  SignupTitle
+} from 'styles/SignupPageStyle';
 
 export default function SignupPage() {
   const [email, setEmail] = useState('');
@@ -32,60 +41,62 @@ export default function SignupPage() {
   };
 
   return (
-    <>
-      <h2>회원가입</h2>
-      <form type="submit" onSubmit={signupHandler}>
+    <Container>
+      <>
+        <StyledForm type="submit" onSubmit={signupHandler}>
+          <SignupTitle>회원가입</SignupTitle>
+          <StyledSection>
+            <StyledLabel>이메일 </StyledLabel>
+            <StyledInput
+              type="email"
+              id="email"
+              value={email}
+              placeholder="이메일을 입력하세요."
+              required
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            />
+          </StyledSection>
+          <StyledSection>
+            <StyledLabel>비밀번호 </StyledLabel>
+            <StyledInput
+              type="password"
+              id="password"
+              value={password}
+              placeholder="비밀번호를 입력하세요. (8자 이상, 대소문자, 숫자 포함)"
+              min={6}
+              required
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+            />
+            <>*영문 대소문자, 숫자 포함 (8자 이상)</>
+          </StyledSection>
+          <StyledSection>
+            <StyledLabel>닉네임 </StyledLabel>
+            <StyledInput
+              type="text"
+              id="nickname"
+              value={nickname}
+              placeholder="닉네임을 입력하세요."
+              required
+              onChange={(event) => {
+                setNickname(event.target.value);
+              }}
+            />
+          </StyledSection>
+          <StyledButton type="submit" disabled={loading}>
+            회원가입
+          </StyledButton>
+        </StyledForm>
         <div>
-          <label>email </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            placeholder="이메일을 입력하세요."
-            required
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
+          <label>이미 계정이 있으신가요?</label>
+          <StyledButton type="submit" onClick={() => navigate('/login')}>
+            로그인 페이지로 이동
+          </StyledButton>
         </div>
-        <div>
-          <label>password </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            placeholder="비밀번호를 입력하세요. "
-            min={6}
-            required
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
-          *영문 대소문자, 숫자 포함 (8자 이상)
-        </div>
-        <div>
-          <label>nickname </label>
-          <input
-            type="text"
-            id="nickname"
-            value={nickname}
-            placeholder="닉네임을 입력하세요."
-            required
-            onChange={(event) => {
-              setNickname(event.target.value);
-            }}
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          회원가입
-        </button>
-      </form>
-      <div>
-        <label>이미 계정이 있으신가요?</label>
-        <button type="submit" onClick={() => navigate('/login')}>
-          로그인 페이지로 이동
-        </button>
-      </div>
-    </>
+      </>
+    </Container>
   );
 }
