@@ -67,6 +67,21 @@ export default function LoginPage() {
     setLoading(false);
   };
 
+  const logoutHandler = async () => {
+    setLoading(true);
+    try {
+      const { error } = await client.auth.signOut();
+      if (error) throw error;
+      const { error: githubError } = await client.auth.signOut({ provider: 'github' });
+      if (githubError) throw githubError;
+      document.cookie = 'sb:token=; expires=Mon, 19 Feb 2024 00:00:00 GMT;path=/;';
+      navigate('/home');
+    } catch (error) {
+      console.error('로그아웃 오류', error.message);
+    }
+    setLoading(false);
+  };
+
   const resetPassword = async () => {
     try {
       const { data, error } = await client.auth.resetPasswordForEmail(email, {
