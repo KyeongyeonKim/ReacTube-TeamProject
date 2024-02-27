@@ -1,4 +1,4 @@
-import SearchList from 'components/SearchList';
+import SearchList from 'components/videolists/SearchList';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

@@ -18,7 +18,7 @@ import {
   ThumbnailContent,
   NewPostTitle,
   StyledPostButton
-} from 'styles/NewPostStyle';
+} from 'styles/pageStyles/NewPostStyle';
 
 const NewPost = () => {
   const [title, setTitle] = useState('');
@@ -217,11 +217,10 @@ const NewPost = () => {
             placeholder="URL을 입력해주세요."
             onChange={onChange}
           />
-          
         </StyledSection>
         <StyledButton type="button" onClick={checkThumbnail}>
-            링크 확인
-          </StyledButton>
+          링크 확인
+        </StyledButton>
         {!thumbnailUrl ? (
           <ThumbnailBox>
             <ThumbnailTitle>이곳에 썸네일이 표시됩니다. </ThumbnailTitle>

@@ -2,8 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import VideoCard from './VideoCard';
-import Youtube from 'util/youtube';
-import { Videos, Container, SerchResultTitle } from 'styles/VideoListStyle';
+import Youtube from 'api/youtube';
+import { Videos, Container, SerchResultTitle } from 'styles/searchStyles/VideoListStyle';
 
 function YoutubeVideoList() {
   const { keyword } = useParams();

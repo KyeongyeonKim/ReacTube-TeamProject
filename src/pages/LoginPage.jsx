@@ -13,7 +13,7 @@ import {
   StyledButton,
   Buttons,
   LoginButton
-} from 'styles/LoginPageStyle';
+} from 'styles/pageStyles/LoginPageStyle';
 
 export default function LoginPage() {
   const navigate = useNavigate();

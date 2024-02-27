@@ -1,8 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Item, ItemTitle, NoDataArea, PageTitle, SearchListArea, SearchWrap, Thumbnail } from 'styles/SearchStyle';
+import {
+  Item,
+  ItemTitle,
+  NoDataArea,
+  PageTitle,
+  SearchListArea,
+  SearchWrap,
+  Thumbnail
+} from 'styles/searchStyles/SearchStyle';
 import client from 'api/supabase';
 import { Link, useSearchParams } from 'react-router-dom';
-import { LazyLoadedImage } from './LazyLoadedImage';
+import { LazyLoadedImage } from '../LazyLoadedImage';
 
 const SearchList = () => {
   const [data, setData] = useState();

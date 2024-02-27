@@ -11,7 +11,7 @@ import {
   SignupTitle,
   SignupButton,
   StyledContent
-} from 'styles/SignupPageStyle';
+} from 'styles/pageStyles/SignupPageStyle';
 
 export default function SignupPage() {
   const [email, setEmail] = useState('');

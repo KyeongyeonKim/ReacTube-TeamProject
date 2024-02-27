@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { ButtonArea, AddVideoButton, Container, Videos, StyledVideoCard } from 'styles/VideoListStyle.js';
+import { ButtonArea, AddVideoButton, Container, Videos, StyledVideoCard } from 'styles/searchStyles/VideoListStyle.js';
 import { formatAgo } from 'util/date';
-import { loadBoardItems } from '../redux/modules/boardSlice';
-import { LazyLoadedImage } from './LazyLoadedImage';
+import { loadBoardItems } from '../../redux/modules/boardSlice';
+import { LazyLoadedImage } from '../LazyLoadedImage';
 function VideoList() {
   const boardItems = useSelector((state) => state.boardItems.boardItems);
   const dispatch = useDispatch();

@@ -9,7 +9,7 @@ import {
   SearchButton,
   StButton,
   SearchContainer
-} from 'styles/HeaderStyles';
+} from 'styles/layoutstyles/HeaderStyles';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import logoandtitle from '../assets/imgs/logoandtitle.png';
 import client from 'api/supabase';

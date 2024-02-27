@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import client from 'api/supabase';
-import { StCommentArea, StInputName, StArea, StButton } from 'styles/CommentFormStyle';
+import { StCommentArea, StInputName, StArea, StButton } from 'styles/commentStyles/CommentFormStyle';
 
 const CommentForm = ({ videoId }) => {
   const [comment, setComment] = useState('');
