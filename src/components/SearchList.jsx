@@ -1,8 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Item, ItemTitle, NoDataArea, PageTitle, SearchListArea, SearchWrap, Thumbnail } from 'styles/SearchStyle';
+import {
+  Item,
+  ItemTitle,
+  NoDataArea,
+  PageTitle,
+  SearchListArea,
+  SearchWrap,
+  Thumbnail,
+  Time
+} from 'styles/SearchStyle';
 import client from 'api/supabase';
 import { Link, useSearchParams } from 'react-router-dom';
 import { LazyLoadedImage } from './LazyLoadedImage';
+import { formatAgo } from 'util/date';
 
 const SearchList = () => {
   const [data, setData] = useState();
@@ -79,6 +89,7 @@ const SearchList = () => {
                       {el.title}
                     </Link>
                   </ItemTitle>
+                  <Time>{formatAgo(el.timeString, 'ko')}</Time>
                 </Item>
               );
             })}
