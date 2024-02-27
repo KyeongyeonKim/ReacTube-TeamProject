@@ -20,19 +20,27 @@ export default function SignupPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [passwordMatch, setPasswordMatch] = useState('');
+  const [passwordMatch, setPasswordMatch] = useState(true);
   const [showPassword, setShowPassword] = useState('false');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const passwordChangeHandler = (value) => {
     setPassword(value);
-    setPasswordMatch(value === passwordConfirm);
+    if (value !== '' && value === passwordConfirm) {
+      setPasswordMatch(true);
+    } else {
+      setPasswordMatch(false);
+    }
   };
 
   const passwordConfirmChangeHandler = (value) => {
     setPasswordConfirm(value);
-    setPasswordMatch(value === password);
+    if (value !== '' && value === password) {
+      setPasswordMatch(true);
+    } else {
+      setPasswordMatch(false);
+    }
   };
 
   const toggleShowPassword = () => {
@@ -45,7 +53,7 @@ export default function SignupPage() {
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
     if (password !== passwordConfirm) {
-      alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+      alert('비밀번호가 일치하지 않습니다.');
       return;
     }
     try {
