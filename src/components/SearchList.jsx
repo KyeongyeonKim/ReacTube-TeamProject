@@ -6,7 +6,7 @@ import { LazyLoadedImage } from './LazyLoadedImage';
 
 const SearchList = () => {
   const [data, setData] = useState();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const searchKeyword = searchParams.get('keyword');
 
   const [visibleIndices, setVisibleIndices] = useState([]);
@@ -65,13 +65,15 @@ const SearchList = () => {
                 <Item key={el.id}>
                   <Thumbnail ref={(e) => (imageRefs.current[index] = e)}>
                     {visibleIndices.includes(index) && (
-                      <Link to={`/detail/${el.id}`}>
+                      <Link to={`/detail/${el.id}`} state={{ id: el.id }}>
                         <LazyLoadedImage src={src} alt={'썸네일'} />
                       </Link>
                     )}
                   </Thumbnail>
                   <ItemTitle>
-                    <Link to={`/detail/${el.id}`}>{el.title}</Link>
+                    <Link to={`/detail/${el.id}`} id={el.id}>
+                      {el.title}
+                    </Link>
                   </ItemTitle>
                 </Item>
               );
