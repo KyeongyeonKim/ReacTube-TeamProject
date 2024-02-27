@@ -47,10 +47,8 @@ export const StyledLabel = styled.label`
   font-weight: bolder;
   align-items: center;
   justify-content: center;
-  justify-content: center;
   font-size: 2vh;
-  width: 12vh;
-  width: 12vh;
+  width: 8vw;
 `;
 
 export const inputStyle = `
@@ -58,7 +56,7 @@ export const inputStyle = `
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 42vw;
+  width: 45vw;
 `;
 export const StyledInput = styled.input`
   ${inputStyle}
@@ -70,10 +68,11 @@ export const StyledTextarea = styled.textarea`
 export const StyledButton = styled.button`
   ${inputStyle}
   background-color: white;
-  width: auto;
+  width: 12vw;
   font-family: 'nanum';
   font-size: 2vh;
   cursor: pointer;
+  margin-bottom: 3vh;
 
   &:hover {
     background-color: #b575ff;

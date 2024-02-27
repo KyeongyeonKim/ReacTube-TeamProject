@@ -217,10 +217,11 @@ const NewPost = () => {
             placeholder="URL을 입력해주세요."
             onChange={onChange}
           />
-          <StyledButton type="button" onClick={checkThumbnail}>
+          
+        </StyledSection>
+        <StyledButton type="button" onClick={checkThumbnail}>
             링크 확인
           </StyledButton>
-        </StyledSection>
         {!thumbnailUrl ? (
           <ThumbnailBox>
             <ThumbnailTitle>이곳에 썸네일이 표시됩니다. </ThumbnailTitle>

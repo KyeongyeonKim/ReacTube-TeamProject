@@ -6,5 +6,5 @@ export const StyledContainer = styled.div`
   align-items: center;
   justify-content: top;
   overflow: auto;
-  height: 100vh;
+  height: 85vh;
 `;

@@ -8,7 +8,6 @@ import Home from '../routes/Home';
 import Detail from '../routes/Detail';
 import Search from '../routes/Search';
 import Write from '../routes/Write';
-import Header from '../layout/Header';
 import YoutubeVideoList from 'components/YoutubeVideoList';
 
 function Router() {
@@ -16,7 +15,7 @@ function Router() {
     <StyledContainer>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route element={<Header />}>
+        <Route>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/home" element={<Home />} />

@@ -14,9 +14,9 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <>
       <VideoList />
-    </div>
+    </>
   );
 }
 

@@ -14,9 +14,9 @@ function Detail() {
   }, []);
 
   return (
-    <div>
+    <>
       <DetailPage />
-    </div>
+    </>
   );
 }
 

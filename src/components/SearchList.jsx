@@ -30,8 +30,6 @@ const SearchList = () => {
     fetchData();
   }, [searchKeyword]);
 
-  // console.log(data);
-
   //IntersectionObserver : 대상요소와 최상위 문서의 뷰포트가 서로 교차하는 영역이 달라지는 경우를 비동기적으로 감지
   //supabase에서 가져온 data 의 값이 변경될 때 실행
   useEffect(() => {
@@ -45,9 +43,7 @@ const SearchList = () => {
     });
 
     imageRefs.current.forEach((ref) => {
-      if (ref) {
-        observer.observe(ref);
-      }
+      observer.observe(ref);
     });
 
     return () => {
@@ -73,7 +69,7 @@ const SearchList = () => {
                     )}
                   </Thumbnail>
                   <ItemTitle>
-                    <Link to={`/detail/${el.id}`} id={el.id}>
+                    <Link to={`/detail/${el.id}`} state={{ id: el.id }}>
                       {el.title}
                     </Link>
                   </ItemTitle>
