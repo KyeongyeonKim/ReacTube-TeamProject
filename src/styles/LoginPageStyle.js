@@ -12,19 +12,10 @@ export const makeFlex = `
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: top;
 `;
 
-export const StyledForm = styled.form`
-  ${makeFlex}
-  border: .2rem solid black;
-  border-radius: 0.5rem;
-  padding: 4vh;
-  width: 62vw;
-  height: 110vh;
-  background-color: white;
-`;
-
-export const NewPostTitle = styled.div`
+export const LoginTitle = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
@@ -35,30 +26,46 @@ export const NewPostTitle = styled.div`
   border-bottom: 0.1rem solid grey;
 `;
 
+export const StyledForm = styled.form`
+  ${makeFlex}
+  border: .2rem solid black;
+  border-radius: 0.5rem;
+  padding: 2vh;
+  width: 50vw;
+  height: 40vh;
+  background-color: white;
+`;
+export const StyledSmallContainer = styled.div`
+  ${makeFlex}
+  border: .2rem solid black;
+  border-radius: 0.5rem;
+  padding: 2vh;
+  width: 80vw;
+  height: 80vh;
+`;
 export const StyledSection = styled.section`
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   font-size: 2vh;
   font-family: 'nanum';
   align-items: center;
 `;
-
 export const StyledLabel = styled.label`
   font-weight: bolder;
   align-items: center;
   justify-content: center;
   justify-content: center;
   font-size: 2vh;
-  width: 12vh;
-  width: 12vh;
+  width: 8vh;
 `;
-
 export const inputStyle = `
   padding: 1vh;
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 42vw;
+  width: 25vw;
 `;
 export const StyledInput = styled.input`
   ${inputStyle}
@@ -76,52 +83,62 @@ export const StyledButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #b575ff;
-    color: white;
+    background-color: lightgray;
   }
 `;
 export const StyledImage = styled.img`
   border-radius: 0.5rem;
-  width: 60%;
+  width: 90%;
 `;
+export const StyledItems = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
-export const ThumbnailBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   border-radius: 0.5rem;
+  padding: 2vh;
   width: 100%;
-  max-width: 589px;
-  height: 100%;
-  max-height: 331px;
-  background-color: lightgray;
-  gap: 1rem;
-  flex-grow: 1;
-`;
+  gap: 1vh;
+  flex-wrap: wrap;
+  grid-auto-rows: 20vh;
 
-export const ThumbnailTitle = styled.div`
-  font-family: 'nanum';
+  & h3 {
+    text-align: center;
+    margin-top: 2vh;
+  }
 `;
-
-export const ThumbnailContent = styled.div`
-  font-family: 'nanum';
-`;
-
-export const StyledPostButton = styled.button`
-  padding: 1vh;
-  margin: 1vh;
-  border: 0.2rem solid black;
-  border-radius: 0.5rem;
-  width: 200px;
-  background-color: white;
-  font-family: 'nanum';
-  font-size: 2vh;
-  cursor: pointer;
-  margin-top: 30px;
+export const StyledItem = styled.div`
+  ${makeFlex}
+  padding: 1.5vh 0;
 
   &:hover {
-    background-color: #b575ff;
-    color: white;
+    background-color: lightpink;
+    cursor: pointer;
   }
+`;
+export const ModalContainer = styled.div`
+  ${makeFlex}
+  background-color: lightgray;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+`;
+export const ModalForm = styled.div`
+  ${makeFlex}
+  position: absolute;
+  top: 0;
+  z-index: initial;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
+  padding: 2vh;
+  width: 50vw;
+  height: 95vh;
+  background-color: white;
+`;
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
