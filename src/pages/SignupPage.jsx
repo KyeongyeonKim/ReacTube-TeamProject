@@ -8,7 +8,9 @@ import {
   StyledLabel,
   StyledInput,
   StyledButton,
-  SignupTitle
+  SignupTitle,
+  SignupButton,
+  StyledContent
 } from 'styles/SignupPageStyle';
 
 export default function SignupPage() {
@@ -45,50 +47,51 @@ export default function SignupPage() {
       <>
         <StyledForm type="submit" onSubmit={signupHandler}>
           <SignupTitle>회원가입</SignupTitle>
-          <StyledSection>
-            <StyledLabel>이메일 </StyledLabel>
-            <StyledInput
-              type="email"
-              id="email"
-              value={email}
-              placeholder="이메일을 입력하세요."
-              required
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-            />
-          </StyledSection>
-          <StyledSection>
-            <StyledLabel>비밀번호 </StyledLabel>
-            <StyledInput
-              type="password"
-              id="password"
-              value={password}
-              placeholder="비밀번호를 입력하세요. (8자 이상, 대소문자, 숫자 포함)"
-              min={6}
-              required
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-            />
-            <>*영문 대소문자, 숫자 포함 (8자 이상)</>
-          </StyledSection>
-          <StyledSection>
-            <StyledLabel>닉네임 </StyledLabel>
-            <StyledInput
-              type="text"
-              id="nickname"
-              value={nickname}
-              placeholder="닉네임을 입력하세요."
-              required
-              onChange={(event) => {
-                setNickname(event.target.value);
-              }}
-            />
-          </StyledSection>
-          <StyledButton type="submit" disabled={loading}>
+          <StyledContent>
+            <StyledSection>
+              <StyledLabel>이메일 </StyledLabel>
+              <StyledInput
+                type="email"
+                id="email"
+                value={email}
+                placeholder="이메일을 입력하세요."
+                required
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              />
+            </StyledSection>
+            <StyledSection>
+              <StyledLabel>비밀번호 </StyledLabel>
+              <StyledInput
+                type="password"
+                id="password"
+                value={password}
+                placeholder="비밀번호를 입력하세요. (8자 이상, 영문 대소문자, 숫자 포함)"
+                min={6}
+                required
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+              />
+            </StyledSection>
+            <StyledSection>
+              <StyledLabel>닉네임 </StyledLabel>
+              <StyledInput
+                type="text"
+                id="nickname"
+                value={nickname}
+                placeholder="닉네임을 입력하세요."
+                required
+                onChange={(event) => {
+                  setNickname(event.target.value);
+                }}
+              />
+            </StyledSection>
+          </StyledContent>
+          <SignupButton type="submit" disabled={loading}>
             회원가입
-          </StyledButton>
+          </SignupButton>
         </StyledForm>
         <div>
           <label>이미 계정이 있으신가요?</label>

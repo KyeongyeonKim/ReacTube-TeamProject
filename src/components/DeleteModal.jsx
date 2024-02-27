@@ -9,9 +9,9 @@ import {
   ModalForm,
   StyledButton,
   StyledInput,
-  StyledLabel,
+  DeleteModalTitle,
   StyledSection
-} from 'styles/CreateStyle';
+} from 'styles/DeleteModalStyle';
 
 function DeleteModal(props) {
   const boardItems = useSelector((state) => state.boardItems.boardItems);
@@ -24,7 +24,7 @@ function DeleteModal(props) {
   const passwordRef = useRef();
 
   const deleteForm = () => {
-    if (window.confirm('Cancel?')) {
+    if (window.confirm('취소하시겠습니까?')) {
       props.setDeleteOpen(!props.deleteOpen);
     }
   };
@@ -40,7 +40,7 @@ function DeleteModal(props) {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     if (password === target[0].password) {
-      if (window.confirm('Really Remove This Letter?')) {
+      if (window.confirm('정말로 삭제하시겠습니까?')) {
         try {
           const { error } = await client.from('content').delete().eq('id', id);
           if (error) {
@@ -66,22 +66,22 @@ function DeleteModal(props) {
     <>
       <ModalContainer onClick={deleteForm} />
       <ModalForm onSubmit={onSubmitHandler}>
+        <DeleteModalTitle>삭제하시겠습니까?</DeleteModalTitle>
         <StyledSection>
-          <StyledLabel>Password</StyledLabel>
           <StyledInput
             id={id + 'password'}
             type="password"
             name="password"
             value={password}
             ref={passwordRef}
-            placeholder="password"
+            placeholder="비밀번호 확인"
             minLength={6}
             onChange={onChange}
           />
         </StyledSection>
         <Buttons>
-          <StyledButton onClick={onSubmitHandler}>Send</StyledButton>
-          <StyledButton onClick={deleteForm}>Cancel</StyledButton>
+          <StyledButton onClick={onSubmitHandler}>확인</StyledButton>
+          <StyledButton onClick={deleteForm}>취소</StyledButton>
         </Buttons>
       </ModalForm>
     </>
