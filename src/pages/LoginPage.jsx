@@ -43,25 +43,6 @@ export default function LoginPage() {
     setLoading(false);
   };
 
-  const signInWithGithub = async () => {
-    try {
-      const { data, error } = await client.auth.signInWithOAuth({
-        provider: 'github',
-        options: {
-          redirectTo: 'http://localhost:3000/home'
-        }
-      });
-
-      console.log(data);
-
-      if (error) throw error;
-      alert('Github 로그인 성공');
-    } catch (error) {
-      console.error('Github 로그인 오류', error.message);
-      alert('Github 로그인 실패', error.message);
-    }
-  };
-
   const loginHandler = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -134,17 +115,6 @@ export default function LoginPage() {
         </Buttons>
       </StyledForm>
       <Buttons>
-        <div>
-          <GithubLoginButton
-            onClick={() => {
-              signInWithGithub();
-            }}
-            disabled={loading}
-          >
-            GitHub로 로그인
-            <StyledIcon onClick={() => signInWithGithub()} />
-          </GithubLoginButton>
-        </div>
         <div>
           <label>비밀번호를 잊어버리셨나요?</label>
           <StyledButton type="submit" onClick={resetPassword}>
