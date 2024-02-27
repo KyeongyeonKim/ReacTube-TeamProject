@@ -14,13 +14,25 @@ export const makeFlex = `
   align-items: center;
   justify-content: top;
 `;
+
+export const LoginTitle = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  font-size: 3vh;
+  font-family: 'nanum';
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.1rem solid grey;
+`;
+
 export const StyledForm = styled.form`
   ${makeFlex}
   border: .2rem solid black;
   border-radius: 0.5rem;
   padding: 2vh;
   width: 50vw;
-  height: 95vh;
+  height: 40vh;
   background-color: white;
 `;
 export const StyledSmallContainer = styled.div`
@@ -32,19 +44,28 @@ export const StyledSmallContainer = styled.div`
   height: 80vh;
 `;
 export const StyledSection = styled.section`
-  ${makeFlex}
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  font-size: 2vh;
+  font-family: 'nanum';
+  align-items: center;
 `;
 export const StyledLabel = styled.label`
   font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+  justify-content: center;
   font-size: 2vh;
+  width: 8vh;
 `;
 export const inputStyle = `
   padding: 1vh;
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 42vw;
+  width: 25vw;
 `;
 export const StyledInput = styled.input`
   ${inputStyle}
@@ -119,5 +140,5 @@ export const Buttons = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: top;
+  justify-content: space-between;
 `;

@@ -5,6 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
 import client from '../api/supabase';
 import { checkUser, removeUser } from '../redux/modules/authSlice';
+import {
+  Container,
+  StyledForm,
+  LoginTitle,
+  StyledSection,
+  StyledInput,
+  StyledLabel,
+  StyledButton,
+  Buttons
+} from 'styles/LoginPageStyle';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -84,11 +94,12 @@ export default function LoginPage() {
   };
 
   return (
-    <>
-      <h2>로그인</h2>
-      <form onSubmit={loginHandler}>
-        <div>
-          <input
+    <Container>
+      <StyledForm onSubmit={loginHandler}>
+        <LoginTitle>로그인</LoginTitle>
+        <StyledSection>
+          <StyledLabel>이메일 </StyledLabel>
+          <StyledInput
             type="email"
             placeholder="이메일을 입력하세요."
             required
@@ -97,42 +108,48 @@ export default function LoginPage() {
               setEmail(event.target.value);
             }}
           />
-        </div>
-        <div>
-          <input
+        </StyledSection>
+        <StyledSection>
+          <StyledLabel>비밀번호 </StyledLabel>
+          <StyledInput
             type="password"
             placeholder="비밀번호를 입력하세요."
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </div>
-        <button type="submit" disabled={loading}>
-          로그인하기
-        </button>
+        </StyledSection>
+        <Buttons>
+          <StyledButton type="submit" disabled={loading}>
+            로그인하기
+          </StyledButton>
+          <div>
+            <button
+              onClick={() => {
+                signInWithGithub();
+              }}
+              disabled={loading}
+            >
+              GitHub로 로그인
+            </button>
+
+            <FaGithub onClick={() => signInWithGithub()} />
+          </div>
+        </Buttons>
+      </StyledForm>
+      <Buttons>
         <div>
-          <button
-            onClick={() => {
-              signInWithGithub();
-            }}
-            disabled={loading}
-          >
-            GitHub로 로그인
-          </button>
-          <FaGithub onClick={() => signInWithGithub()} />
-        </div>
-        <div>
-          <button onClick={() => navigate('/signup')}>회원가입 페이지로 이동</button>
+          <StyledButton onClick={() => navigate('/signup')}>회원가입 페이지로 이동</StyledButton>
         </div>
         <div>
           <div>
             <label>비밀번호를 잊어버리셨나요?</label>
-            <button type="submit" onClick={resetPassword}>
+            <StyledButton type="submit" onClick={resetPassword}>
               비밀번호 재설정
-            </button>
+            </StyledButton>
           </div>
         </div>
-      </form>
-    </>
+      </Buttons>
+    </Container>
   );
 }
