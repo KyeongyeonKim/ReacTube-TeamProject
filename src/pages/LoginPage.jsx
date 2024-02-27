@@ -71,20 +71,6 @@ export default function LoginPage() {
     }
   };
 
-  const resetPassword = async () => {
-    try {
-      const { data, error } = await client.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.href
-      });
-      if (error) throw error;
-      console.log('비밀번호 재설정 이메일이 발송되었습니다.');
-      alert('비밀번호 재설정 이메일이 발송되었습니다.');
-    } catch (error) {
-      console.log('비밀번호 재설정 오류', error.message);
-      alert('비밀번호 재설정 요청을 처리하는 중에 오류가 발생했습니다.', error.message);
-    }
-  };
-
   return (
     <>
       <h2>Sign in </h2>
