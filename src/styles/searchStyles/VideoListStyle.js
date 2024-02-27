@@ -64,6 +64,7 @@ export const StyledVideoCard = styled.div`
 
   img {
     width: 100%;
+    aspect-ratio: 16 / 9;
   }
 
   div {
