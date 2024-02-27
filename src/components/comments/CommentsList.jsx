@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import client from 'api/supabase';
-import { Hr } from 'styles/DetailPageStyles';
-import { StDiv, StP, StButton, StInput } from 'styles/CommentsListStyle';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteComment, fetchComments } from '../redux/modules/commentSlice';
+import { Hr } from 'styles/pageStyles/DetailPageStyles';
+import { StDiv, StP, StButton, StInput } from 'styles/commentStyles/CommentsListStyle';
 
 const CommentList = ({ videoId }) => {
-  const dispatch = useDispatch();
   const [comments, setComments] = useState([]);
   const [selectedCommentId, setSelectedCommentId] = useState(null);
   const [password, setPassword] = useState('');

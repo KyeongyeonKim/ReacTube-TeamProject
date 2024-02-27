@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import client from 'api/supabase';
 
 // 초기 상태 정의
@@ -14,9 +14,6 @@ const commentSlice = createSlice({
     addComment: (state, action) => {
       client.from('comments').insert(action.payload);
     }
-    // deleteComment: (state, action) => {
-    //   client.from('comments').delete().eq('id', action.payload);
-    // }
   }
 });
 

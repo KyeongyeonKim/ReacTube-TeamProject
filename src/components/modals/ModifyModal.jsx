@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { modifyBoard } from '../redux/modules/boardSlice';
+import { modifyBoard } from '../../redux/modules/boardSlice';
 import client from 'api/supabase';
 import {
   Buttons,
@@ -18,7 +18,7 @@ import {
   ThumbnailContent,
   ModifyPageTitle,
   ModifyPageContent
-} from 'styles/ModifyModalStyle';
+} from 'styles/modalStyles/ModifyModalStyle';
 
 function ModifyModal(props) {
   const boardItems = useSelector((state) => state.boardItems.boardItems);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledVideoCard } from 'styles/VideoListStyle';
+import { StyledVideoCard } from 'styles/searchStyles/VideoListStyle';
 import { formatAgo } from 'util/date';
 
 function VideoCard({ video }) {

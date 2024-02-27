@@ -8,10 +8,10 @@ import {
   SearchWrap,
   Thumbnail,
   Time
-} from 'styles/SearchStyle';
+} from 'styles/searchStyles/SearchStyle';
 import client from 'api/supabase';
 import { Link, useSearchParams } from 'react-router-dom';
-import { LazyLoadedImage } from './LazyLoadedImage';
+import { LazyLoadedImage } from '../LazyLoadedImage';
 import { formatAgo } from 'util/date';
 
 const SearchList = () => {

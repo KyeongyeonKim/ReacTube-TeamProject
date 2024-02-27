@@ -9,7 +9,7 @@ import {
   LoginButtonBox,
   Button,
   SignupButtonBox
-} from 'styles/MainPageStyle';
+} from 'styles/pageStyles/MainPageStyle';
 import logo from 'assets/imgs/logo.jpg';
 import { useSelector } from 'react-redux';
 
@@ -18,7 +18,9 @@ function Main() {
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
-    if (token) {navigate("/home")} 
+    if (token) {
+      navigate('/home');
+    }
   }, []);
 
   return (

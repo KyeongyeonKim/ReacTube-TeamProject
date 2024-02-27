@@ -1,4 +1,4 @@
-import NewPost from 'components/NewPost';
+import NewPost from 'pages/NewPost';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

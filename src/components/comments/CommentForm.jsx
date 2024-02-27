@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import client from 'api/supabase';
-import { StCommentArea, StInputName, StArea, StButton } from 'styles/CommentFormStyle';
+import { StCommentArea, StInputName, StArea, StButton } from 'styles/commentStyles/CommentFormStyle';
 import { useDispatch } from 'react-redux';
-import { addComment } from '../redux/modules/commentSlice';
+import { addComment } from '../../redux/modules/commentSlice';
 
 const CommentForm = ({ videoId }) => {
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ const CommentForm = ({ videoId }) => {
         const auth = await client.auth.getUser();
         if (auth.data.user.email) {
           setEmail(auth.data.user.email);
-          console.log(email);
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
