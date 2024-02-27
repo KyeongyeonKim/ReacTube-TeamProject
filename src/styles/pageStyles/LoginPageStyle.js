@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content: top;
   padding: 3rem;
   margin-bottom: 3rem;
+  margin-left: 5rem;
 `;
 
 export const makeFlex = `
@@ -14,17 +15,8 @@ export const makeFlex = `
   align-items: center;
   justify-content: top;
 `;
-export const StyledForm = styled.form`
-  ${makeFlex}
-  border: .2rem solid black;
-  border-radius: 0.5rem;
-  padding: 2vh;
-  width: 60vw;
-  height: 40vh;
-  background-color: white;
-`;
 
-export const SignupTitle = styled.div`
+export const LoginTitle = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
@@ -35,6 +27,15 @@ export const SignupTitle = styled.div`
   border-bottom: 0.1rem solid grey;
 `;
 
+export const StyledForm = styled.form`
+  ${makeFlex}
+  border: .2rem solid black;
+  border-radius: 0.5rem;
+  padding: 2vh;
+  width: 50vw;
+  height: 40vh;
+  background-color: white;
+`;
 export const StyledSmallContainer = styled.div`
   ${makeFlex}
   border: .2rem solid black;
@@ -45,29 +46,32 @@ export const StyledSmallContainer = styled.div`
 `;
 export const StyledSection = styled.section`
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   font-size: 2vh;
   font-family: 'nanum';
   align-items: center;
 `;
 export const StyledLabel = styled.label`
+  display: flex;
   font-weight: bolder;
   align-items: center;
   justify-content: center;
   justify-content: center;
   font-size: 2vh;
-  width: 12vh;
-  width: 12vh;
+  width: 8vh;
 `;
 export const inputStyle = `
   padding: 1vh;
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 30vw;
+  width: 23rem;
 `;
 export const StyledInput = styled.input`
   ${inputStyle}
+  margin-right: 70px;
 `;
 export const StyledTextarea = styled.textarea`
   resize: none;
@@ -85,6 +89,27 @@ export const StyledButton = styled.button`
     background-color: lightgray;
   }
 `;
+
+export const LoginButton = styled.button`
+  padding: 1vh;
+  margin: 1vh;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
+  width: 23rem;
+  background-color: white;
+  font-family: 'nanum';
+  font-size: 2vh;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 30px;
+  margin-left: 20px;
+
+  &:hover {
+    background-color: #b575ff;
+    color: white;
+  }
+`;
+
 export const StyledImage = styled.img`
   border-radius: 0.5rem;
   width: 90%;
@@ -114,30 +139,10 @@ export const StyledItem = styled.div`
     cursor: pointer;
   }
 `;
-export const ModalContainer = styled.div`
-  ${makeFlex}
-  background-color: lightgray;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-`;
-export const ModalForm = styled.div`
-  ${makeFlex}
-  position: absolute;
-  top: 0;
-  z-index: initial;
-  border: 0.2rem solid black;
-  border-radius: 0.5rem;
-  padding: 2vh;
-  width: 50vw;
-  height: 95vh;
-  background-color: white;
-`;
+
 export const Buttons = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: top;
+  justify-content: space-between;
 `;

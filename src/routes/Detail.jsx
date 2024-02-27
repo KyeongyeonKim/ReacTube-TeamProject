@@ -1,4 +1,4 @@
-import DetailPage from 'components/DetailPage';
+import DetailPage from 'pages/DetailPage';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

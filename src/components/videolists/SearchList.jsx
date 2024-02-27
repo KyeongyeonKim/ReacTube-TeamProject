@@ -1,8 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Item, ItemTitle, NoDataArea, PageTitle, SearchListArea, SearchWrap, Thumbnail } from 'styles/SearchStyle';
+import {
+  Item,
+  ItemTitle,
+  NoDataArea,
+  PageTitle,
+  SearchListArea,
+  SearchWrap,
+  Thumbnail,
+  Time
+} from 'styles/searchStyles/SearchStyle';
 import client from 'api/supabase';
 import { Link, useSearchParams } from 'react-router-dom';
-import { LazyLoadedImage } from './LazyLoadedImage';
+import { LazyLoadedImage } from '../LazyLoadedImage';
+import { formatAgo } from 'util/date';
 
 const SearchList = () => {
   const [data, setData] = useState();
@@ -16,7 +26,11 @@ const SearchList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, error } = await client.from('content').select('*').like('title', `%${searchKeyword}%`);
+        const { data, error } = await client
+          .from('content')
+          .select('*')
+          .like('title', `%${searchKeyword}%`)
+          .order('timeString', { ascending: false });
         if (error) {
           throw error;
         }
@@ -43,7 +57,9 @@ const SearchList = () => {
     });
 
     imageRefs.current.forEach((ref) => {
-      observer.observe(ref);
+      if (ref) {
+        observer.observe(ref);
+      }
     });
 
     return () => {
@@ -73,6 +89,7 @@ const SearchList = () => {
                       {el.title}
                     </Link>
                   </ItemTitle>
+                  <Time>{formatAgo(el.timeString, 'ko')}</Time>
                 </Item>
               );
             })}

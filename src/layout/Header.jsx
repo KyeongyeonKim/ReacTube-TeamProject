@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-import { HeaderStyle, StImg, SearchBox, SearchInput, SearchButton, StButton } from 'styles/HeaderStyles';
+import {
+  HeaderStyle,
+  StImg,
+  SearchBox,
+  SearchInput,
+  SearchButton,
+  StButton,
+  SearchContainer
+} from 'styles/layoutstyles/HeaderStyles';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import logoandtitle from '../assets/imgs/logoandtitle.png';
 import client from 'api/supabase';
@@ -81,7 +89,7 @@ function Header() {
       <HeaderStyle>
         <StImg src={logoandtitle} alt="Logo" onClick={() => navigate('/home')} />
         {token ? (
-          <>
+          <SearchContainer>
             <Select
               value={selectedSearchOption}
               onChange={handleChangeSearchOption}
@@ -100,7 +108,7 @@ function Header() {
                 <FaMagnifyingGlass />
               </SearchButton>
             </SearchBox>
-          </>
+          </SearchContainer>
         ) : (
           <></>
         )}

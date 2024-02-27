@@ -1,21 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: top;
-  padding: 3rem;
-  margin-bottom: 3rem;
-`;
-
 export const makeFlex = `
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: top;
+  justify-content: start;
 `;
 
-export const LoginTitle = styled.div`
+export const ModifyPageTitle = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
@@ -26,27 +18,8 @@ export const LoginTitle = styled.div`
   border-bottom: 0.1rem solid grey;
 `;
 
-export const StyledForm = styled.form`
-  ${makeFlex}
-  border: .2rem solid black;
-  border-radius: 0.5rem;
-  padding: 2vh;
-  width: 50vw;
-  height: 40vh;
-  background-color: white;
-`;
-export const StyledSmallContainer = styled.div`
-  ${makeFlex}
-  border: .2rem solid black;
-  border-radius: 0.5rem;
-  padding: 2vh;
-  width: 80vw;
-  height: 80vh;
-`;
 export const StyledSection = styled.section`
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   font-size: 2vh;
   font-family: 'nanum';
@@ -56,16 +29,15 @@ export const StyledLabel = styled.label`
   font-weight: bolder;
   align-items: center;
   justify-content: center;
-  justify-content: center;
   font-size: 2vh;
-  width: 8vh;
+  width: 8vw;
 `;
 export const inputStyle = `
   padding: 1vh;
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 25vw;
+  width: 42vw;
 `;
 export const StyledInput = styled.input`
   ${inputStyle}
@@ -88,57 +60,68 @@ export const StyledButton = styled.button`
 `;
 export const StyledImage = styled.img`
   border-radius: 0.5rem;
-  width: 90%;
-`;
-export const StyledItems = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  border-radius: 0.5rem;
-  padding: 2vh;
-  width: 100%;
-  gap: 1vh;
-  flex-wrap: wrap;
-  grid-auto-rows: 20vh;
-
-  & h3 {
-    text-align: center;
-    margin-top: 2vh;
-  }
-`;
-export const StyledItem = styled.div`
-  ${makeFlex}
-  padding: 1.5vh 0;
-
-  &:hover {
-    background-color: lightpink;
-    cursor: pointer;
-  }
+  width: 40%;
 `;
 export const ModalContainer = styled.div`
-  ${makeFlex}
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  padding: 3rem;
+  margin-bottom: 3rem;
   background-color: lightgray;
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  opacity: 0.8;
 `;
+
+export const ModifyPageContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
 export const ModalForm = styled.div`
   ${makeFlex}
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: initial;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  padding: 2vh;
-  width: 50vw;
-  height: 95vh;
+  padding: 3vh;
+  width: 65vw;
+  height: 90vh;
   background-color: white;
+  margin: 2rem;
 `;
 export const Buttons = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: top;
+`;
+
+export const ThumbnailBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  max-width: 589px;
+  max-height: 331px;
+  background-color: lightgray;
+  gap: 1rem;
+  flex-grow: 1;
+`;
+
+export const ThumbnailTitle = styled.div`
+  font-family: 'nanum';
+`;
+
+export const ThumbnailContent = styled.div`
+  font-family: 'nanum';
 `;

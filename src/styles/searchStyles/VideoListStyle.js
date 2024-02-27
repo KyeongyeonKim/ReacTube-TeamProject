@@ -94,6 +94,7 @@ export const StyledVideoCard = styled.div`
   }
 `;
 
+//YoutubeVideoList에서 쓰이는 스타일
 export const SerchResultTitle = styled.div`
   background-color: lightgray;
   padding: 1rem;
@@ -101,4 +102,16 @@ export const SerchResultTitle = styled.div`
   font-size: 2vh;
   margin-bottom: 1rem;
   border-radius: 1rem;
+`;
+
+export const LoadingArea = styled.div`
+  position: fixed;
+  background: #eeeeee5e;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

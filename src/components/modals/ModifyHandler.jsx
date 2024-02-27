@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Buttons, StyledBackButton, StyledModifyButton } from 'styles/ModifyHandlerStyle';
+import { Buttons, StyledBackButton, StyledModifyButton } from 'styles/modalStyles/ModifyHandlerStyle';
 import ModifyModal from './ModifyModal';
 
 function ModifyHandler() {

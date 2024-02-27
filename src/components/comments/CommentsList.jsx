@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import client from 'api/supabase';
-import { Hr } from 'styles/DetailPageStyles';
-import { StDiv, StP, StButton, StInput } from 'styles/CommentsListStyle';
+import { Hr } from 'styles/pageStyles/DetailPageStyles';
+import { StDiv, StP, StButton, StInput } from 'styles/commentStyles/CommentsListStyle';
 
 const CommentList = ({ videoId }) => {
   const [comments, setComments] = useState([]);

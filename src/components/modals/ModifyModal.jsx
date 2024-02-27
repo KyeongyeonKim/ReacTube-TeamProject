@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { modifyBoard } from '../redux/modules/boardSlice';
+import { modifyBoard } from '../../redux/modules/boardSlice';
 import client from 'api/supabase';
 import {
   Buttons,
@@ -12,8 +12,13 @@ import {
   StyledInput,
   StyledLabel,
   StyledSection,
-  StyledTextarea
-} from 'styles/CreateStyle';
+  StyledTextarea,
+  ThumbnailBox,
+  ThumbnailTitle,
+  ThumbnailContent,
+  ModifyPageTitle,
+  ModifyPageContent
+} from 'styles/modalStyles/ModifyModalStyle';
 
 function ModifyModal(props) {
   const boardItems = useSelector((state) => state.boardItems.boardItems);
@@ -34,7 +39,7 @@ function ModifyModal(props) {
   const dispatch = useDispatch();
 
   const modifyForm = () => {
-    if (window.confirm('Cancel your modification?')) {
+    if (window.confirm('수정을 취소하시겠습니까?')) {
       props.setModifyOpen(!props.modifyOpen);
     }
   };
@@ -129,75 +134,97 @@ function ModifyModal(props) {
     }
   };
 
+  const checkThumbnail = () => {
+    const url = newUrlString;
+    if (url) {
+      extractVideoId(url);
+    } else {
+      alert('유튜브 링크를 입력해주세요.');
+    }
+  };
+
   return (
     <>
       <ModalContainer onClick={modifyForm} />
       <ModalForm onSubmit={onSubmitHandler}>
-        <StyledSection>
-          <StyledLabel>Title</StyledLabel>
-          <StyledInput
-            id={id + 'title'}
-            type="text"
-            name="title"
-            value={newTitle}
-            placeholder="Title → Less than 20 char"
-            maxLength={20}
-            onChange={onChange}
-          />
-        </StyledSection>
-        <StyledSection>
-          <StyledLabel>Author</StyledLabel>
-          <StyledInput
-            id={id + 'author'}
-            type="text"
-            name="author"
-            value={target[0].author}
-            placeholder="Author"
-            minLength={1}
-            maxLength={8}
-            onChange={onChange}
-          />
-        </StyledSection>
-        <StyledSection>
-          <StyledLabel>Password</StyledLabel>
-          <StyledInput
-            id={id + 'password'}
-            type="password"
-            name="password"
-            value={password}
-            ref={passwordRef}
-            placeholder="password"
-            minLength={6}
-            onChange={onChange}
-          />
-        </StyledSection>
-        <StyledSection>
-          <StyledLabel>Content</StyledLabel>
-          <StyledTextarea
-            id={id + 'content'}
-            rows={7}
-            name="content"
-            value={newContent}
-            placeholder="Content → Less than 100 char"
-            maxLength={1000}
-            onChange={onChange}
-          />
-        </StyledSection>
-        <StyledSection>
-          <StyledLabel>Youtube URL</StyledLabel>
-          <StyledInput
-            id={id + 'url'}
-            type="text"
-            name="urlString"
-            value={newUrlString}
-            placeholder="URL"
-            onChange={onChange}
-          />
-          {!thumbnailUrl ? <></> : <StyledImage src={thumbnailUrl} alt="Thumbnail" />}
-        </StyledSection>
+        <ModifyPageTitle>게시글 수정</ModifyPageTitle>
+        <ModifyPageContent>
+          <StyledSection>
+            <StyledLabel>제목</StyledLabel>
+            <StyledInput
+              id={id + 'title'}
+              type="text"
+              name="title"
+              value={newTitle}
+              placeholder="최대 20글자까지 작성할 수 있습니다."
+              maxLength={20}
+              onChange={onChange}
+            />
+          </StyledSection>
+          <StyledSection>
+            <StyledLabel>닉네임</StyledLabel>
+            <StyledInput
+              id={id + 'author'}
+              type="text"
+              name="author"
+              value={target[0].author}
+              placeholder="닉네임을 입력해주세요."
+              minLength={1}
+              maxLength={8}
+              onChange={onChange}
+            />
+          </StyledSection>
+          <StyledSection>
+            <StyledLabel>비밀번호</StyledLabel>
+            <StyledInput
+              id={id + 'password'}
+              type="password"
+              name="password"
+              value={password}
+              ref={passwordRef}
+              placeholder="비밀번호를 입력해주세요."
+              minLength={6}
+              onChange={onChange}
+            />
+          </StyledSection>
+          <StyledSection>
+            <StyledLabel>내용</StyledLabel>
+            <StyledTextarea
+              id={id + 'content'}
+              rows={7}
+              name="content"
+              value={newContent}
+              placeholder="최대 100글자까지 작성할 수 있습니다."
+              maxLength={1000}
+              onChange={onChange}
+            />
+          </StyledSection>
+          <StyledSection>
+            <StyledLabel>유튜브 URL</StyledLabel>
+            <StyledInput
+              id={id + 'url'}
+              type="text"
+              name="urlString"
+              value={newUrlString}
+              placeholder="URL을 입력해주세요."
+              onChange={onChange}
+            />
+            <StyledButton type="button" onClick={checkThumbnail}>
+              링크 확인
+            </StyledButton>
+          </StyledSection>
+        </ModifyPageContent>
+        {!thumbnailUrl ? (
+          <ThumbnailBox>
+            <ThumbnailTitle>이곳에 썸네일이 표시됩니다. </ThumbnailTitle>
+            <ThumbnailContent>❌썸네일이 표시되지 않으면 사용할 수 없는 동영상 입니다.</ThumbnailContent>
+          </ThumbnailBox>
+        ) : (
+          <StyledImage src={thumbnailUrl} alt="Thumbnail" />
+        )}
         <Buttons>
-          <StyledButton onClick={onSubmitHandler}>Send</StyledButton>
-          <StyledButton onClick={modifyForm}>Cancel</StyledButton>
+          <StyledButton onClick={onSubmitHandler}>등록</StyledButton>
+          <StyledButton onClick={modifyForm}>취소</StyledButton>
         </Buttons>
       </ModalForm>
     </>
