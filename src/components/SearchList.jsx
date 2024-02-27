@@ -16,7 +16,11 @@ const SearchList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, error } = await client.from('content').select('*').like('title', `%${searchKeyword}%`);
+        const { data, error } = await client
+          .from('content')
+          .select('*')
+          .like('title', `%${searchKeyword}%`)
+          .order('timeString', { ascending: false });
         if (error) {
           throw error;
         }
@@ -43,7 +47,9 @@ const SearchList = () => {
     });
 
     imageRefs.current.forEach((ref) => {
-      observer.observe(ref);
+      if (ref) {
+        observer.observe(ref);
+      }
     });
 
     return () => {
