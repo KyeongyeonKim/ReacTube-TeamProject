@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import uuid from 'react-uuid';
@@ -23,21 +23,35 @@ import {
 const NewPost = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [password, setPassword] = useState('');
   const [content, setContent] = useState('');
   const [urlString, setUrlString] = useState('');
   const [videoId, setVideoId] = useState('');
   const [thumbnailUrl, setThumbnailUrl] = useState('');
+  const [userId, setUserId] = useState('');
 
   const titleRef = useRef();
   const authorRef = useRef();
-  const passwordRef = useRef();
   const contentRef = useRef();
   const urlStringRef = useRef();
 
   const navigate = useNavigate();
   const id = uuid();
   const dispatch = useDispatch();
+
+  const getUserData = async () => {
+    try {
+      const auth = await client.auth.getUser();
+      if (auth.data.user.id) {
+        setUserId(auth.data.user.id);
+      }
+    } catch (error) {
+      alert('Error on fetching user data');
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   const onChange = (event) => {
     const {
@@ -48,8 +62,6 @@ const NewPost = () => {
         return setTitle(value);
       case 'author':
         return setAuthor(value);
-      case 'password':
-        return setPassword(value);
       case 'content':
         return setContent(value);
       case 'urlString':
@@ -96,9 +108,6 @@ const NewPost = () => {
     } else if (!author) {
       alert('닉네임을 입력해주세요.');
       authorRef.current.focus();
-    } else if (!password) {
-      alert('비밀번호를 입력해주세요.');
-      passwordRef.current.focus();
     } else if (!content) {
       alert('내용을 입력해주세요.');
       contentRef.current.focus();
@@ -114,11 +123,11 @@ const NewPost = () => {
           id,
           title,
           author,
-          password,
           timeString,
           content,
           urlString,
-          videoId
+          videoId,
+          userId
         };
 
         try {
@@ -177,19 +186,6 @@ const NewPost = () => {
             placeholder="닉네임을 입력해주세요."
             minLength={1}
             maxLength={8}
-            onChange={onChange}
-          />
-        </StyledSection>
-        <StyledSection>
-          <StyledLabel>비밀번호</StyledLabel>
-          <StyledInput
-            id={id + 'password'}
-            type="password"
-            name="password"
-            value={password}
-            ref={passwordRef}
-            placeholder="비밀번호는 6자리 이상이어야 합니다."
-            minLength={6}
             onChange={onChange}
           />
         </StyledSection>
