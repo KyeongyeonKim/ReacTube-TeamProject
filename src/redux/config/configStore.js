@@ -4,11 +4,13 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } fro
 import boardItems from '../modules/boardSlice';
 import auth from '../modules/authSlice';
 import youtubeReducer from '../modules/youtubeSlice';
+import comments from '../modules/commentSlice';
 
 const reducers = combineReducers({
   auth,
   boardItems,
-  youtubeReducer
+  youtubeReducer,
+  comments
 });
 
 const persistConfig = {

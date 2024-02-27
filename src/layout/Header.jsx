@@ -35,7 +35,6 @@ function Header() {
         const auth = await client.auth.getUser();
         if (auth.data.user.email) {
           setEmail(auth.data.user.email);
-          console.log(email);
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
