@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-import {
-  HeaderStyle,
-  StImg,
-  SearchBox,
-  SearchInput,
-  SearchButton,
-  StButton,
-  SelectBox,
-  SearchContainer
-} from 'styles/HeaderStyles';
+import { HeaderStyle, StImg, SearchBox, SearchInput, SearchButton, StButton } from 'styles/HeaderStyles';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
-import logoandtitle from '../../assets/imgs/logoandtitle.png';
+import logoandtitle from '../assets/imgs/logoandtitle.png';
 import client from 'api/supabase';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeUser } from '../redux/modules/authSlice';
 
 const searchOptions = [
   { value: 'reactube', label: 'reactube' },
@@ -24,6 +17,9 @@ function Header() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -66,34 +62,50 @@ function Header() {
     console.log('YouTube 검색 결과:', youtubeResults);
   }, [youtubeResults]);
 
+  const logoutHandler = async () => {
+    setLoading(true);
+    dispatch(removeUser(token));
+
+    const { error } = await client.auth.signOut();
+
+    if (error) {
+      console.error('로그아웃 오류가 발생했습니다.', error.message);
+    } else {
+      document.cookie = 'sb:token=; expires=Mon, 19 Feb 2024 00:00:00 GMT;path=/;';
+      navigate('/login');
+    }
+    setLoading(false);
+  };
   return (
     <>
       <HeaderStyle>
         <StImg src={logoandtitle} alt="Logo" onClick={() => navigate('/home')} />
-        <SearchContainer>
-          <SelectBox>
+        {token ? (
+          <>
             <Select
               value={selectedSearchOption}
               onChange={handleChangeSearchOption}
               options={searchOptions}
               isSearchable={false}
             />
-          </SelectBox>
-          <SearchBox onSubmit={handleSearchInfo}>
-            <SearchInput
-              value={searchTerm}
-              placeholder="검색어를 입력해주세요!"
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-              }}
-            />
-            <SearchButton>
-              <FaMagnifyingGlass />
-            </SearchButton>
-          </SearchBox>
-        </SearchContainer>
+            <SearchBox onSubmit={handleSearchInfo}>
+              <SearchInput
+                value={searchTerm}
+                placeholder="검색어를 입력해주세요!"
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                }}
+              />
+              <SearchButton>
+                <FaMagnifyingGlass />
+              </SearchButton>
+            </SearchBox>
+          </>
+        ) : (
+          <></>
+        )}
         <div>
-          {!email ? (
+          {!token ? (
             <>
               <Link to="/login">
                 <StButton>로그인</StButton>
@@ -103,7 +115,7 @@ function Header() {
               </Link>
             </>
           ) : (
-            <StButton>로그아웃</StButton>
+            <StButton onClick={() => logoutHandler()}>로그아웃</StButton>
           )}
         </div>
       </HeaderStyle>

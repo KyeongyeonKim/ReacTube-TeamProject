@@ -23,7 +23,19 @@ export const SearchListArea = styled.ul`
   gap: 16px;
 `;
 export const Item = styled.li`
-  width: calc((100% - 32px) / 3);
+  /* width: calc((100% - 16px) / 1); */
+
+  @media (min-width: 640px) {
+    width: calc((100% - 16px) / 2);
+  }
+
+  @media (min-width: 768px) {
+    width: calc((100% - 32px) / 3);
+  }
+
+  @media (min-width: 1024px) {
+    width: calc((100% - 48px) / 4);
+  }
 `;
 export const Thumbnail = styled.figure`
   width: 100%;
@@ -51,5 +63,34 @@ export const ItemTitle = styled.div`
   & a {
     color: inherit;
     text-decoration: none;
+  }
+`;
+export const StyledVideoCard = styled.li`
+  margin-bottom: 20px;
+
+  img {
+    width: 100%;
+  }
+
+  div {
+    margin-top: 10px;
+
+    p {
+      margin: 0;
+    }
+
+    .title {
+      font-weight: bold;
+    }
+
+    .channelTitle {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+
+    .publishedAt {
+      opacity: 0.8;
+      font-size: 0.875rem;
+    }
   }
 `;

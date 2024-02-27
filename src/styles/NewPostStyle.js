@@ -47,7 +47,9 @@ export const StyledLabel = styled.label`
   font-weight: bolder;
   align-items: center;
   justify-content: center;
+  justify-content: center;
   font-size: 2vh;
+  width: 12vh;
   width: 12vh;
 `;
 

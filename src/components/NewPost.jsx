@@ -122,7 +122,7 @@ const NewPost = () => {
         };
 
         try {
-          const { data, error } = await client.from('content').insert([newPost]);
+          const { error } = await client.from('content').insert([newPost]);
           if (error) {
             throw error;
           }

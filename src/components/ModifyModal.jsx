@@ -20,6 +20,7 @@ function ModifyModal(props) {
   const id = useLocation().state.id;
 
   const target = boardItems.filter((element) => id === element.id);
+  console.log(target);
 
   const [newTitle, setNewTitle] = useState(target[0].title);
   const [newContent, setNewContent] = useState(target[0].content);
@@ -107,7 +108,7 @@ function ModifyModal(props) {
           };
 
           try {
-            const { data, error } = await client.from('content').update(newPost).eq('id', id);
+            const { error } = await client.from('content').update(newPost).eq('id', id);
             if (error) {
               throw error;
             }
