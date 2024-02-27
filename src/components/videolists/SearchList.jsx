@@ -6,11 +6,13 @@ import {
   PageTitle,
   SearchListArea,
   SearchWrap,
-  Thumbnail
+  Thumbnail,
+  Time
 } from 'styles/searchStyles/SearchStyle';
 import client from 'api/supabase';
 import { Link, useSearchParams } from 'react-router-dom';
 import { LazyLoadedImage } from '../LazyLoadedImage';
+import { formatAgo } from 'util/date';
 
 const SearchList = () => {
   const [data, setData] = useState();
@@ -87,6 +89,7 @@ const SearchList = () => {
                       {el.title}
                     </Link>
                   </ItemTitle>
+                  <Time>{formatAgo(el.timeString, 'ko')}</Time>
                 </Item>
               );
             })}
