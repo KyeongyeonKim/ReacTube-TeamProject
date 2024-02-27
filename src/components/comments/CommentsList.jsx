@@ -8,6 +8,21 @@ const CommentList = ({ videoId }) => {
   const [selectedCommentId, setSelectedCommentId] = useState(null);
   const [password, setPassword] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const auth = await client.auth.getUser();
+        if (auth.data.user.email) {
+          setEmail(auth.data.user.email);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+    getUserData();
+  }, []);
 
   useEffect(() => {
     fetchComments();
@@ -66,14 +81,16 @@ const CommentList = ({ videoId }) => {
             {comment.nickname} / {comment.created_at}
           </StP>
           <StP>{comment.comment}</StP>
-          <StButton
-            onClick={() => {
-              setSelectedCommentId(comment.id);
-              setIsModalOpen(true);
-            }}
-          >
-            삭제
-          </StButton>
+          {comment.nickname === email && (
+            <StButton
+              onClick={() => {
+                setSelectedCommentId(comment.id);
+                setIsModalOpen(true);
+              }}
+            >
+              삭제
+            </StButton>
+          )}
         </StDiv>
       ))}
 
