@@ -29,7 +29,9 @@ export const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
+  width: 45rem;
+  height: 13rem;
 `;
 
 export const SignupTitle = styled.div`
@@ -95,11 +97,16 @@ export const SignupButton = styled.button`
   font-size: 2vh;
   cursor: pointer;
   transition: 0.3s;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-left: 20px;
 
   &:hover {
     background-color: #b575ff;
     color: white;
   }
+`;
+
+export const WrongPassword = styled.div`
+  margin-right: 16rem;
+  font-family: 'nanum';
 `;

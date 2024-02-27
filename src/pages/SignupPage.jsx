@@ -12,7 +12,8 @@ import {
   StyledButton,
   SignupTitle,
   SignupButton,
-  StyledContent
+  StyledContent,
+  WrongPassword
 } from 'styles/pageStyles/SignupPageStyle';
 
 export default function SignupPage() {
@@ -135,8 +136,8 @@ export default function SignupPage() {
                   passwordConfirmChangeHandler(event.target.value);
                 }}
               />
-              {!passwordMatch && <p style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</p>}
             </StyledSection>
+            {!passwordMatch && <WrongPassword style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</WrongPassword>}
           </StyledContent>
           <SignupButton type="submit" disabled={loading}>
             회원가입
