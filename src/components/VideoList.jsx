@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import { ButtonArea, AddVideoButton, Container, Videos, StyledVideoCard } from 'styles/VideoListStyle.js';
 import { formatAgo } from 'util/date';
 import { loadBoardItems } from '../redux/modules/boardSlice';
@@ -13,20 +12,16 @@ function VideoList() {
   const navigate = useNavigate();
   const [visibleIndices, setVisibleIndices] = useState([]);
   const imageRefs = useRef([]);
-
   useEffect(() => {
     dispatch(loadBoardItems());
   }, [dispatch]);
-
   const detailViewer = (id) =>
     navigate(`/detail/${id}`, {
       state: { id }
     });
-
   const newVideo = () => {
     navigate('/write');
   };
-
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -36,18 +31,15 @@ function VideoList() {
         }
       });
     });
-
     imageRefs.current.forEach((ref) => {
       if (ref) {
         observer.observe(ref);
       }
     });
-
     return () => {
       observer.disconnect();
     };
   }, [boardItems]);
-
   return (
     <>
       <ButtonArea>
@@ -58,13 +50,13 @@ function VideoList() {
           {boardItems.map((element, index) => {
             const src = element.videoId ? `https://img.youtube.com/vi/${element.videoId}/maxresdefault.jpg` : '';
             return (
-              <StyledVideoCard key={element.id} id={element.id} onClick={detailViewer}>
-                <img
-                  id={element.id}
-                  onClick={detailViewer}
-                  src={`https://img.youtube.com/vi/${element.videoId}/maxresdefault.jpg`}
-                  alt="Thumbnail"
-                />
+              <StyledVideoCard
+                key={element.id}
+                id={element.id}
+                onClick={() => detailViewer(element.id)}
+                ref={(e) => (imageRefs.current[index] = e)}
+              >
+                {visibleIndices.includes(index) && <LazyLoadedImage src={src} alt={`${element.title} 썸네일`} />}
                 <div>
                   <p className="title" id={element.id} onClick={() => detailViewer(element.id)}>
                     {element.title}
@@ -82,5 +74,4 @@ function VideoList() {
     </>
   );
 }
-
 export default VideoList;
