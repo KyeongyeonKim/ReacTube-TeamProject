@@ -61,7 +61,7 @@ export const StyledLabel = styled.label`
   justify-content: center;
   justify-content: center;
   font-size: 1.1rem;
-  width: 12vh;
+  width: 120px;
 `;
 export const inputStyle = `
   padding: 1vh;
@@ -96,6 +96,7 @@ export const SignupButton = styled.button`
   border: 0.2rem solid black;
   border-radius: 0.5rem;
   width: 23rem;
+  max-width: 80%;
   background-color: white;
   font-family: 'nanum';
   font-size: 1.1rem;
