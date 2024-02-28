@@ -48,14 +48,19 @@ const CommentList = ({ videoId }) => {
   };
 
   const handleDelete = async (commentId) => {
-    try {
-      await client.from('comments').delete().eq('id', commentId);
+    const userConfirmed = window.confirm('댓글을 삭제하시겠습니까?');
+    if (userConfirmed) {
+      try {
+        await client.from('comments').delete().eq('id', commentId);
 
-      setSelectedCommentId(commentId);
+        setSelectedCommentId(commentId);
 
-      setComments(comments.filter((comment) => comment.id !== commentId));
-    } catch (error) {
-      console.log('Error deleting comment:', error.message);
+        setComments(comments.filter((comment) => comment.id !== commentId));
+      } catch (error) {
+        console.log('Error deleting comment:', error.message);
+      }
+    } else {
+      return;
     }
   };
 

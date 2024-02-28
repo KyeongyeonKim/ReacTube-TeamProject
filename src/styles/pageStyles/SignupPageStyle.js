@@ -60,7 +60,6 @@ export const StyledLabel = styled.label`
   justify-content: center;
   font-size: 2vh;
   width: 12vh;
-  width: 12vh;
 `;
 export const inputStyle = `
   padding: 1vh;
@@ -74,7 +73,10 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledButton = styled.button`
-  ${inputStyle}
+  padding: 1vh;
+  margin: 1vh;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
   background-color: white;
   width: auto;
   font-family: 'nanum';

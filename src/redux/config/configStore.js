@@ -3,13 +3,11 @@ import storage from 'redux-persist/lib/storage';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
 import boardItems from '../modules/boardSlice';
 import auth from '../modules/authSlice';
-import youtubeReducer from '../modules/youtubeSlice';
 import comments from '../modules/commentSlice';
 
 const reducers = combineReducers({
   auth,
   boardItems,
-  youtubeReducer,
   comments
 });
 
