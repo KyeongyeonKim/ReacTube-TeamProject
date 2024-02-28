@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import client from 'api/supabase';
 import { useNavigate } from 'react-router-dom';
+import { SlEye } from 'react-icons/sl';
+import { Resend } from 'resend';
 import {
   StyledForm,
   Container,
@@ -10,18 +12,50 @@ import {
   StyledButton,
   SignupTitle,
   SignupButton,
-  StyledContent
-} from 'styles/SignupPageStyle';
+  StyledContent,
+  WrongPassword
+} from 'styles/pageStyles/SignupPageStyle';
 
 export default function SignupPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [nickname, setNickname] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [passwordMatch, setPasswordMatch] = useState(true);
+  const [showPassword, setShowPassword] = useState('false');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const passwordChangeHandler = (value) => {
+    setPassword(value);
+    if (value !== '' && value === passwordConfirm) {
+      setPasswordMatch(true);
+    } else {
+      setPasswordMatch(false);
+    }
+  };
+
+  const passwordConfirmChangeHandler = (value) => {
+    setPasswordConfirm(value);
+    if (value !== '' && value === password) {
+      setPasswordMatch(true);
+    } else {
+      setPasswordMatch(false);
+    }
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   const signupHandler = async (event) => {
     event.preventDefault();
+
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+
+    if (password !== passwordConfirm) {
+      alert('비밀번호가 일치하지 않습니다.');
+      return;
+    }
     try {
       const { user, error } = await client.auth.signUp({
         email,
@@ -29,10 +63,11 @@ export default function SignupPage() {
       });
       if (error) {
         console.error(error);
-        alert('아이디와 비밀번호를 확인해주세요.');
+        alert('회원가입에 실패했습니다. 다시 시도해주세요.');
       } else {
-        alert('이메일을 확인해주세요.');
-        await client.from('users').insert([{ id: user.id, email, nickname }]);
+        alert('회원가입이 완료됐습니다. 이메일을 확인해주세요.');
+        sendConfirmationEmail(email);
+        await client.from('users').insert([{ email, password }]);
         navigate('/login');
       }
     } catch (error) {
@@ -40,6 +75,26 @@ export default function SignupPage() {
       alert('회원가입에 실패했습니다. 다시 시도해주세요.');
     }
     setLoading(false);
+  };
+
+  const sendConfirmationEmail = async (email) => {
+    const resend = new Resend('REACT_APP_RESEND_API_KEY');
+    try {
+      await resend.emails.send({
+        from: 'Acme <onboarding@resend.dev>',
+        to: [email],
+        subject: '이메일 확인 요청',
+        text: '회원가입을 완료하려면 이메일을 확인하세요.',
+        tags: [
+          {
+            name: 'category',
+            value: 'confirm-mail'
+          }
+        ]
+      });
+    } catch (error) {
+      console.error('이메일 전송 오류', error);
+    }
   };
 
   return (
@@ -64,30 +119,33 @@ export default function SignupPage() {
             <StyledSection>
               <StyledLabel>비밀번호 </StyledLabel>
               <StyledInput
-                type="password"
+                type={showPassword ? 'password' : 'text'}
                 id="password"
                 value={password}
                 placeholder="비밀번호를 입력하세요. (8자 이상, 영문 대소문자, 숫자 포함)"
-                min={6}
+                min={8}
                 required
                 onChange={(event) => {
-                  setPassword(event.target.value);
+                  passwordChangeHandler(event.target.value);
                 }}
               />
+              <SlEye onClick={() => toggleShowPassword()} />
             </StyledSection>
             <StyledSection>
-              <StyledLabel>닉네임 </StyledLabel>
+              <StyledLabel>비밀번호 확인 </StyledLabel>
               <StyledInput
-                type="text"
-                id="nickname"
-                value={nickname}
-                placeholder="닉네임을 입력하세요."
+                type="password"
+                id="passwordConfirm"
+                value={passwordConfirm}
+                placeholder="동일한 비밀번호를 입력하세요."
+                min={8}
                 required
                 onChange={(event) => {
-                  setNickname(event.target.value);
+                  passwordConfirmChangeHandler(event.target.value);
                 }}
               />
             </StyledSection>
+            {!passwordMatch && <WrongPassword style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</WrongPassword>}
           </StyledContent>
           <SignupButton type="submit" disabled={loading}>
             회원가입

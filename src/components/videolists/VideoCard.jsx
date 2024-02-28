@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyledVideoCard } from 'styles/VideoListStyle';
+import { StyledVideoCard } from 'styles/searchStyles/VideoListStyle';
 import { formatAgo } from 'util/date';
 
-function VideoCard({ video }) {
+function VideoCard({ video, children }) {
   const { title, thumbnails, channelTitle, publishedAt } = video.snippet;
   const videoIdMatch = thumbnails.medium.url.match(/\/vi\/([^/]+)\//);
   const videoId = videoIdMatch && videoIdMatch[1];
@@ -14,7 +14,8 @@ function VideoCard({ video }) {
           window.open(`https://www.youtube.com/watch?v=${videoId}`);
         }}
       >
-        <img src={thumbnails.medium.url} alt={title} />
+        {/* <img src={thumbnails.medium.url} alt={title} /> */}
+        {children}
         <div>
           <p className="title">{title}</p>
           <p className="channelTitle">{channelTitle}</p>

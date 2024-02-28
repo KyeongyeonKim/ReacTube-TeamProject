@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchWrap = styled.div`
-  padding: 1rem;
+  padding: 1rem 3rem;
   width: 100%;
 `;
 export const NoDataArea = styled.div`
@@ -13,8 +13,9 @@ export const NoDataArea = styled.div`
   font-size: 25px;
 `;
 export const PageTitle = styled.h2`
-  margin-bottom: 30px;
+  margin: 10px 0 30px;
   font-size: 20px;
+  font-family: 'nanum', sans-serif;
 `;
 export const SearchListArea = styled.ul`
   display: flex;
@@ -55,7 +56,7 @@ export const Thumbnail = styled.figure`
   }
 `;
 export const ItemTitle = styled.div`
-  margin: 10px 0;
+  margin: 10px 0 5px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -63,7 +64,14 @@ export const ItemTitle = styled.div`
   & a {
     color: inherit;
     text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
   }
+`;
+export const Time = styled.span`
+  margin-bottom: 10px;
+  display: inline-block;
+  color: #999999;
 `;
 export const StyledVideoCard = styled.li`
   margin-bottom: 20px;

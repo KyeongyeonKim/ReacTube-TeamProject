@@ -1,20 +1,29 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { Handlers, Container, Title, AuthorAndTimeString, Author, Video, Content, Hr } from 'styles/DetailPageStyles';
-import ModifyHandler from './ModifyHandler';
-import DeleteHandler from './DeleteHandler';
+import {
+  Handlers,
+  Container,
+  Title,
+  AuthorAndTimeString,
+  Author,
+  Video,
+  Content,
+  Hr
+} from 'styles/pageStyles/DetailPageStyles';
+import ModifyHandler from '../components/modals/ModifyHandler';
+import DeleteHandler from '../components/modals/DeleteHandler';
 import { fetchBoardItems } from '../redux/modules/boardSlice';
 import { useEffect } from 'react';
-import Comments from './Comments';
+import Comments from '../components/comments/Comments';
 
 const DetailPage = () => {
   const boardItems = useSelector((state) => state.boardItems.boardItems);
   const dispatch = useDispatch();
   const id = useLocation().state.id;
 
-  useEffect(() => {
-    dispatch(fetchBoardItems());
-  }, [dispatch, id]);
+  // useEffect(() => {
+  //   dispatch(fetchBoardItems());
+  // }, [dispatch, id]);
 
   const videoData = boardItems.find((element) => id === element.id);
 

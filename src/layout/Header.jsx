@@ -9,7 +9,7 @@ import {
   SearchButton,
   StButton,
   SearchContainer
-} from 'styles/HeaderStyles';
+} from 'styles/layoutstyles/HeaderStyles';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import logoandtitle from '../assets/imgs/logoandtitle.png';
 import client from 'api/supabase';
@@ -35,7 +35,6 @@ function Header() {
         const auth = await client.auth.getUser();
         if (auth.data.user.email) {
           setEmail(auth.data.user.email);
-          console.log(email);
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -44,7 +43,6 @@ function Header() {
     getUserData();
   }, [email]);
   const [selectedSearchOption, setSelectedSearchOption] = useState(searchOptions[0]);
-  const [youtubeResults, setYoutubeResults] = useState([]);
 
   const handleSearchInfo = async (e) => {
     e.preventDefault();
@@ -65,10 +63,6 @@ function Header() {
   const handleChangeSearchOption = (selectedOption) => {
     setSelectedSearchOption(selectedOption);
   };
-
-  useEffect(() => {
-    console.log('YouTube 검색 결과:', youtubeResults);
-  }, [youtubeResults]);
 
   const logoutHandler = async () => {
     setLoading(true);

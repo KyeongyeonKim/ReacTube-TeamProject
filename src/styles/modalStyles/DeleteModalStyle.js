@@ -24,13 +24,7 @@ export const StyledSection = styled.section`
   font-family: 'nanum';
   align-items: center;
 `;
-export const StyledLabel = styled.label`
-  font-weight: bolder;
-  align-items: center;
-  justify-content: center;
-  font-size: 2vh;
-  width: 8vw;
-`;
+
 export const inputStyle = `
   padding: 1vh;
   margin: 1vh;

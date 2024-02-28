@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import client from 'api/supabase';
-import { StCommentArea, StInputName, StArea, StButton } from 'styles/CommentFormStyle';
+import { StCommentArea, StInputName, StArea, StButton } from 'styles/commentStyles/CommentFormStyle';
+import { fetchComments } from '../../redux/modules/commentSlice';
+import { useDispatch } from 'react-redux';
 
 const CommentForm = ({ videoId }) => {
   const [comment, setComment] = useState('');
-  const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         const auth = await client.auth.getUser();
-        if (auth.data.user.email) {
+        if (auth.data.user) {
+          setUserId(auth.data.user.id);
           setEmail(auth.data.user.email);
-          console.log(email);
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -33,18 +36,21 @@ const CommentForm = ({ videoId }) => {
     const seconds = today.getSeconds().toString().padStart(2, '0');
     const timeString = `${year}/${month}/${date} ${hours}:${minutes}:${seconds}`;
 
-    // Insert the comment into the database
-    const { data, error } = await client
-      .from('comments')
-      .insert({ comment, nickname: email, password, videoId, created_at: timeString });
+    try {
+      // Insert the comment into the database
+      const { data, error } = await client
+        .from('comments')
+        .insert({ nickname: email, comment, created_at: timeString, videoId, userId });
 
-    if (error) {
+      if (error) {
+        console.error('Error inserting comment:', error.message);
+      } else {
+        console.log('Comment inserted successfully:', data);
+        dispatch(fetchComments(videoId));
+        setComment('');
+      }
+    } catch (error) {
       console.error('Error inserting comment:', error.message);
-    } else {
-      console.log('Comment inserted successfully:', data);
-
-      setComment('');
-      setPassword('');
     }
   };
 
@@ -53,16 +59,9 @@ const CommentForm = ({ videoId }) => {
       <div>
         <StInputName
           type="text"
-          placeholder="이메일"
+          placeholder="닉네임"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <StInputName
-          type="password"
-          placeholder="비밀번호"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           required
         />
       </div>

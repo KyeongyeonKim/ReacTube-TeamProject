@@ -29,7 +29,9 @@ export const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
+  width: 45rem;
+  height: 13rem;
 `;
 
 export const SignupTitle = styled.div`
@@ -58,7 +60,6 @@ export const StyledLabel = styled.label`
   justify-content: center;
   font-size: 2vh;
   width: 12vh;
-  width: 12vh;
 `;
 export const inputStyle = `
   padding: 1vh;
@@ -72,7 +73,10 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledButton = styled.button`
-  ${inputStyle}
+  padding: 1vh;
+  margin: 1vh;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
   background-color: white;
   width: auto;
   font-family: 'nanum';
@@ -95,11 +99,16 @@ export const SignupButton = styled.button`
   font-size: 2vh;
   cursor: pointer;
   transition: 0.3s;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-left: 20px;
 
   &:hover {
     background-color: #b575ff;
     color: white;
   }
+`;
+
+export const WrongPassword = styled.div`
+  margin-right: 16rem;
+  font-family: 'nanum';
 `;

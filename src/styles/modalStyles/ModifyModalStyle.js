@@ -6,23 +6,6 @@ export const makeFlex = `
   align-items: center;
   justify-content: start;
 `;
-export const StyledForm = styled.form`
-  ${makeFlex}
-  border: .2rem solid black;
-  border-radius: 0.5rem;
-  padding: 4vh;
-  width: 62vw;
-  height: 100vh;
-  background-color: white;
-`;
-export const StyledSmallContainer = styled.div`
-  ${makeFlex}
-  border: .2rem solid black;
-  border-radius: 0.5rem;
-  padding: 2vh;
-  width: 80vw;
-  height: 80vh;
-`;
 
 export const ModifyPageTitle = styled.div`
   display: flex;
@@ -78,31 +61,6 @@ export const StyledButton = styled.button`
 export const StyledImage = styled.img`
   border-radius: 0.5rem;
   width: 40%;
-`;
-export const StyledItems = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  border-radius: 0.5rem;
-  padding: 2vh;
-  width: 100%;
-  gap: 1vh;
-  flex-wrap: wrap;
-  grid-auto-rows: 20vh;
-
-  & h3 {
-    text-align: center;
-    margin-top: 2vh;
-  }
-`;
-export const StyledItem = styled.div`
-  ${makeFlex}
-  padding: 1.5vh 0;
-
-  &:hover {
-    background-color: lightpink;
-    cursor: pointer;
-  }
 `;
 export const ModalContainer = styled.div`
   display: flex;
