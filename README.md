@@ -33,8 +33,8 @@
 
 ## 🔗 컴포넌트 구조
 
-- 컴포넌트 구조 : ![컴포넌트 구조](./src/assets/screenshot/component%20구조.png)
-- 레이아웃, 페이지, redux, routes 구조: ![다른 구성요소](./src/assets/screenshot/component%20구조2.png)
+- 컴포넌트 구조 / 레이아웃, 페이지, redux, routes 구조
+- ![컴포넌트 구조](./src/assets/screenshot/component%20구조.png), ![다른 구성요소](./src/assets/screenshot/component%20구조2.png)
 
 ## ⚙️ 개발 환경 / 기술스택
 
@@ -47,3 +47,4 @@
 - RTK
 - React-Query
 - vercel
+- supabase

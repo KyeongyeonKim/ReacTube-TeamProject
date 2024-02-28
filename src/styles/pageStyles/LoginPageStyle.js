@@ -20,7 +20,7 @@ export const LoginTitle = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  font-size: 3vh;
+  font-size: 1.7rem;
   font-family: 'nanum';
   margin-bottom: 2rem;
   padding-bottom: 1rem;
@@ -49,7 +49,7 @@ export const StyledSection = styled.section`
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-size: 2vh;
+  font-size: 1.1rem;
   font-family: 'nanum';
   align-items: center;
 `;
@@ -59,7 +59,7 @@ export const StyledLabel = styled.label`
   align-items: center;
   justify-content: center;
   justify-content: center;
-  font-size: 2vh;
+  font-size: 1.1rem;
   width: 8vh;
 `;
 export const inputStyle = `
@@ -82,7 +82,7 @@ export const StyledButton = styled.button`
   background-color: white;
   width: auto;
   font-family: 'nanum';
-  font-size: 2vh;
+  font-size: 1.1rem;
   cursor: pointer;
 
   &:hover {
@@ -98,7 +98,7 @@ export const LoginButton = styled.button`
   width: 23rem;
   background-color: white;
   font-family: 'nanum';
-  font-size: 2vh;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: 0.3s;
   margin-top: 30px;
