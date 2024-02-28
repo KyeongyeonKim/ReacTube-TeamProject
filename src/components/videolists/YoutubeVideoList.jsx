@@ -20,6 +20,7 @@ function YoutubeVideoList() {
     return youtube.search(keyword);
   });
 
+  //이미지 렌더링 최적화 - 스크롤 도달 시 이미지 로딩
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
