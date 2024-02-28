@@ -37,7 +37,6 @@ function ModifyHandler() {
 
   useEffect(() => {
     fetchData();
-
     getUserData();
   }, []);
 

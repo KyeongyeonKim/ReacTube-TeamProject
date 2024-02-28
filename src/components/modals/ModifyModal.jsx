@@ -32,7 +32,6 @@ function ModifyModal(props) {
   const [newUrlString, setNewUrlString] = useState(target[0].urlString);
   const [newVideoId, setNewVideoId] = useState(target[0].videoId);
   const [thumbnailUrl, setThumbnailUrl] = useState('');
-  const [password, setPassword] = useState('');
 
   const passwordRef = useRef();
 
@@ -51,8 +50,6 @@ function ModifyModal(props) {
     switch (name) {
       case 'title':
         return setNewTitle(value);
-      case 'password':
-        return setPassword(value);
       case 'content':
         return setNewContent(value);
       case 'urlString':
@@ -96,41 +93,36 @@ function ModifyModal(props) {
     const isContentModified = newContent === target[0].content;
 
     event.preventDefault();
-    if (password === target[0].password) {
-      if (isTitleModified && isContentModified) {
-        alert('수정된 내용이 없습니다!');
-      } else {
-        if (window.confirm('게시글을 수정하시겠습니까?')) {
-          const newPost = {
-            id: target[0].id,
-            title: newTitle,
-            author: target[0].author,
-            password: target[0].password,
-            timeString,
-            content: newContent,
-            urlString: newUrlString,
-            videoId: newVideoId
-          };
-
-          try {
-            const { error } = await client.from('content').update(newPost).eq('id', id);
-            if (error) {
-              throw error;
-            }
-            dispatch(modifyBoard(newPost));
-            alert('수정되었습니다!');
-            props.setModifyOpen(!props.modifyOpen);
-          } catch (error) {
-            console.error('게시물 수정 중 오류가 발생', error.message);
-            alert('게시물 수정 중 오류가 발생했습니다.');
-          }
-        } else {
-          alert('수정이 취소되었습니다.');
-        }
-      }
+    if (isTitleModified && isContentModified) {
+      alert('수정된 내용이 없습니다!');
     } else {
-      alert('비밀번호가 일치하지 않습니다!');
-      passwordRef.current.focus();
+      if (window.confirm('게시글을 수정하시겠습니까?')) {
+        const newPost = {
+          id: target[0].id,
+          title: newTitle,
+          author: target[0].author,
+          password: target[0].password,
+          timeString,
+          content: newContent,
+          urlString: newUrlString,
+          videoId: newVideoId
+        };
+
+        try {
+          const { error } = await client.from('content').update(newPost).eq('id', id);
+          if (error) {
+            throw error;
+          }
+          dispatch(modifyBoard(newPost));
+          alert('수정되었습니다!');
+          props.setModifyOpen(!props.modifyOpen);
+        } catch (error) {
+          console.error('게시물 수정 중 오류가 발생', error.message);
+          alert('게시물 수정 중 오류가 발생했습니다.');
+        }
+      } else {
+        alert('수정이 취소되었습니다.');
+      }
     }
   };
 
@@ -171,19 +163,6 @@ function ModifyModal(props) {
               placeholder="닉네임을 입력해주세요."
               minLength={1}
               maxLength={8}
-              onChange={onChange}
-            />
-          </StyledSection>
-          <StyledSection>
-            <StyledLabel>비밀번호</StyledLabel>
-            <StyledInput
-              id={id + 'password'}
-              type="password"
-              name="password"
-              value={password}
-              ref={passwordRef}
-              placeholder="비밀번호를 입력해주세요."
-              minLength={6}
               onChange={onChange}
             />
           </StyledSection>
