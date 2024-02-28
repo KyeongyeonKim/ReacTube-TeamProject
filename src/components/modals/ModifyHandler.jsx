@@ -32,7 +32,7 @@ function ModifyHandler() {
     getUserData();
   }, []);
 
-  const idChecker = userId === videoData && videoData.userId;
+  const idChecker = userId === videoData.userId;
 
   return (
     <>
