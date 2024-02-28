@@ -27,6 +27,7 @@ export const SelectBox = styled.div`
 export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 10px;
 `;
 
 export const SearchBox = styled.form`

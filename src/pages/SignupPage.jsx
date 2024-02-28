@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import client from 'api/supabase';
 import { useNavigate } from 'react-router-dom';
-import { SlEye } from 'react-icons/sl';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Resend } from 'resend';
 import {
   StyledForm,
@@ -50,7 +50,7 @@ export default function SignupPage() {
   const signupHandler = async (event) => {
     event.preventDefault();
 
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     if (password !== passwordConfirm) {
       alert('비밀번호가 일치하지 않습니다.');
@@ -129,7 +129,11 @@ export default function SignupPage() {
                   passwordChangeHandler(event.target.value);
                 }}
               />
-              <SlEye onClick={() => toggleShowPassword()} />
+              {showPassword ? (
+                <AiOutlineEye onClick={() => toggleShowPassword()} />
+              ) : (
+                <AiOutlineEyeInvisible onClick={() => toggleShowPassword()} />
+              )}
             </StyledSection>
             <StyledSection>
               <StyledLabel>비밀번호 확인 </StyledLabel>
