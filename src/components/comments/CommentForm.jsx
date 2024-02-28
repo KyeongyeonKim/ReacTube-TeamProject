@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import client from 'api/supabase';
 import { StCommentArea, StInputName, StArea, StButton } from 'styles/commentStyles/CommentFormStyle';
+import { fetchComments } from '../../redux/modules/commentSlice';
+import { useDispatch } from 'react-redux';
 
 const CommentForm = ({ videoId }) => {
   const [comment, setComment] = useState('');
   const [email, setEmail] = useState('');
   const [userId, setUserId] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getUserData = async () => {
@@ -33,16 +36,21 @@ const CommentForm = ({ videoId }) => {
     const seconds = today.getSeconds().toString().padStart(2, '0');
     const timeString = `${year}/${month}/${date} ${hours}:${minutes}:${seconds}`;
 
-    // Insert the comment into the database
-    const { data, error } = await client
-      .from('comments')
-      .insert({ nickname: email, comment, created_at: timeString, videoId, userId });
+    try {
+      // Insert the comment into the database
+      const { data, error } = await client
+        .from('comments')
+        .insert({ nickname: email, comment, created_at: timeString, videoId, userId });
 
-    if (error) {
+      if (error) {
+        console.error('Error inserting comment:', error.message);
+      } else {
+        console.log('Comment inserted successfully:', data);
+        dispatch(fetchComments(videoId));
+        setComment('');
+      }
+    } catch (error) {
       console.error('Error inserting comment:', error.message);
-    } else {
-      console.log('Comment inserted successfully:', data);
-      setComment('');
     }
   };
 
