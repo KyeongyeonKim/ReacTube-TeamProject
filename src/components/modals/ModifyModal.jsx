@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { modifyBoard } from '../../redux/modules/boardSlice';
@@ -60,6 +60,13 @@ function ModifyModal(props) {
     }
   };
 
+  useEffect(() => {
+    if (newVideoId) {
+      const thumbnailUrl = `https://img.youtube.com/vi/${newVideoId}/maxresdefault.jpg`;
+      setThumbnailUrl(thumbnailUrl);
+    }
+  }, [newVideoId]);
+
   const extractVideoId = (url) => {
     const regularExpression =
       /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
@@ -91,9 +98,10 @@ function ModifyModal(props) {
 
     const isTitleModified = newTitle === target[0].title;
     const isContentModified = newContent === target[0].content;
+    const isThumbnailUrlModified = thumbnailUrl === target[0].content;
 
     event.preventDefault();
-    if (isTitleModified && isContentModified) {
+    if (isTitleModified && isContentModified && isThumbnailUrlModified) {
       alert('수정된 내용이 없습니다!');
     } else {
       if (window.confirm('게시글을 수정하시겠습니까?')) {
@@ -115,6 +123,7 @@ function ModifyModal(props) {
           }
           dispatch(modifyBoard(newPost));
           alert('수정되었습니다!');
+          window.location.reload();
           props.setModifyOpen(!props.modifyOpen);
         } catch (error) {
           console.error('게시물 수정 중 오류가 발생', error.message);
