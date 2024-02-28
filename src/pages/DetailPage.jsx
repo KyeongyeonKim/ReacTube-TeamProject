@@ -21,9 +21,9 @@ const DetailPage = () => {
   const dispatch = useDispatch();
   const id = useLocation().state.id;
 
-  // useEffect(() => {
-  //   dispatch(fetchBoardItems());
-  // }, [dispatch, id]);
+  useEffect(() => {
+    dispatch(fetchBoardItems());
+  }, [dispatch, id]);
 
   const videoData = boardItems.find((element) => id === element.id);
 
