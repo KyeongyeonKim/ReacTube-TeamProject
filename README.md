@@ -8,7 +8,7 @@
 
 - 배포 링크 : https://reactube-publish.vercel.app/
   |제목|이미지|
-  |------|------|
+  |:------:|:------:|
   |메인 페이지|![메인페이지](./src/assets/screenshot/mainpage.png)|
   |로그인 페이지|![로그인페이지](./src/assets/screenshot/Loginpage.png)|
   |회원 가입 페이지|![회원가입페이지](./src/assets/screenshot/Signupage.png)|
@@ -45,8 +45,8 @@
 
 ## ⚙️ 개발 환경 / 기술스택
 
-- **`npm`**
-- **`create-react-app`**
+- npm
+- create-react-app
 - React
 - JavaScript
 - HTML
