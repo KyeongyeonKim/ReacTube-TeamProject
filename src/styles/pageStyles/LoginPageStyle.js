@@ -58,27 +58,29 @@ export const StyledLabel = styled.label`
   font-weight: bolder;
   align-items: center;
   justify-content: center;
-  justify-content: center;
   font-size: 1.1rem;
-  width: 8vh;
+  width: 120px;
 `;
 export const inputStyle = `
-  padding: 1vh;
-  margin: 1vh;
+  padding: 10px;
+  margin: 10px;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 23rem;
+  width: 300px;
+  max-width:calc(100% - 130px);
 `;
 export const StyledInput = styled.input`
   ${inputStyle}
-  margin-right: 70px;
 `;
 export const StyledTextarea = styled.textarea`
   resize: none;
   ${inputStyle}
 `;
 export const StyledButton = styled.button`
-  ${inputStyle}
+  padding: 1vh;
+  margin: 1vh;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
   background-color: white;
   width: auto;
   font-family: 'nanum';
@@ -95,14 +97,14 @@ export const LoginButton = styled.button`
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 23rem;
+  width: 300px;
+  max-width: 80%;
   background-color: white;
   font-family: 'nanum';
   font-size: 1.1rem;
   cursor: pointer;
   transition: 0.3s;
-  margin-top: 30px;
-  margin-left: 20px;
+  margin: 30px auto 10px;
 
   &:hover {
     background-color: #b575ff;
@@ -141,6 +143,7 @@ export const StyledItem = styled.div`
 `;
 
 export const Buttons = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
