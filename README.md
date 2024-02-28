@@ -6,10 +6,14 @@
 
 - 배포 링크 : https://reactube-publish.vercel.app/
 
-- 메인 페이지 이미지 : ![메인페이지](./src/assets/screenshot/mainpage.png)
+- 메인 페이지 : ![메인페이지](./src/assets/screenshot/mainpage.png)
 - 로그인 페이지 : ![로그인페이지](./src/assets/screenshot/Loginpage.png)
 - 회원 가입 페이지 : ![회원가입페이지](./src/assets/screenshot/Signupage.png)
 - 홈 페이지 : ![홈페이지](./src/assets/screenshot//homepage.png)
+- 페이지 내 검색 결과 : ![페이지 내 검색 결과](./src/assets/screenshot/pagesearchresult.png)
+- Youtube 검색 결과 : ![Youtube 검색 결과](./src/assets/screenshot/youtubesearchresult.png)
+- 상세 페이지 : ![상세페이지](./src/assets/screenshot/detailpage.png)
+- 댓글 : ![댓글](./src/assets/screenshot/comments.png)
 
 ## 🕰️ 개발 기간
 
