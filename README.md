@@ -4,7 +4,7 @@
 
 ## 🎬 구현 사이트 이미지
 
-- 배포 링크 : https://reactube-bay.vercel.app/
+- 배포 링크 : https://reactube-publish.vercel.app/
 
 - 메인 페이지 이미지 : ![메인페이지](./src/assets/screenshot/mainpage.png#style=width:50%;height:50%)
 -
