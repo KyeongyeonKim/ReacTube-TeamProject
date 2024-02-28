@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import client from 'api/supabase';
 import { Hr } from 'styles/pageStyles/DetailPageStyles';
 import { StDiv, StP, StButton } from 'styles/commentStyles/CommentsListStyle';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteComment, fetchComments } from '../../redux/modules/commentSlice';
 
 const CommentList = ({ videoId }) => {
-  const [comments, setComments] = useState([]);
-  const [selectedCommentId, setSelectedCommentId] = useState(null);
-  const [email, setEmail] = useState('');
+  const dispatch = useDispatch();
+  const comments = useSelector((state) => state.comments.comments);
   const [userId, setUserId] = useState('');
 
   useEffect(() => {
@@ -15,7 +16,6 @@ const CommentList = ({ videoId }) => {
         const auth = await client.auth.getUser();
         if (auth.data.user) {
           setUserId(auth.data.user.id);
-          setEmail(auth.data.user.email);
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -25,42 +25,17 @@ const CommentList = ({ videoId }) => {
   }, []);
 
   useEffect(() => {
-    fetchComments();
-  }, [comments]);
-
-  const fetchComments = async () => {
-    const { data, error } = await client.from('comments').select('*').eq('videoId', `${videoId}`);
-
-    if (error) {
-      console.error('Error fetching comments:', error.message);
-    } else {
-      const formattedComments = data.map((comment) => {
-        const createdAt = new Date(comment.created_at);
-        const formattedDate = `${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString([], {
-          hour: '2-digit',
-          minute: '2-digit'
-        })}`;
-        return { ...comment, created_at: formattedDate };
-      });
-      const reversedComments = formattedComments.reverse();
-      setComments(reversedComments);
-    }
-  };
+    dispatch(fetchComments(videoId));
+  }, [dispatch, videoId]);
 
   const handleDelete = async (commentId) => {
     const userConfirmed = window.confirm('댓글을 삭제하시겠습니까?');
     if (userConfirmed) {
       try {
-        await client.from('comments').delete().eq('id', commentId);
-
-        setSelectedCommentId(commentId);
-
-        setComments(comments.filter((comment) => comment.id !== commentId));
+        dispatch(deleteComment(commentId));
       } catch (error) {
         console.log('Error deleting comment:', error.message);
       }
-    } else {
-      return;
     }
   };
 
