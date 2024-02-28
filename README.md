@@ -6,7 +6,7 @@
 
 - 배포 링크 : https://reactube-bay.vercel.app/
 
-- 메인 페이지 이미지 : ![메인페이지]("./src/assets/screenshot/mainpage.png")
+- 메인 페이지 이미지 : ![메인페이지](./src/assets/screenshot/mainpage.png)
 -
 
 ## 🕰️ 개발 기간
