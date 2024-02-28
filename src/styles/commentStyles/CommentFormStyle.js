@@ -19,6 +19,7 @@ export const StArea = styled.textarea`
   margin: 0 20px 20px 10px;
   font-family: 'nanum';
   font-size: 18px;
+  resize: none;
 `;
 
 export const StButton = styled.button`

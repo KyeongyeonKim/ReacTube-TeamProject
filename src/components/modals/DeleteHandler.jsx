@@ -19,21 +19,15 @@ function DeleteHandler() {
   };
 
   const getUserData = async () => {
-    try {
-      const auth = await client.auth.getUser();
-      if (auth.data.user.id) {
-        setUserId(auth.data.user.id);
-      }
-    } catch (error) {
-      alert('Error on fetching user data');
-    }
+    const { data: { user } } = await client.auth.getUser();
+    setUserId(user.id);
   };
 
   useEffect(() => {
     getUserData();
   }, []);
 
-  const idChecker = userId === videoData.userId;
+  const idChecker = userId === videoData && videoData.userId;
 
   return (
     <>
