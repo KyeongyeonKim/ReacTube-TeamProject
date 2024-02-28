@@ -11,7 +11,6 @@ export const AddVideoButton = styled.button`
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 42vw;
   background-color: white;
   width: auto;
   font-family: 'nanum';
@@ -26,7 +25,7 @@ export const AddVideoButton = styled.button`
 
 export const Container = styled.div`
   width: auto;
-  height: auto;
+  height: 100%;
   padding: 1rem 3rem;
 `;
 
