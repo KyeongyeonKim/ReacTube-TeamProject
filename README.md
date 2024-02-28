@@ -7,7 +7,7 @@
 ## 🎬 구현 사이트 이미지
 
 - 배포 링크 : https://reactube-publish.vercel.app/
-  |제목|이미지|
+  |페이지|이미지|
   |:------:|:------:|
   |메인 페이지|![메인페이지](./src/assets/screenshot/mainpage.png)|
   |로그인 페이지|![로그인페이지](./src/assets/screenshot/Loginpage.png)|
