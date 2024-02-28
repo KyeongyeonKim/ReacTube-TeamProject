@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import client from 'api/supabase';
 import { StCommentArea, StInputName, StArea, StButton } from 'styles/commentStyles/CommentFormStyle';
-import { useDispatch } from 'react-redux';
-import { addComment } from '../../redux/modules/commentSlice';
 
 const CommentForm = ({ videoId }) => {
-  const dispatch = useDispatch();
   const [comment, setComment] = useState('');
-  const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState('');
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         const auth = await client.auth.getUser();
-        if (auth.data.user.email) {
+        if (auth.data.user) {
+          setUserId(auth.data.user.id);
           setEmail(auth.data.user.email);
         }
       } catch (error) {
@@ -35,20 +33,17 @@ const CommentForm = ({ videoId }) => {
     const seconds = today.getSeconds().toString().padStart(2, '0');
     const timeString = `${year}/${month}/${date} ${hours}:${minutes}:${seconds}`;
 
-    const newComment = { comment, nickname: email, password, videoId, created_at: timeString };
+    // Insert the comment into the database
+    const { data, error } = await client
+      .from('comments')
+      .insert({ nickname: email, comment, created_at: timeString, videoId, userId });
 
-    try {
-      const { error } = await client.from('comments').insert([newComment]);
-      if (error) {
-        throw error;
-      }
-
-      dispatch(addComment(newComment));
-    } catch (error) {
+    if (error) {
       console.error('Error inserting comment:', error.message);
+    } else {
+      console.log('Comment inserted successfully:', data);
+      setComment('');
     }
-    setComment('');
-    setPassword('');
   };
 
   return (
@@ -56,16 +51,9 @@ const CommentForm = ({ videoId }) => {
       <div>
         <StInputName
           type="text"
-          placeholder="이메일"
+          placeholder="닉네임"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <StInputName
-          type="password"
-          placeholder="비밀번호"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           required
         />
       </div>
