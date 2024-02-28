@@ -20,7 +20,7 @@ export const LoginTitle = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  font-size: 3vh;
+  font-size: 1.7rem;
   font-family: 'nanum';
   margin-bottom: 2rem;
   padding-bottom: 1rem;
@@ -33,7 +33,7 @@ export const StyledForm = styled.form`
   border-radius: 0.5rem;
   padding: 2vh;
   width: 50vw;
-  height: 40vh;
+  /* height: 40vh; */
   background-color: white;
 `;
 export const StyledSmallContainer = styled.div`
@@ -49,7 +49,7 @@ export const StyledSection = styled.section`
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-size: 2vh;
+  font-size: 1.1rem;
   font-family: 'nanum';
   align-items: center;
 `;
@@ -58,31 +58,33 @@ export const StyledLabel = styled.label`
   font-weight: bolder;
   align-items: center;
   justify-content: center;
-  justify-content: center;
-  font-size: 2vh;
-  width: 8vh;
+  font-size: 1.1rem;
+  width: 120px;
 `;
 export const inputStyle = `
-  padding: 1vh;
-  margin: 1vh;
+  padding: 10px;
+  margin: 10px;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 23rem;
+  width: 300px;
+  max-width:calc(100% - 130px);
 `;
 export const StyledInput = styled.input`
   ${inputStyle}
-  margin-right: 70px;
 `;
 export const StyledTextarea = styled.textarea`
   resize: none;
   ${inputStyle}
 `;
 export const StyledButton = styled.button`
-  ${inputStyle}
+  padding: 1vh;
+  margin: 1vh;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
   background-color: white;
   width: auto;
   font-family: 'nanum';
-  font-size: 2vh;
+  font-size: 1.1rem;
   cursor: pointer;
 
   &:hover {
@@ -95,14 +97,14 @@ export const LoginButton = styled.button`
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 23rem;
+  width: 300px;
+  max-width: 80%;
   background-color: white;
   font-family: 'nanum';
-  font-size: 2vh;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: 0.3s;
-  margin-top: 30px;
-  margin-left: 20px;
+  margin: 30px auto 10px;
 
   &:hover {
     background-color: #b575ff;
@@ -141,6 +143,7 @@ export const StyledItem = styled.div`
 `;
 
 export const Buttons = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;

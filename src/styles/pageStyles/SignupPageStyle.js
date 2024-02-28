@@ -21,24 +21,26 @@ export const StyledForm = styled.form`
   border-radius: 0.5rem;
   padding: 2vh;
   width: 50vw;
-  height: 45vh;
+  /* height: 45vh; */
   background-color: white;
 `;
 
 export const StyledContent = styled.div`
+  padding-bottom: 1rem;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: top;
   width: 45rem;
-  height: 13rem;
+  max-width: 80%;
 `;
 
 export const SignupTitle = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  font-size: 3vh;
+  font-size: 1.7rem;
   font-family: 'nanum';
   margin-bottom: 2rem;
   padding-bottom: 1rem;
@@ -48,7 +50,7 @@ export const SignupTitle = styled.div`
 export const StyledSection = styled.section`
   display: flex;
   width: 100%;
-  font-size: 2vh;
+  font-size: 1.1rem;
   font-family: 'nanum';
   align-items: center;
 `;
@@ -58,15 +60,15 @@ export const StyledLabel = styled.label`
   align-items: center;
   justify-content: center;
   justify-content: center;
-  font-size: 2vh;
-  width: 12vh;
+  font-size: 1.1rem;
+  width: 120px;
 `;
 export const inputStyle = `
   padding: 1vh;
   margin: 1vh;
   border: 0.2rem solid black;
   border-radius: 0.5rem;
-  width: 30vw;
+  width: calc(100% - 160px);
 `;
 export const StyledInput = styled.input`
   ${inputStyle}
@@ -80,7 +82,7 @@ export const StyledButton = styled.button`
   background-color: white;
   width: auto;
   font-family: 'nanum';
-  font-size: 2vh;
+  font-size: 1.1rem;
   cursor: pointer;
 
   &:hover {
@@ -94,9 +96,10 @@ export const SignupButton = styled.button`
   border: 0.2rem solid black;
   border-radius: 0.5rem;
   width: 23rem;
+  max-width: 80%;
   background-color: white;
   font-family: 'nanum';
-  font-size: 2vh;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: 0.3s;
   margin-top: 20px;
@@ -109,6 +112,8 @@ export const SignupButton = styled.button`
 `;
 
 export const WrongPassword = styled.div`
-  margin-right: 16rem;
+  position: absolute;
+  bottom: 0;
+  left: 140px;
   font-family: 'nanum';
 `;

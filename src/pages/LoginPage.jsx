@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import client from '../api/supabase';
-import { checkUser, removeUser } from '../redux/modules/authSlice';
+import { Resend } from 'resend';
+import { checkUser } from '../redux/modules/authSlice';
 import {
   Container,
   StyledForm,
@@ -47,20 +48,6 @@ export default function LoginPage() {
     setLoading(false);
   };
 
-  const resetPassword = async () => {
-    try {
-      const { data, error } = await client.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.href
-      });
-      if (error) throw error;
-      console.log('비밀번호 재설정 이메일이 발송되었습니다.');
-      alert('비밀번호 재설정 이메일이 발송되었습니다.');
-    } catch (error) {
-      console.log('비밀번호 재설정 오류', error.message);
-      alert('비밀번호 재설정 요청을 처리하는 중에 오류가 발생했습니다.', error.message);
-    }
-  };
-
   return (
     <Container>
       <StyledForm onSubmit={loginHandler}>
@@ -95,13 +82,8 @@ export default function LoginPage() {
       </StyledForm>
       <Buttons>
         <div>
+          <label>계정이 없으신가요?</label>
           <StyledButton onClick={() => navigate('/signup')}>회원가입 페이지로 이동</StyledButton>
-        </div>
-        <div>
-          <label>비밀번호를 잊어버리셨나요?</label>
-          <StyledButton type="submit" onClick={resetPassword}>
-            비밀번호 재설정
-          </StyledButton>
         </div>
       </Buttons>
     </Container>
