@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import client from 'api/supabase';
 import { Hr } from 'styles/pageStyles/DetailPageStyles';
-import { StDiv, StP, StButton, StInput } from 'styles/commentStyles/CommentsListStyle';
+import { StDiv, StP, StButton } from 'styles/commentStyles/CommentsListStyle';
 
 const CommentList = ({ videoId }) => {
   const [comments, setComments] = useState([]);
   const [selectedCommentId, setSelectedCommentId] = useState(null);
-  const [password, setPassword] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState('');
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         const auth = await client.auth.getUser();
-        if (auth.data.user.email) {
+        if (auth.data.user) {
+          setUserId(auth.data.user.id);
           setEmail(auth.data.user.email);
         }
       } catch (error) {
@@ -47,26 +47,13 @@ const CommentList = ({ videoId }) => {
     }
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (commentId) => {
     try {
-      const { data: commentData, error } = await client.from('comments').select('password').eq('id', selectedCommentId);
-      if (error) {
-        console.error('Error fetching comment:', error.message);
-        return;
-      }
-      const storedPassword = commentData[0].password;
+      await client.from('comments').delete().eq('id', commentId);
 
-      if (password !== storedPassword) {
-        alert('비밀번호가 일치하지 않습니다.');
-        setPassword('');
-        return;
-      }
+      setSelectedCommentId(commentId);
 
-      // 비밀번호가 일치하면 댓글 삭제
-      await client.from('comments').delete().eq('id', selectedCommentId);
-      setComments(comments.filter((comment) => comment.id !== selectedCommentId));
-      setIsModalOpen(false);
-      setPassword('');
+      setComments(comments.filter((comment) => comment.id !== commentId));
     } catch (error) {
       console.log('Error deleting comment:', error.message);
     }
@@ -81,11 +68,10 @@ const CommentList = ({ videoId }) => {
             {comment.nickname} / {comment.created_at}
           </StP>
           <StP>{comment.comment}</StP>
-          {comment.nickname === email && (
+          {comment.userId === userId && (
             <StButton
               onClick={() => {
-                setSelectedCommentId(comment.id);
-                setIsModalOpen(true);
+                handleDelete(comment.id);
               }}
             >
               삭제
@@ -93,22 +79,6 @@ const CommentList = ({ videoId }) => {
           )}
         </StDiv>
       ))}
-
-      {isModalOpen && (
-        <div>
-          <div>
-            <h2>비밀번호 입력</h2>
-            <StInput
-              type="password"
-              placeholder="비밀번호를 입력하세요"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <StButton onClick={handleDelete}>삭제</StButton>
-            <StButton onClick={() => setIsModalOpen(false)}>취소</StButton>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
