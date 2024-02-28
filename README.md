@@ -4,6 +4,10 @@
 
 "ReacTube" - Youtube API를 이용하여 리액트 관련 영상을 공유하는 웹사이트
 
+## 🖥️ 테스트 계정
+- email : test@test.com
+- password : Test1234 
+
 ## 🎬 구현 사이트 이미지
 
 - 배포 링크 : https://reactube-publish.vercel.app/
