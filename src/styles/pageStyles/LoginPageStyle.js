@@ -33,7 +33,7 @@ export const StyledForm = styled.form`
   border-radius: 0.5rem;
   padding: 2vh;
   width: 50vw;
-  height: 40vh;
+  /* height: 40vh; */
   background-color: white;
 `;
 export const StyledSmallContainer = styled.div`
