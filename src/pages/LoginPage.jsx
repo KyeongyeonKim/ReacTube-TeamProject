@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import client from '../api/supabase';
-import { checkUser, removeUser } from '../redux/modules/authSlice';
+import { checkUser } from '../redux/modules/authSlice';
 import {
   Container,
   StyledForm,
