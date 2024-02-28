@@ -8,12 +8,19 @@ import ModifyModal from './ModifyModal';
 
 function ModifyHandler() {
   const [modifyOpen, setModifyOpen] = useState(false);
+  const [authorId, setAuthorId] = useState('');
   const [userId, setUserId] = useState('');
-  const boardItems = useSelector((state) => state.boardItems.boardItems);
+
   const id = useLocation().state.id;
   const navigate = useNavigate();
 
-  const videoData = boardItems.find((element) => id === element.id);
+  const fetchData = async () => {
+    const { data, error } = await client.from('content').select('*');
+    if (error) throw error;
+
+    const videoData = data.find((element) => id === element.id);
+    setAuthorId(videoData.userId);
+  };
 
   const backToList = () => {
     navigate('/home', { replace: true });
@@ -29,10 +36,12 @@ function ModifyHandler() {
   };
 
   useEffect(() => {
+    fetchData();
+
     getUserData();
   }, []);
 
-  const idChecker = userId === videoData && videoData.userId;
+  const idChecker = userId === authorId;
 
   return (
     <>
