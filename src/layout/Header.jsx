@@ -43,7 +43,6 @@ function Header() {
     getUserData();
   }, [email]);
   const [selectedSearchOption, setSelectedSearchOption] = useState(searchOptions[0]);
-  const [youtubeResults, setYoutubeResults] = useState([]);
 
   const handleSearchInfo = async (e) => {
     e.preventDefault();
@@ -64,10 +63,6 @@ function Header() {
   const handleChangeSearchOption = (selectedOption) => {
     setSelectedSearchOption(selectedOption);
   };
-
-  useEffect(() => {
-    console.log('YouTube 검색 결과:', youtubeResults);
-  }, [youtubeResults]);
 
   const logoutHandler = async () => {
     setLoading(true);
