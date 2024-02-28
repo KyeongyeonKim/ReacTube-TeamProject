@@ -21,7 +21,7 @@ export const StyledForm = styled.form`
   border-radius: 0.5rem;
   padding: 2vh;
   width: 50vw;
-  height: 45vh;
+  /* height: 45vh; */
   background-color: white;
 `;
 
